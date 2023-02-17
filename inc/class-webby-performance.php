@@ -66,6 +66,8 @@ class Webby_Performance {
 		new \Webby_Performance\Customizer\Panel();
 		new \Webby_Performance\Customizer\Sanitize();
 		new \Webby_Performance\Wp_Head\Wp_Head();
+		new \Webby_Performance\Resource_Hints\Resource_Hints();
+		new \Webby_Performance\Preload\Preload();
 	}
 
 	/**

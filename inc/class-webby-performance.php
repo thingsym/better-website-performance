@@ -68,6 +68,7 @@ class Webby_Performance {
 		new \Webby_Performance\Wp_Head\Wp_Head();
 		new \Webby_Performance\Resource_Hints\Resource_Hints();
 		new \Webby_Performance\Preload\Preload();
+		new \Webby_Performance\Emoji\Emoji();
 	}
 
 	/**

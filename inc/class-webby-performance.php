@@ -23,6 +23,8 @@ class Webby_Performance {
 
 	public function init() {
 		add_action( 'init', [ $this, 'load_textdomain' ] );
+
+		add_filter( 'plugin_row_meta', [ $this, 'plugin_metadata_links' ], 10, 2 );
 	}
 
 	/**

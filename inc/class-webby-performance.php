@@ -19,6 +19,7 @@ class Webby_Performance {
 	public function __construct() {
 		add_action( 'plugins_loaded', [ $this, 'load_plugin_data' ] );
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
+		add_action( 'plugins_loaded', [ $this, 'load_class_functions' ] );
 	}
 
 	public function init() {
@@ -59,6 +60,11 @@ class Webby_Performance {
 			false,
 			plugin_dir_path( WEBBY_PERFORMANCE ) . 'languages'
 		);
+	}
+
+	public function load_class_functions() {
+		new \Webby_Performance\Customizer\Panel();
+		new \Webby_Performance\Customizer\Sanitize();
 	}
 
 	/**

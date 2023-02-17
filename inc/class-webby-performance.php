@@ -65,6 +65,7 @@ class Webby_Performance {
 	public function load_class_functions() {
 		new \Webby_Performance\Customizer\Panel();
 		new \Webby_Performance\Customizer\Sanitize();
+		new \Webby_Performance\Wp_Head\Wp_Head();
 	}
 
 	/**

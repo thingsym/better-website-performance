@@ -230,6 +230,12 @@ class Resource_Hints {
 				'label'       => __( 'DNS-Prefetch', 'webby-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
+				'description' =>
+					'CSV Format: href (host Only, excluding protocol)<br>' .
+					sprintf(
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						'https://html.spec.whatwg.org/multipage/links.html#link-type-dns-prefetch'
+					),
 			]
 		);
 
@@ -249,6 +255,12 @@ class Resource_Hints {
 				'label'       => __( 'Preconnect', 'webby-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
+				'description' =>
+					'CSV Format: href<br>' .
+					sprintf(
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						'https://html.spec.whatwg.org/multipage/links.html#link-type-preconnect'
+					),
 			]
 		);
 
@@ -268,6 +280,12 @@ class Resource_Hints {
 				'label'       => __( 'Prefetch', 'webby-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
+				'description' =>
+					'CSV Format: href, as, destination (Optional except URL)<br>' .
+					sprintf(
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						'https://html.spec.whatwg.org/multipage/links.html#link-type-prefetch'
+					),
 			]
 		);
 
@@ -287,6 +305,12 @@ class Resource_Hints {
 				'label'       => __( 'Prerender', 'webby-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
+				'description' =>
+					'CSV Format: href<br>' .
+					sprintf(
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						'https://html.spec.whatwg.org/multipage/links.html#link-type-prerender'
+					),
 			]
 		);
 	}

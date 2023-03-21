@@ -209,6 +209,12 @@ class Preload {
 				'label'       => __( 'Preload', 'webby-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
+				'description' =>
+					'CSV Format: href, as, destination, MIME type (Optional except href)<br>' .
+					sprintf(
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						'https://html.spec.whatwg.org/multipage/links.html#link-type-preload'
+					),
 			]
 		);
 

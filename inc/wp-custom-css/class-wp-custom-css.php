@@ -131,8 +131,8 @@ class Wp_Custom_Css {
 		$footer = $this->get_options( 'footer' );
 
 		if ( $footer ) {
-			remove_action( 'wp_head', 'wp_custom_css_cb' );
-			add_action( 'wp_footer', 'wp_custom_css_cb' );
+			remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
+			add_action( 'wp_footer', 'wp_custom_css_cb', 101 );
 		}
 	}
 

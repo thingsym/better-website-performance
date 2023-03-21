@@ -72,7 +72,7 @@ class Image_Srcset {
 
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customizer' ] );
-		add_action( 'init', [ $this, 'setup' ] );
+		add_action( 'init', [ $this, 'init' ] );
 	}
 
 	/**
@@ -134,7 +134,7 @@ class Image_Srcset {
 		}
 	}
 
-	public function setup() {
+	public function init() {
 		$image_srcset = $this->get_options( 'image_srcset' );
 		if ( ! $image_srcset ) {
 			add_filter( 'wp_calculate_image_srcset_meta', '__return_null' );

@@ -81,7 +81,7 @@ class Wp_Head {
 
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customizer' ] );
-		add_action( 'init', [ $this, 'setup' ] );
+		add_action( 'init', [ $this, 'init' ] );
 	}
 
 	/**
@@ -143,7 +143,7 @@ class Wp_Head {
 		}
 	}
 
-	public function setup() {
+	public function init() {
 		$wp_head = $this->get_options();
 
 		if ( ! $wp_head['feed_links'] ) {

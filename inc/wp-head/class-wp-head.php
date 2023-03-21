@@ -73,8 +73,6 @@ class Wp_Head {
 		'wlwmanifest_link'                => true,
 		'wp_generator'                    => true,
 		'wp_shortlink_wp_head'            => true,
-		'index_rel_link'                  => true,
-		'adjacent_posts_rel_link_wp_head' => true,
 		'rest_output_link_wp_head'        => true,
 		'wp_oembed_add_discovery_links'   => true,
 	];
@@ -161,14 +159,8 @@ class Wp_Head {
 		if ( ! $wp_head['wp_generator'] ) {
 			remove_action( 'wp_head', 'wp_generator' );
 		}
-		if ( ! $wp_head['index_rel_link'] ) {
-			remove_action( 'wp_head', 'index_rel_link' );
-		}
 		if ( ! $wp_head['wp_shortlink_wp_head'] ) {
 			remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-		}
-		if ( ! $wp_head['adjacent_posts_rel_link_wp_head'] ) {
-			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
 		}
 		if ( ! $wp_head['rest_output_link_wp_head'] ) {
 			remove_action( 'wp_head', 'rest_output_link_wp_head' );
@@ -298,25 +290,6 @@ class Wp_Head {
 		);
 
 		$wp_customize->add_setting(
-			$this->options_name . '[index_rel_link]',
-			[
-				'default'           => $default_options['index_rel_link'],
-				'type'              => $this->type,
-				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
-			]
-		);
-
-		$wp_customize->add_control(
-			$this->options_name . '[index_rel_link]',
-			[
-				'label'   => __( 'Enable index rel link', 'webby-performance' ),
-				'section' => $this->section_id,
-				'type'    => 'checkbox',
-			]
-		);
-
-		$wp_customize->add_setting(
 			$this->options_name . '[wp_shortlink_wp_head]',
 			[
 				'default'           => $default_options['wp_shortlink_wp_head'],
@@ -330,25 +303,6 @@ class Wp_Head {
 			$this->options_name . '[wp_shortlink_wp_head]',
 			[
 				'label'   => __( 'Enable shortlink', 'webby-performance' ),
-				'section' => $this->section_id,
-				'type'    => 'checkbox',
-			]
-		);
-
-		$wp_customize->add_setting(
-			$this->options_name . '[adjacent_posts_rel_link_wp_head]',
-			[
-				'default'           => $default_options['adjacent_posts_rel_link_wp_head'],
-				'type'              => $this->type,
-				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
-			]
-		);
-
-		$wp_customize->add_control(
-			$this->options_name . '[adjacent_posts_rel_link_wp_head]',
-			[
-				'label'   => __( 'Enable prev/next posts link', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]

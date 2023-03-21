@@ -72,6 +72,7 @@ class Wp_Head {
 		'rsd_link'                        => true,
 		'wlwmanifest_link'                => true,
 		'wp_generator'                    => true,
+		'rel_canonical'                   => true,
 		'wp_shortlink_wp_head'            => true,
 		'rest_output_link_wp_head'        => true,
 		'wp_oembed_add_discovery_links'   => true,
@@ -158,6 +159,9 @@ class Wp_Head {
 		}
 		if ( ! $wp_head['wp_generator'] ) {
 			remove_action( 'wp_head', 'wp_generator' );
+		}
+		if ( ! $wp_head['rel_canonical'] ) {
+			remove_action( 'wp_head', 'rel_canonical' );
 		}
 		if ( ! $wp_head['wp_shortlink_wp_head'] ) {
 			remove_action( 'wp_head', 'wp_shortlink_wp_head' );
@@ -284,6 +288,25 @@ class Wp_Head {
 			$this->options_name . '[wp_generator]',
 			[
 				'label'   => __( 'Enable WordPress generator', 'webby-performance' ),
+				'section' => $this->section_id,
+				'type'    => 'checkbox',
+			]
+		);
+
+		$wp_customize->add_setting(
+			$this->options_name . '[rel_canonical]',
+			[
+				'default'           => $default_options['rel_canonical'],
+				'type'              => $this->type,
+				'capability'        => $this->capability,
+				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+			]
+		);
+
+		$wp_customize->add_control(
+			$this->options_name . '[rel_canonical]',
+			[
+				'label'   => __( 'Enable canonical', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]

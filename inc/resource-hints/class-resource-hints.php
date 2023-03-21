@@ -208,7 +208,7 @@ class Resource_Hints {
 			[
 				'title'    => __( 'Resource Hints', 'webby-performance' ),
 				'priority' => $this->section_priority,
-				'panel' => 'webby_performance_settings',
+				'panel'    => 'webby_performance_settings',
 			]
 		);
 

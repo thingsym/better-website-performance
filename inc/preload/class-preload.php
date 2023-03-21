@@ -187,7 +187,7 @@ class Preload {
 			[
 				'title'    => __( 'Preload', 'webby-performance' ),
 				'priority' => $this->section_priority,
-				'panel' => 'webby_performance_settings',
+				'panel'    => 'webby_performance_settings',
 			]
 		);
 

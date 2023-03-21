@@ -6,6 +6,7 @@
   convertErrorsToExceptions="true"
   convertNoticesToExceptions="true"
   convertWarningsToExceptions="true"
+  cacheResult ="false"
   >
   <testsuites>
     <testsuite name="default">
@@ -14,7 +15,7 @@
   </testsuites>
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
-      <file>./your-main-file.php</file>
+      <file>./webby-performance.php</file>
       <directory suffix=".php">./inc</directory>
     </whitelist>
   </filter>

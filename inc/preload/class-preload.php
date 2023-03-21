@@ -140,7 +140,7 @@ class Preload {
 		$urls = preg_split( '/\R/', $option, -1, PREG_SPLIT_NO_EMPTY );
 
 		if ( empty( $urls ) ) {
-			return;
+			return $preload_resources;
 		}
 
 		foreach ( $urls as $line ) {

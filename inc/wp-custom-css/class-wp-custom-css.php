@@ -106,7 +106,7 @@ class Wp_Custom_Css {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/image_srcset/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'webby_performance/wp_custom_css/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -120,7 +120,7 @@ class Wp_Custom_Css {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/image_srcset/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'webby_performance/wp_custom_css/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;

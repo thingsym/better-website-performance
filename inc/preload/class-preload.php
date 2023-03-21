@@ -146,21 +146,23 @@ class Preload {
 		foreach ( $urls as $line ) {
 			$param = explode( ',', $line );
 
-			$param = array_map( function( $el ) {
+			$mapped_param = array_map( function( $el ) {
 				return trim( $el );
 			}, $param );
 
-			if ( ! empty( trim( $param[0] ) ) ) {
-				$resources['href'] = $param[0];
+			$resources = [];
+
+			if ( ! empty( trim( $mapped_param[0] ) ) ) {
+				$resources['href'] = $mapped_param[0];
 			}
-			if ( ! empty( $param[1] ) ) {
-				$resources['as'] = $param[1];
+			if ( ! empty( $mapped_param[1] ) ) {
+				$resources['as'] = $mapped_param[1];
 			}
-			if ( ! empty( $param[2] ) ) {
-				$resources['crossorigin'] = $param[2];
+			if ( ! empty( $mapped_param[2] ) ) {
+				$resources['crossorigin'] = $mapped_param[2];
 			}
-			if ( ! empty( $param[3] ) ) {
-				$resources['type'] = $param[3];
+			if ( ! empty( $mapped_param[3] ) ) {
+				$resources['type'] = $mapped_param[3];
 			}
 
 			$preload_resources[] = $resources;

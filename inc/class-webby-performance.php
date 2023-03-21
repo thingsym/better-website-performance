@@ -15,6 +15,14 @@ namespace Webby_Performance;
  * @since 1.0.0
  */
 class Webby_Performance {
+	/**
+	 * Public value.
+	 *
+	 * @access public
+	 *
+	 * @var array|null $plugin_data
+	 */
+	public $plugin_data = [];
 
 	public function __construct() {
 		add_action( 'plugins_loaded', [ $this, 'load_plugin_data' ] );

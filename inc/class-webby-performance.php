@@ -81,6 +81,7 @@ class Webby_Performance {
 		new \Webby_Performance\Preload\Preload();
 		new \Webby_Performance\Emoji\Emoji();
 		new \Webby_Performance\Image_Srcset\Image_Srcset();
+		new \Webby_Performance\Jquery\Jquery();
 	}
 
 	/**

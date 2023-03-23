@@ -139,10 +139,6 @@ class Resource_Hints {
 	}
 
 	public function add_resource_hints( $hints, $relation_type ) {
-		if ( is_admin() ) {
-			return $hints;
-		}
-
 		if ( 'dns-prefetch' === $relation_type ) {
 			$option = $this->get_options( 'dns_prefetch' );
 		}

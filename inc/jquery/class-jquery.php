@@ -147,35 +147,57 @@ class Jquery {
 			if ( $options['jquery_migrate'] ) {
 				if ( $options['in_footer'] ) {
 					global $wp_scripts;
-					$jquery = $wp_scripts->registered['jquery-core'];
-					$jquery_src = $jquery->src;
-					$jquery_ver = $jquery->ver;
 
-					$jquery_migrate = $wp_scripts->registered['jquery-migrate'];
-					$jquery_migrate_src = $jquery_migrate->src;
-					$jquery_migrate_ver = $jquery_migrate->ver;
+					if ( isset( $wp_scripts->registered['jquery'] ) ) {
+						$jquery = $wp_scripts->registered['jquery'];
+						$jquery_src = $jquery->src;
+						$jquery_ver = $jquery->ver;
 
-					wp_deregister_script( 'jquery' );
-					wp_deregister_script( 'jquery-core' );
-					wp_deregister_script( 'jquery-migrate' );
+						wp_deregister_script( 'jquery' );
+						wp_register_script( 'jquery', false, [ 'jquery-core', 'jquery-migrate' ], $jquery_ver, $options['in_footer'] );
+					}
 
-					wp_register_script( 'jquery', false, [ 'jquery-core', 'jquery-migrate' ], $jquery_ver, $options['in_footer'] );
-					wp_register_script( 'jquery-core', $jquery_src, [], $jquery_ver, $options['in_footer'] );
-					wp_register_script( 'jquery-migrate', $jquery_migrate_src, [], $jquery_migrate_ver, $options['in_footer'] );
+					if ( isset( $wp_scripts->registered['jquery-core'] ) ) {
+						$jquery_core = $wp_scripts->registered['jquery-core'];
+						$jquery_core_src = $jquery_core->src;
+						$jquery_core_ver = $jquery_core->ver;
+
+						wp_deregister_script( 'jquery-core' );
+						wp_register_script( 'jquery-core', $jquery_core_src, [], $jquery_core_ver, $options['in_footer'] );
+					}
+
+					if ( isset( $wp_scripts->registered['jquery-migrate'] ) ) {
+						$jquery_migrate = $wp_scripts->registered['jquery-migrate'];
+						$jquery_migrate_src = $jquery_migrate->src;
+						$jquery_migrate_ver = $jquery_migrate->ver;
+
+						wp_deregister_script( 'jquery-migrate' );
+						wp_register_script( 'jquery-migrate', $jquery_migrate_src, [], $jquery_migrate_ver, $options['in_footer'] );
+					}
 				}
 			}
 			else {
 				global $wp_scripts;
-				$jquery = $wp_scripts->registered['jquery-core'];
-				$jquery_src = $jquery->src;
-				$jquery_ver = $jquery->ver;
 
-				wp_deregister_script( 'jquery' );
-				wp_deregister_script( 'jquery-core' );
+				if ( isset( $wp_scripts->registered['jquery'] ) ) {
+					$jquery = $wp_scripts->registered['jquery'];
+					$jquery_src = $jquery->src;
+					$jquery_ver = $jquery->ver;
+
+					wp_deregister_script( 'jquery' );
+					wp_register_script( 'jquery', false, [ 'jquery-core' ], $jquery_ver, $options['in_footer'] );
+				}
+
+				if ( isset( $wp_scripts->registered['jquery-core'] ) ) {
+					$jquery_core = $wp_scripts->registered['jquery-core'];
+					$jquery_core_src = $jquery_core->src;
+					$jquery_core_ver = $jquery_core->ver;
+
+					wp_deregister_script( 'jquery-core' );
+					wp_register_script( 'jquery-core', $jquery_core_src, [], $jquery_core_ver, $options['in_footer'] );
+				}
+
 				wp_deregister_script( 'jquery-migrate' );
-
-				wp_register_script( 'jquery', false, [ 'jquery-core' ], $jquery_ver, $options['in_footer'] );
-				wp_register_script( 'jquery-core', $jquery_src, [], $jquery_ver, $options['in_footer'] );
 			}
 		}
 		else {

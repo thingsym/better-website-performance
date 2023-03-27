@@ -9,7 +9,7 @@ class Test_Customizer_Preload extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->wp_head = new \Webby_Performance\Preload\Preload();
+		$this->preload = new \Webby_Performance\Preload\Preload();
 
 		require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 
@@ -28,6 +28,10 @@ class Test_Customizer_Preload extends WP_UnitTestCase {
 		$wp_customize       = $this->wp_customize;
 
 		do_action( 'customize_register', $this->wp_customize );
+	}
+
+	public function tearDown(): void {
+		delete_option( $this->preload->options_name );
 	}
 
 	/**
@@ -89,7 +93,7 @@ class Test_Customizer_Preload extends WP_UnitTestCase {
 		$setting->save();
 		$this->assertSame( $setting->value(), $value );
 
-		$option = $this->wp_head->get_options( 'preload' );
+		$option = $this->preload->get_options( 'preload' );
 		$this->assertSame( $option, $value );
 	}
 

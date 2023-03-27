@@ -15,6 +15,12 @@ class Test_Emoji extends WP_UnitTestCase {
 		$this->emoji = new \Webby_Performance\Emoji\Emoji();
 	}
 
+	public function tearDown(): void {
+		delete_option( $this->emoji->options_name );
+		remove_filter( 'webby_performance/emoji/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'webby_performance/emoji/get_options', array( $this, '_filter_options' ) );
+	}
+
 	/**
 	 * @test
 	 * @group Emoji
@@ -46,12 +52,12 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @group Emoji
 	 */
 	function get_options_default() {
-		$options = $this->emoji->get_options();
+		$actual = $this->emoji->get_options();
 		$expected = [
 			'emoji' => true,
 		];
 
-		$this->assertSame( $expected, $options );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -63,17 +69,23 @@ class Test_Emoji extends WP_UnitTestCase {
 			'emoji' => false,
 		);
 
-		update_option( 'webby_performance_emoji_options', $options );
+		update_option( $this->emoji->options_name, $options );
 
 		$actual = $this->emoji->get_options();
 
 		$this->assertFalse( $actual['emoji'] );
+	}
 
+	/**
+	 * @test
+	 * @group Emoji
+	 */
+	function get_options_case_2() {
 		$options = array(
 			'emoji' => true,
 		);
 
-		update_option( 'webby_performance_emoji_options', $options );
+		update_option( $this->emoji->options_name, $options );
 
 		$actual = $this->emoji->get_options();
 
@@ -85,17 +97,17 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @group Emoji
 	 */
 	public function get_options_case_filters() {
-		$options = array(
-			'emoji' => true,
-		);
-
-		update_option( 'webby_performance_emoji_options', $options );
-
 		add_filter( 'webby_performance/emoji/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->emoji->get_options();
 		$this->assertFalse( $actual['emoji'] );
+	}
 
+	/**
+	 * @test
+	 * @group Emoji
+	 */
+	public function get_option_case_filters() {
 		add_filter( 'webby_performance/emoji/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->emoji->get_options( 'emoji' );
@@ -128,7 +140,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @test
 	 * @group Emoji
 	 */
-	function init() {
+	function init_default() {
 		$this->emoji->init();
 
 		$this->assertSame( 7, has_filter( 'wp_head', 'print_emoji_detection_script' ) );
@@ -138,12 +150,40 @@ class Test_Emoji extends WP_UnitTestCase {
 		$this->assertSame( 10, has_filter( 'the_content_feed', 'wp_staticize_emoji' ) );
 		$this->assertSame( 10, has_filter( 'comment_text_rss', 'wp_staticize_emoji' ) );
 		$this->assertSame( 10, has_filter( 'wp_mail', 'wp_staticize_emoji_for_email' ) );
+	}
 
+	/**
+	 * @test
+	 * @group Emoji
+	 */
+	function init_case_1() {
+		$options = array(
+			'emoji' => true,
+		);
+
+		update_option( $this->emoji->options_name, $options );
+
+		$this->emoji->init();
+
+		$this->assertSame( 7, has_filter( 'wp_head', 'print_emoji_detection_script' ) );
+		$this->assertSame( 10, has_filter( 'admin_print_scripts', 'print_emoji_detection_script' ) );
+		$this->assertSame( 10, has_filter( 'wp_print_styles', 'print_emoji_styles' ) );
+		$this->assertSame( 10, has_filter( 'admin_print_styles', 'print_emoji_styles' ) );
+		$this->assertSame( 10, has_filter( 'the_content_feed', 'wp_staticize_emoji' ) );
+		$this->assertSame( 10, has_filter( 'comment_text_rss', 'wp_staticize_emoji' ) );
+		$this->assertSame( 10, has_filter( 'wp_mail', 'wp_staticize_emoji_for_email' ) );
+	}
+
+	/**
+	 * @test
+	 * @group Emoji
+	 */
+	function init_case_2() {
 		$options = array(
 			'emoji' => false,
 		);
 
-		update_option( 'webby_performance_emoji_options', $options );
+		update_option( $this->emoji->options_name, $options );
 
 		$this->emoji->init();
 

@@ -15,6 +15,12 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 		$this->image_srcset = new \Webby_Performance\Image_Srcset\Image_Srcset();
 	}
 
+	public function tearDown(): void {
+		delete_option( $this->image_srcset->options_name );
+		remove_filter( 'webby_performance/image_srcset/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'webby_performance/image_srcset/get_options', array( $this, '_filter_options' ) );
+	}
+
 	/**
 	 * @test
 	 * @group Image_Srcset
@@ -22,7 +28,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	function public_variable() {
 		$this->assertSame( 'webby_performance_image_srcset', $this->image_srcset->section_id );
 		$this->assertSame( 160, $this->image_srcset->section_priority );
-		$this->assertSame( 'webby_performance_image_srcset_options', $this->image_srcset->options_name );
+		$this->assertSame( $this->image_srcset->options_name, $this->image_srcset->options_name );
 		$this->assertSame( 'option', $this->image_srcset->type );
 		$this->assertSame( 'manage_options', $this->image_srcset->capability );
 
@@ -46,12 +52,12 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @group Image_Srcset
 	 */
 	function get_options_default() {
-		$options = $this->image_srcset->get_options();
+		$actual = $this->image_srcset->get_options();
 		$expected = array(
 			'image_srcset' => true,
 		);
 
-		$this->assertSame( $expected, $options );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -63,17 +69,24 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 			'image_srcset' => false,
 		);
 
-		update_option( 'webby_performance_image_srcset_options', $options );
+		update_option( $this->image_srcset->options_name, $options );
 
 		$actual = $this->image_srcset->get_options();
 
 		$this->assertFalse( $actual['image_srcset'] );
 
+	}
+
+	/**
+	 * @test
+	 * @group Image_Srcset
+	 */
+	function get_options_case_2() {
 		$options = array(
 			'image_srcset' => true,
 		);
 
-		update_option( 'webby_performance_image_srcset_options', $options );
+		update_option( $this->image_srcset->options_name, $options );
 
 		$actual = $this->image_srcset->get_options();
 
@@ -85,12 +98,18 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @group Image_Srcset
 	 */
 	public function get_options_case_filters() {
-		$options = array(
-			'image_srcset' => true,
-		);
+		add_filter( 'webby_performance/image_srcset/get_options', array( $this, '_filter_options' ), 10 );
 
-		update_option( 'webby_performance_image_srcset_options', $options );
+		$actual = $this->image_srcset->get_options();
+		$this->assertFalse( $actual['image_srcset'] );
 
+	}
+
+	/**
+	 * @test
+	 * @group Image_Srcset
+	 */
+	public function get_option_case_filters() {
 		add_filter( 'webby_performance/image_srcset/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->image_srcset->get_options();
@@ -127,23 +146,39 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @test
 	 * @group Image_Srcset
 	 */
-	function init() {
+	function init_dafault() {
+		$this->image_srcset->init();
+
+		$this->assertFalse( has_filter( 'wp_calculate_image_srcset_meta', '__return_null' ) );
+	}
+
+	/**
+	 * @test
+	 * @group Image_Srcset
+	 */
+	function init_case_1() {
 
 		$options = array(
 			'image_srcset' => true,
 		);
 
-		update_option( 'webby_performance_image_srcset_options', $options );
+		update_option( $this->image_srcset->options_name, $options );
 
 		$this->image_srcset->init();
 
 		$this->assertFalse( has_filter( 'wp_calculate_image_srcset_meta', '__return_null' ) );
+	}
 
+	/**
+	 * @test
+	 * @group Image_Srcset
+	 */
+	function init_case_2() {
 		$options = array(
 			'image_srcset' => false,
 		);
 
-		update_option( 'webby_performance_image_srcset_options', $options );
+		update_option( $this->image_srcset->options_name, $options );
 
 		$this->image_srcset->init();
 

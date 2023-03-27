@@ -13,6 +13,20 @@ class Test_Preload extends WP_UnitTestCase {
 	public function setUp(): void {
 		parent::setUp();
 		$this->preload = new \Webby_Performance\Preload\Preload();
+
+		$this->preload_existed = [
+			[
+				'href' => '//example.com/',
+				'as'   => 'font',
+				'type' => 'text/html',
+			],
+		];
+	}
+
+	public function tearDown(): void {
+		delete_option( $this->preload->options_name );
+		remove_filter( 'webby_performance/preload/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'webby_performance/preload/get_options', array( $this, '_filter_options' ) );
 	}
 
 	/**
@@ -46,12 +60,12 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @group Preload
 	 */
 	function get_options_default() {
-		$options = $this->preload->get_options();
+		$actual = $this->preload->get_options();
 		$expected = [
 			'preload' => '',
 		];
 
-		$this->assertSame( $expected, $options );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -67,7 +81,7 @@ class Test_Preload extends WP_UnitTestCase {
 			'preload' => '//fonts.googleapis.com/css?family=Montserrat, font, , text/html',
 		];
 
-		update_option( 'webby_performance_preload_options', $options );
+		update_option( $this->preload->options_name, $options );
 
 		$actual = $this->preload->get_options();
 
@@ -83,7 +97,7 @@ class Test_Preload extends WP_UnitTestCase {
 			'preload' => '//fonts.googleapis.com/css?family=Montserrat, font, , text/html',
 		];
 
-		update_option( 'webby_performance_preload_options', $options );
+		update_option( $this->preload->options_name, $options );
 
 		add_filter( 'webby_performance/preload/get_options', [ $this, '_filter_options' ], 10 );
 
@@ -93,6 +107,18 @@ class Test_Preload extends WP_UnitTestCase {
 
 		$actual = $this->preload->get_options();
 		$this->assertSame( $expected, $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Preload
+	 */
+	public function get_option_case_filters() {
+		$options = [
+			'preload' => '//fonts.googleapis.com/css?family=Montserrat, font, , text/html',
+		];
+
+		update_option( $this->preload->options_name, $options );
 
 		add_filter( 'webby_performance/preload/get_option', [ $this, '_filter_option' ], 10, 2 );
 
@@ -129,12 +155,18 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload() {
+	function add_preload_default() {
 		$actual = $this->preload->add_preload( [] );
 
 		$this->assertIsArray( $actual );
 		$this->assertEmpty( $actual );
+	}
 
+	/**
+	 * @test
+	 * @group Preload
+	 */
+	function add_preload_case_1() {
 		$expected = [
 			[
 				'href' => '//fonts.googleapis.com/css?family=Montserrat',
@@ -147,12 +179,19 @@ class Test_Preload extends WP_UnitTestCase {
 			'preload' => '//fonts.googleapis.com/css?family=Montserrat, font, , text/html',
 		];
 
-		update_option( 'webby_performance_preload_options', $options );
+		update_option( $this->preload->options_name, $options );
 
 		$actual = $this->preload->add_preload( [] );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Preload
+	 */
+	function add_preload_case_2() {
 
 		$expected = [
 			[
@@ -167,12 +206,19 @@ class Test_Preload extends WP_UnitTestCase {
 			'preload' => '//fonts.googleapis.com/css?family=Montserrat, font, crossorigin, text/html',
 		];
 
-		update_option( 'webby_performance_preload_options', $options );
+		update_option( $this->preload->options_name, $options );
 
 		$actual = $this->preload->add_preload( [] );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Preload
+	 */
+	function add_preload_case_3() {
 
 		$expected = [
 			[
@@ -185,12 +231,19 @@ class Test_Preload extends WP_UnitTestCase {
 			'preload' => '//fonts.googleapis.com/css?family=Montserrat, font',
 		];
 
-		update_option( 'webby_performance_preload_options', $options );
+		update_option( $this->preload->options_name, $options );
 
 		$actual = $this->preload->add_preload( [] );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Preload
+	 */
+	function add_preload_case_4() {
 
 		$expected = [
 			[
@@ -202,7 +255,7 @@ class Test_Preload extends WP_UnitTestCase {
 			'preload' => '//fonts.googleapis.com/css?family=Montserrat',
 		];
 
-		update_option( 'webby_performance_preload_options', $options );
+		update_option( $this->preload->options_name, $options );
 
 		$actual = $this->preload->add_preload( [] );
 
@@ -243,7 +296,7 @@ class Test_Preload extends WP_UnitTestCase {
 //fonts.googleapis.com/css?family=Montserrat',
 		];
 
-		update_option( 'webby_performance_preload_options', $options );
+		update_option( $this->preload->options_name, $options );
 
 		$actual = $this->preload->add_preload( [] );
 
@@ -256,8 +309,8 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload_existed() {
-		$existed = [
+	function add_preload_existed_default() {
+		$this->preload_existed = [
 			[
 				'href' => '//example.com/',
 				'as'   => 'font',
@@ -273,11 +326,18 @@ class Test_Preload extends WP_UnitTestCase {
 			],
 		];
 
-		$actual = $this->preload->add_preload( $existed );
+		$actual = $this->preload->add_preload( $this->preload_existed );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
 
+	}
+
+	/**
+	 * @test
+	 * @group Preload
+	 */
+	function add_preload_existed_case_1() {
 		$expected = [
 			[
 				'href' => '//example.com/',
@@ -311,9 +371,9 @@ class Test_Preload extends WP_UnitTestCase {
 //fonts.googleapis.com/css?family=Montserrat',
 		];
 
-		update_option( 'webby_performance_preload_options', $options );
+		update_option( $this->preload->options_name, $options );
 
-		$actual = $this->preload->add_preload( $existed );
+		$actual = $this->preload->add_preload( $this->preload_existed );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );

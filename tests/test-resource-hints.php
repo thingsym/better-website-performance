@@ -13,6 +13,19 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	public function setUp(): void {
 		parent::setUp();
 		$this->resource_hints = new \Webby_Performance\Resource_Hints\Resource_Hints();
+
+		$this->resource_hints_existed = [
+			[
+				'href' => 'example.com',
+			],
+		];
+
+	}
+
+	public function tearDown(): void {
+		delete_option( $this->resource_hints->options_name );
+		remove_filter( 'webby_performance/resource_hints/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'webby_performance/resource_hints/get_options', array( $this, '_filter_options' ) );
 	}
 
 	/**
@@ -51,7 +64,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @group Resource_Hints
 	 */
 	function get_options_default() {
-		$options = $this->resource_hints->get_options();
+		$actual = $this->resource_hints->get_options();
 		$expected = [
 			'dns_prefetch' => '',
 			'preconnect'   => '',
@@ -59,7 +72,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 			'prerender'    => '',
 		];
 
-		$this->assertSame( $expected, $options );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -81,7 +94,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 			'prerender'    => 'dddddd',
 		];
 
-		update_option( 'webby_performance_resource_hints_options', $options );
+		update_option( $this->resource_hints->options_name, $options );
 
 		$actual = $this->resource_hints->get_options();
 
@@ -93,17 +106,6 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @group Resource_Hints
 	 */
 	public function get_options_case_filters() {
-		$options = [
-			'dns_prefetch' => 'www.google.com',
-			'preconnect'   => 'bbbbbb',
-			'prefetch'     => 'ccccc, script, crossorigin',
-			'prerender'    => 'dddddd',
-		];
-
-		update_option( 'webby_performance_resource_hints_options', $options );
-
-		add_filter( 'webby_performance/resource_hints/get_options', [ $this, '_filter_options' ], 10 );
-
 		$expected = [
 			'dns_prefetch' => 'aaa',
 			'preconnect'   => 'bbb',
@@ -111,8 +113,34 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 			'prerender'    => 'ddd',
 		];
 
+		$options = [
+			'dns_prefetch' => 'www.google.com',
+			'preconnect'   => 'bbbbbb',
+			'prefetch'     => 'ccccc, script, crossorigin',
+			'prerender'    => 'dddddd',
+		];
+
+		update_option( $this->resource_hints->options_name, $options );
+
+		add_filter( 'webby_performance/resource_hints/get_options', [ $this, '_filter_options' ], 10 );
+
 		$actual = $this->resource_hints->get_options();
 		$this->assertSame( $expected, $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Resource_Hints
+	 */
+	public function get_option_case_filters() {
+		$options = [
+			'dns_prefetch' => 'www.google.com',
+			'preconnect'   => 'bbbbbb',
+			'prefetch'     => 'ccccc, script, crossorigin',
+			'prerender'    => 'dddddd',
+		];
+
+		update_option( $this->resource_hints->options_name, $options );
 
 		add_filter( 'webby_performance/resource_hints/get_option', [ $this, '_filter_option' ], 10, 2 );
 
@@ -155,18 +183,18 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints() {
+	function add_resource_hints_default() {
 		$actual = $this->resource_hints->add_resource_hints( [], 'dns-prefetch' );
 
 		$this->assertIsArray( $actual );
 		$this->assertEmpty( $actual );
+	}
 
-		$expected = [
-			[
-				'href' => 'www.google.com',
-			],
-		];
-
+	/**
+	 * @test
+	 * @group Resource_Hints
+	 */
+	function add_resource_hints_case_1() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -174,7 +202,13 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 			'prerender'    => 'dddddd',
 		];
 
-		update_option( 'webby_performance_resource_hints_options', $options );
+		update_option( $this->resource_hints->options_name, $options );
+
+		$expected = [
+			[
+				'href' => 'www.google.com',
+			],
+		];
 
 		$actual = $this->resource_hints->add_resource_hints( [], 'dns-prefetch' );
 
@@ -215,7 +249,13 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
+	}
 
+	/**
+	 * @test
+	 * @group Resource_Hints
+	 */
+	function add_resource_hints_case_2() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -223,32 +263,12 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 			'prerender'    => 'dddddd',
 		];
 
-		update_option( 'webby_performance_resource_hints_options', $options );
+		update_option( $this->resource_hints->options_name, $options );
 
 		$expected = [
 			[
 				'href' => 'ccccc',
 				'as'   => 'script',
-			],
-		];
-
-		$actual = $this->resource_hints->add_resource_hints( [], 'prefetch' );
-
-		$this->assertIsArray( $actual );
-		$this->assertSame( $expected, $actual );
-
-		$options = [
-			'dns_prefetch' => 'www.google.com',
-			'preconnect'   => 'bbbbbb',
-			'prefetch'     => 'ccccc',
-			'prerender'    => 'dddddd',
-		];
-
-		update_option( 'webby_performance_resource_hints_options', $options );
-
-		$expected = [
-			[
-				'href' => 'ccccc',
 			],
 		];
 
@@ -263,17 +283,33 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_multiline() {
+	function add_resource_hints_case_3() {
+		$options = [
+			'dns_prefetch' => 'www.google.com',
+			'preconnect'   => 'bbbbbb',
+			'prefetch'     => 'ccccc',
+			'prerender'    => 'dddddd',
+		];
+
+		update_option( $this->resource_hints->options_name, $options );
 
 		$expected = [
 			[
-				'href' => 'www.google.com',
-			],
-			[
-				'href' => 'example.com',
+				'href' => 'ccccc',
 			],
 		];
 
+		$actual = $this->resource_hints->add_resource_hints( [], 'prefetch' );
+
+		$this->assertIsArray( $actual );
+		$this->assertSame( $expected, $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Resource_Hints
+	 */
+	function add_resource_hints_multiline() {
 		$options = [
 			'dns_prefetch' => 'www.google.com
 example.com',
@@ -285,7 +321,16 @@ ffffff',
 ggggg',
 		];
 
-		update_option( 'webby_performance_resource_hints_options', $options );
+		update_option( $this->resource_hints->options_name, $options );
+
+		$expected = [
+			[
+				'href' => 'www.google.com',
+			],
+			[
+				'href' => 'example.com',
+			],
+		];
 
 		$actual = $this->resource_hints->add_resource_hints( [], 'dns-prefetch' );
 
@@ -330,19 +375,13 @@ ggggg',
 				'href' => 'ggggg',
 			],
 		];
-
 	}
 
 	/**
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_existed() {
-		$existed = [
-			[
-				'href' => 'example.com',
-			],
-		];
+	function add_resource_hints_existed_dafault() {
 
 		$expected = [
 			[
@@ -350,10 +389,25 @@ ggggg',
 			],
 		];
 
-		$actual = $this->resource_hints->add_resource_hints( $existed, 'dns-prefetch' );
+		$actual = $this->resource_hints->add_resource_hints( $this->resource_hints_existed, 'dns-prefetch' );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Resource_Hints
+	 */
+	function add_resource_hints_existed_case_1() {
+		$options = [
+			'dns_prefetch' => 'www.google.com',
+			'preconnect'   => 'bbbbbb',
+			'prefetch'     => 'ccccc, script, crossorigin',
+			'prerender'    => 'dddddd',
+		];
+
+		update_option( $this->resource_hints->options_name, $options );
 
 		$expected = [
 			[
@@ -364,16 +418,7 @@ ggggg',
 			],
 		];
 
-		$options = [
-			'dns_prefetch' => 'www.google.com',
-			'preconnect'   => 'bbbbbb',
-			'prefetch'     => 'ccccc, script, crossorigin',
-			'prerender'    => 'dddddd',
-		];
-
-		update_option( 'webby_performance_resource_hints_options', $options );
-
-		$actual = $this->resource_hints->add_resource_hints( $existed, 'dns-prefetch' );
+		$actual = $this->resource_hints->add_resource_hints( $this->resource_hints_existed, 'dns-prefetch' );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
@@ -387,7 +432,7 @@ ggggg',
 			],
 		];
 
-		$actual = $this->resource_hints->add_resource_hints( $existed, 'preconnect' );
+		$actual = $this->resource_hints->add_resource_hints( $this->resource_hints_existed, 'preconnect' );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
@@ -403,7 +448,7 @@ ggggg',
 			],
 		];
 
-		$actual = $this->resource_hints->add_resource_hints( $existed, 'prefetch' );
+		$actual = $this->resource_hints->add_resource_hints( $this->resource_hints_existed, 'prefetch' );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
@@ -417,11 +462,17 @@ ggggg',
 			],
 		];
 
-		$actual = $this->resource_hints->add_resource_hints( $existed, 'prerender' );
+		$actual = $this->resource_hints->add_resource_hints( $this->resource_hints_existed, 'prerender' );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
+	}
 
+	/**
+	 * @test
+	 * @group Resource_Hints
+	 */
+	function add_resource_hints_existed_case_2() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -429,7 +480,7 @@ ggggg',
 			'prerender'    => 'dddddd',
 		];
 
-		update_option( 'webby_performance_resource_hints_options', $options );
+		update_option( $this->resource_hints->options_name, $options );
 
 		$expected = [
 			[
@@ -441,11 +492,17 @@ ggggg',
 			],
 		];
 
-		$actual = $this->resource_hints->add_resource_hints( $existed, 'prefetch' );
+		$actual = $this->resource_hints->add_resource_hints( $this->resource_hints_existed, 'prefetch' );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );
+	}
 
+	/**
+	 * @test
+	 * @group Resource_Hints
+	 */
+	function add_resource_hints_existed_case_3() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -453,7 +510,7 @@ ggggg',
 			'prerender'    => 'dddddd',
 		];
 
-		update_option( 'webby_performance_resource_hints_options', $options );
+		update_option( $this->resource_hints->options_name, $options );
 
 		$expected = [
 			[
@@ -464,7 +521,7 @@ ggggg',
 			],
 		];
 
-		$actual = $this->resource_hints->add_resource_hints( $existed, 'prefetch' );
+		$actual = $this->resource_hints->add_resource_hints( $this->resource_hints_existed, 'prefetch' );
 
 		$this->assertIsArray( $actual );
 		$this->assertSame( $expected, $actual );

@@ -15,6 +15,12 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 		$this->webby_performance = new \Webby_Performance\Webby_Performance();
 	}
 
+	public function tearDown(): void {
+		remove_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ] );
+		remove_filter( 'locale', [ $this, '_change_locale' ] );
+		unload_textdomain( 'webby-performance' );
+	}
+
 	/**
 	 * @test
 	 * @group basic
@@ -74,11 +80,6 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 
 		$loaded = $this->webby_performance->load_textdomain();
 		$this->assertTrue( $loaded );
-
-		remove_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ] );
-		remove_filter( 'locale', [ $this, '_change_locale' ] );
-
-		unload_textdomain( 'webby-performance' );
 	}
 
 	/**
@@ -117,6 +118,8 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 		$this->assertTrue( class_exists( '\Webby_Performance\Preload\Preload' ) );
 		$this->assertTrue( class_exists( '\Webby_Performance\Emoji\Emoji' ) );
 		$this->assertTrue( class_exists( '\Webby_Performance\Image_Srcset\Image_Srcset' ) );
+		$this->assertTrue( class_exists( '\Webby_Performance\Jquery\Jquery' ) );
+
 	}
 
 	/**

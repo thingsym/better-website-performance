@@ -15,6 +15,12 @@ class Test_Wp_Head extends WP_UnitTestCase {
 		$this->wp_head = new \Webby_Performance\Wp_Head\Wp_Head();
 	}
 
+	public function tearDown(): void {
+		delete_option( $this->wp_head->options_name );
+		remove_filter( 'webby_performance/wp_head/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'webby_performance/wp_head/get_options', array( $this, '_filter_options' ) );
+	}
+
 	/**
 	 * @test
 	 * @group Wp_Head
@@ -54,7 +60,6 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @group Wp_Head
 	 */
 	function get_options_default() {
-		$options = $this->wp_head->get_options();
 		$expected = array(
 			'feed_links'                      => true,
 			'feed_links_extra'                => true,
@@ -67,7 +72,9 @@ class Test_Wp_Head extends WP_UnitTestCase {
 			'wp_oembed_add_discovery_links'   => true,
 		);
 
-		$this->assertSame( $expected, $options );
+		$actual = $this->wp_head->get_options();
+
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -75,43 +82,6 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @group Wp_Head
 	 */
 	function get_options_case_1() {
-		$options = array(
-			'feed_links'                      => false,
-			'feed_links_extra'                => false,
-			'rsd_link'                        => false,
-			'wlwmanifest_link'                => false,
-			'wp_generator'                    => false,
-			'rel_canonical'                   => false,
-			'wp_shortlink_wp_head'            => false,
-			'rest_output_link_wp_head'        => false,
-			'wp_oembed_add_discovery_links'   => false,
-		);
-
-		update_option( 'webby_performance_wp_head_options', $options );
-
-		$actual = $this->wp_head->get_options();
-
-		$this->assertFalse( $actual['feed_links'] );
-
-	}
-
-	/**
-	 * @test
-	 * @group Wp_Head
-	 */
-	public function get_options_case_filters() {
-		$options = array(
-			'feed_links'                      => true,
-			'feed_links_extra'                => true,
-			'rsd_link'                        => true,
-			'wlwmanifest_link'                => true,
-			'wp_generator'                    => true,
-			'rel_canonical'                   => true,
-			'wp_shortlink_wp_head'            => true,
-			'rest_output_link_wp_head'        => true,
-			'wp_oembed_add_discovery_links'   => true,
-		);
-
 		$expected = array(
 			'feed_links'                      => false,
 			'feed_links_extra'                => false,
@@ -124,13 +94,53 @@ class Test_Wp_Head extends WP_UnitTestCase {
 			'wp_oembed_add_discovery_links'   => false,
 		);
 
-		update_option( 'webby_performance_wp_head_options', $options );
+		$options = array(
+			'feed_links'                      => false,
+			'feed_links_extra'                => false,
+			'rsd_link'                        => false,
+			'wlwmanifest_link'                => false,
+			'wp_generator'                    => false,
+			'rel_canonical'                   => false,
+			'wp_shortlink_wp_head'            => false,
+			'rest_output_link_wp_head'        => false,
+			'wp_oembed_add_discovery_links'   => false,
+		);
+
+		update_option( $this->wp_head->options_name, $options );
+
+		$actual = $this->wp_head->get_options();
+
+		$this->assertSame( $expected, $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Wp_Head
+	 */
+	public function get_options_case_filters() {
+		$expected = array(
+			'feed_links'                      => false,
+			'feed_links_extra'                => false,
+			'rsd_link'                        => false,
+			'wlwmanifest_link'                => false,
+			'wp_generator'                    => false,
+			'rel_canonical'                   => false,
+			'wp_shortlink_wp_head'            => false,
+			'rest_output_link_wp_head'        => false,
+			'wp_oembed_add_discovery_links'   => false,
+		);
 
 		add_filter( 'webby_performance/wp_head/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->wp_head->get_options();
 		$this->assertSame( $expected, $actual );
+	}
 
+	/**
+	 * @test
+	 * @group Wp_Head
+	 */
+	public function get_option_case_filters() {
 		add_filter( 'webby_performance/wp_head/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->wp_head->get_options( 'feed_links' );
@@ -149,6 +159,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 			'rest_output_link_wp_head'        => true,
 			'wp_oembed_add_discovery_links'   => true,
 		);
+
 		$this->assertSame( $expected, $options );
 
 		$options = array(
@@ -178,7 +189,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Head
 	 */
-	function init() {
+	function init_default() {
 		$this->wp_head->init();
 
 		$this->assertSame( 2, has_filter( 'wp_head', 'feed_links' ) );
@@ -190,7 +201,13 @@ class Test_Wp_Head extends WP_UnitTestCase {
 		$this->assertSame( 10, has_filter( 'wp_head', 'wp_shortlink_wp_head' ) );
 		$this->assertSame( 10, has_filter( 'wp_head', 'rest_output_link_wp_head' ) );
 		$this->assertSame( 10, has_filter( 'wp_head', 'wp_oembed_add_discovery_links' ) );
+	}
 
+	/**
+	 * @test
+	 * @group Wp_Head
+	 */
+	function init_disabled() {
 		$options = array(
 			'feed_links'                      => false,
 			'feed_links_extra'                => false,
@@ -203,7 +220,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 			'wp_oembed_add_discovery_links'   => false,
 		);
 
-		update_option( 'webby_performance_wp_head_options', $options );
+		update_option( $this->wp_head->options_name, $options );
 
 		$this->wp_head->init();
 

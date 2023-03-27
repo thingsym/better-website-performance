@@ -15,6 +15,12 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 		$this->wp_custom_css = new \Webby_Performance\Wp_Custom_Css\Wp_Custom_Css();
 	}
 
+	public function tearDown(): void {
+		delete_option( $this->wp_custom_css->options_name );
+		remove_filter( 'webby_performance/wp_custom_css/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'webby_performance/wp_custom_css/get_options', array( $this, '_filter_options' ) );
+	}
+
 	/**
 	 * @test
 	 * @group Wp_Custom_Css
@@ -46,12 +52,12 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @group Wp_Custom_Css
 	 */
 	function get_options_default() {
-		$options = $this->wp_custom_css->get_options();
+		$actual = $this->wp_custom_css->get_options();
 		$expected = [
 			'footer' => false,
 		];
 
-		$this->assertSame( $expected, $options );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -63,17 +69,23 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 			'footer' => false,
 		);
 
-		update_option( 'webby_performance_wp_custom_css_options', $options );
+		update_option( $this->wp_custom_css->options_name, $options );
 
 		$actual = $this->wp_custom_css->get_options();
 
 		$this->assertFalse( $actual['footer'] );
+	}
 
+	/**
+	 * @test
+	 * @group Wp_Custom_Css
+	 */
+	function get_options_case_2() {
 		$options = array(
 			'footer' => true,
 		);
 
-		update_option( 'webby_performance_wp_custom_css_options', $options );
+		update_option( $this->wp_custom_css->options_name, $options );
 
 		$actual = $this->wp_custom_css->get_options();
 
@@ -85,41 +97,41 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @group Wp_Custom_Css
 	 */
 	public function get_options_case_filters() {
-		$options = array(
-			'footer' => true,
-		);
-
-		update_option( 'webby_performance_wp_custom_css_options', $options );
-
 		add_filter( 'webby_performance/wp_custom_css/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->wp_custom_css->get_options();
-		$this->assertFalse( $actual['footer'] );
+		$this->assertTrue( $actual['footer'] );
+	}
 
+	/**
+	 * @test
+	 * @group Wp_Custom_Css
+	 */
+	public function get_option_case_filters() {
 		add_filter( 'webby_performance/wp_custom_css/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->wp_custom_css->get_options( 'footer' );
-		$this->assertFalse( $actual );
+		$this->assertTrue( $actual );
 	}
 
 	public function _filter_options( $options ) {
 		$expected = array(
-			'footer' => true,
+			'footer' => false,
 		);
 		$this->assertSame( $expected, $options );
 
 		$options = array(
-			'footer' => false,
+			'footer' => true,
 		);
 
 		return $options;
 	}
 
 	public function _filter_option( $option, $name ) {
-		$this->assertTrue( $option );
+		$this->assertFalse( $option );
 		$this->assertSame( $name, 'footer' );
 
-		$option = false;
+		$option = true;
 
 		return $option;
 	}
@@ -128,17 +140,23 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Custom_Css
 	 */
-	function init() {
+	function init_default() {
 		$this->wp_custom_css->init();
 
 		$this->assertFalse( has_filter( 'wp_footer', 'wp_custom_css_cb' ) );
 		$this->assertSame( 101, has_filter( 'wp_head', 'wp_custom_css_cb' ) );
+	}
 
+	/**
+	 * @test
+	 * @group Wp_Custom_Css
+	 */
+	function init_case_1() {
 		$options = array(
 			'footer' => true,
 		);
 
-		update_option( 'webby_performance_wp_custom_css_options', $options );
+		update_option( $this->wp_custom_css->options_name, $options );
 
 		$this->wp_custom_css->init();
 

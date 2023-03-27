@@ -30,6 +30,10 @@ class Test_Customizer_Wp_Head extends WP_UnitTestCase {
 		do_action( 'customize_register', $this->wp_customize );
 	}
 
+	public function tearDown(): void {
+		delete_option( $this->wp_head->options_name );
+	}
+
 	/**
 	 * @test
 	 * @group Wp_Head

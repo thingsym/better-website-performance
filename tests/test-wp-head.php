@@ -19,6 +19,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 		delete_option( $this->wp_head->options_name );
 		remove_filter( 'webby_performance/wp_head/get_option', array( $this, '_filter_option' ) );
 		remove_filter( 'webby_performance/wp_head/get_options', array( $this, '_filter_options' ) );
+		parent::tearDown();
 	}
 
 	/**

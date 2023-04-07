@@ -19,6 +19,7 @@ class Test_Jquery extends WP_UnitTestCase {
 		delete_option( $this->jquery->options_name );
 		remove_filter( 'webby_performance/jquery/get_option', array( $this, '_filter_option' ) );
 		remove_filter( 'webby_performance/jquery/get_options', array( $this, '_filter_options' ) );
+		parent::tearDown();
 	}
 
 	/**

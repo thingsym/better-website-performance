@@ -19,6 +19,7 @@ class Test_Emoji extends WP_UnitTestCase {
 		delete_option( $this->emoji->options_name );
 		remove_filter( 'webby_performance/emoji/get_option', array( $this, '_filter_option' ) );
 		remove_filter( 'webby_performance/emoji/get_options', array( $this, '_filter_options' ) );
+		parent::tearDown();
 	}
 
 	/**

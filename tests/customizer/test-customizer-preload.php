@@ -32,6 +32,7 @@ class Test_Customizer_Preload extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		delete_option( $this->preload->options_name );
+		parent::tearDown();
 	}
 
 	/**

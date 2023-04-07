@@ -19,6 +19,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 		delete_option( $this->wp_custom_css->options_name );
 		remove_filter( 'webby_performance/wp_custom_css/get_option', array( $this, '_filter_option' ) );
 		remove_filter( 'webby_performance/wp_custom_css/get_options', array( $this, '_filter_options' ) );
+		parent::tearDown();
 	}
 
 	/**

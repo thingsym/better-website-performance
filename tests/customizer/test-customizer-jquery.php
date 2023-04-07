@@ -32,6 +32,7 @@ class Test_Customizer_Jquery extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		delete_option( $this->jquery->options_name );
+		parent::tearDown();
 	}
 
 	/**

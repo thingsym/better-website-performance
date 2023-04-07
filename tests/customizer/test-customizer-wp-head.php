@@ -32,6 +32,7 @@ class Test_Customizer_Wp_Head extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		delete_option( $this->wp_head->options_name );
+		parent::tearDown();
 	}
 
 	/**

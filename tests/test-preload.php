@@ -27,6 +27,7 @@ class Test_Preload extends WP_UnitTestCase {
 		delete_option( $this->preload->options_name );
 		remove_filter( 'webby_performance/preload/get_option', array( $this, '_filter_option' ) );
 		remove_filter( 'webby_performance/preload/get_options', array( $this, '_filter_options' ) );
+		parent::tearDown();
 	}
 
 	/**

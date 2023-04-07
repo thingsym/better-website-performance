@@ -19,6 +19,7 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 		remove_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ] );
 		remove_filter( 'locale', [ $this, '_change_locale' ] );
 		unload_textdomain( 'webby-performance' );
+		parent::tearDown();
 	}
 
 	/**

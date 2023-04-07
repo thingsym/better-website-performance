@@ -22,6 +22,7 @@ class Test_Jquery_Init extends WP_UnitTestCase {
 
 		global $wp_scripts;
 		wp_default_scripts( $wp_scripts );
+		parent::tearDown();
 	}
 
 	/**

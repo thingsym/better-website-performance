@@ -32,6 +32,7 @@ class Test_Customizer_Emoji extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		delete_option( $this->emoji->options_name );
+		parent::tearDown();
 	}
 
 	/**

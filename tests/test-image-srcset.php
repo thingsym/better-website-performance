@@ -19,6 +19,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 		delete_option( $this->image_srcset->options_name );
 		remove_filter( 'webby_performance/image_srcset/get_option', array( $this, '_filter_option' ) );
 		remove_filter( 'webby_performance/image_srcset/get_options', array( $this, '_filter_options' ) );
+		parent::tearDown();
 	}
 
 	/**

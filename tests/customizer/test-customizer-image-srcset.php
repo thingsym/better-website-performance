@@ -32,6 +32,7 @@ class Test_Customizer_Image_Srcset extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		delete_option( $this->image_srcset->options_name );
+		parent::tearDown();
 	}
 
 	/**

@@ -32,6 +32,7 @@ class Test_Customizer_Wp_Custom_Css extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		delete_option( $this->wp_custom_css->options_name );
+		parent::tearDown();
 	}
 
 	/**

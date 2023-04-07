@@ -26,6 +26,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 		delete_option( $this->resource_hints->options_name );
 		remove_filter( 'webby_performance/resource_hints/get_option', array( $this, '_filter_option' ) );
 		remove_filter( 'webby_performance/resource_hints/get_options', array( $this, '_filter_options' ) );
+		parent::tearDown();
 	}
 
 	/**

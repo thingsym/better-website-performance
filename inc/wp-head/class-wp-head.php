@@ -1,6 +1,6 @@
 <?php
 /**
- * Wp head
+ * HTML Head
  *
  * @package Webby_Performance
  * @since 1.0.0
@@ -192,7 +192,7 @@ class Wp_Head {
 		$wp_customize->add_section(
 			$this->section_id,
 			[
-				'title'    => __( 'WP Head', 'webby-performance' ),
+				'title'    => __( 'HTML Head', 'webby-performance' ),
 				'priority' => $this->section_priority,
 				'panel'    => 'webby_performance_settings',
 			]
@@ -211,7 +211,7 @@ class Wp_Head {
 		$wp_customize->add_control(
 			$this->options_name . '[feed_links]',
 			[
-				'label'   => __( 'Enable RSS', 'webby-performance' ),
+				'label'   => __( 'Display the links to the general feeds', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -230,7 +230,7 @@ class Wp_Head {
 		$wp_customize->add_control(
 			$this->options_name . '[feed_links_extra]',
 			[
-				'label'   => __( 'Enable extra RSS', 'webby-performance' ),
+				'label'   => __( 'Display the links to the extra feeds (such as category feeds)', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -249,7 +249,7 @@ class Wp_Head {
 		$wp_customize->add_control(
 			$this->options_name . '[rsd_link]',
 			[
-				'label'   => __( 'Enable Really Simple Discovery', 'webby-performance' ),
+				'label'   => __( 'Display Really Simple Discovery (EditURI)', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -268,7 +268,7 @@ class Wp_Head {
 		$wp_customize->add_control(
 			$this->options_name . '[wlwmanifest_link]',
 			[
-				'label'   => __( 'Enable Windows Live Writer', 'webby-performance' ),
+				'label'   => __( 'Display Windows Live Writer (wlwmanifest)', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -287,7 +287,7 @@ class Wp_Head {
 		$wp_customize->add_control(
 			$this->options_name . '[wp_generator]',
 			[
-				'label'   => __( 'Enable WordPress generator', 'webby-performance' ),
+				'label'   => __( 'Display WordPress generator', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -306,7 +306,7 @@ class Wp_Head {
 		$wp_customize->add_control(
 			$this->options_name . '[rel_canonical]',
 			[
-				'label'   => __( 'Enable canonical', 'webby-performance' ),
+				'label'   => __( 'Display canonical', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -325,7 +325,7 @@ class Wp_Head {
 		$wp_customize->add_control(
 			$this->options_name . '[wp_shortlink_wp_head]',
 			[
-				'label'   => __( 'Enable shortlink', 'webby-performance' ),
+				'label'   => __( 'Display shortlink', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -344,7 +344,7 @@ class Wp_Head {
 		$wp_customize->add_control(
 			$this->options_name . '[rest_output_link_wp_head]',
 			[
-				'label'   => __( 'Enable the REST API link', 'webby-performance' ),
+				'label'   => __( 'Display the REST API link', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -363,7 +363,7 @@ class Wp_Head {
 		$wp_customize->add_control(
 			$this->options_name . '[wp_oembed_add_discovery_links]',
 			[
-				'label'   => __( 'Enable oEmbed discovery links', 'webby-performance' ),
+				'label'   => __( 'Display oEmbed discovery links', 'webby-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]

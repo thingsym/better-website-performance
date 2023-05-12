@@ -45,7 +45,7 @@ class Test_Customizer_Wp_Head extends WP_UnitTestCase {
 		$this->assertSame( 160, $section->priority );
 		$this->assertSame( 'webby_performance_settings', $section->panel );
 		$this->assertSame( 'edit_theme_options', $section->capability );
-		$this->assertSame( 'WP Head', $section->title );
+		$this->assertSame( 'HTML Head', $section->title );
 	}
 
 	public function optionsProvider(): array {

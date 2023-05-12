@@ -36,7 +36,7 @@ class Panel {
 		$wp_customize->add_panel(
 			'webby_performance_settings',
 			[
-				'title'    => __( 'Performance Settings', 'webby-performance' ),
+				'title'    => __( 'Performance Settings (Webby Performance)', 'webby-performance' ),
 				'priority' => 300,
 			]
 		);

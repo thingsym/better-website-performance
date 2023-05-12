@@ -55,7 +55,7 @@ class Test_Customizer_Panel extends WP_UnitTestCase {
 		$this->assertSame( 'webby_performance_settings', $panel->id );
 		$this->assertSame( 300, $panel->priority );
 		$this->assertSame( 'edit_theme_options', $panel->capability );
-		$this->assertSame( 'Performance Settings', $panel->title );
+		$this->assertSame( 'Performance Settings (Webby Performance)', $panel->title );
 	}
 
 }

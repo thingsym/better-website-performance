@@ -83,6 +83,7 @@ class Webby_Performance {
 		new \Webby_Performance\Image_Srcset\Image_Srcset();
 		new \Webby_Performance\Jquery\Jquery();
 		new \Webby_Performance\JavaScript\Async();
+		new \Webby_Performance\Style\Concat();
 	}
 
 	/**

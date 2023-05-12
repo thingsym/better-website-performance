@@ -86,7 +86,6 @@ class Test_Customizer_Image_Srcset extends WP_UnitTestCase {
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 
-
 		$option = $this->image_srcset->get_options( 'image_srcset' );
 		$this->assertFalse( $option );
 	}

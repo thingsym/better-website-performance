@@ -5,17 +5,56 @@ Link: https://github.com/thingsym/webby-performance
 Donate link: https://github.com/sponsors/thingsym
 Tags: performance
 Stable tag: 1.0.0
-Tested up to: 6.0.0
+Tested up to: 6.2.0
 Requires at least: 6.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Webby Performance plugin adds advanced functionality.
+The Webby Performance plugin adds advanced features to improve website performance.
 
 == Description ==
 
-Webby Performance plugin adds advanced functionality.
+The Webby Performance plugin adds advanced features to improve website performance.
+Main features include HTML Head optimization, javascript async, CSS concat and inline, resource hints, etc.
+
+= Descriptions of features =
+
+= HTML Head optimization =
+
+Manage meta tags and rel=link output by WordPress
+
+= Emoji resource =
+
+Manage WordPress Emoji features and resources
+
+= image srcset =
+
+Manage image srcset (Responsive image)
+
+= JavaScript async =
+
+Asynchronous JavaScript managed by WordPress
+
+= jQuery =
+
+Manage jQuery loading
+
+= CSS concat and inline =
+
+Concating, inlining or minify stylesheets
+
+= Custom CSS =
+
+Place Custom CSS output by WordPress in the footer.
+
+= Resource Hints =
+
+Manage resource prefetching
+
+= Preload =
+
+Manage resource prefetching
 
 = Support =
 
@@ -55,9 +94,8 @@ Forking on Github is another good way. You can send a pull request.
 
 If you would like to contribute, here are some notes and guidlines.
 
-* All development happens on the **develop** branch, so it is always the most up-to-date
-* The **master** branch only contains tagged releases
-* If you are going to be submitting a pull request, please submit your pull request to the **develop** branch
+* All development happens on the **main** branch, so it is always the most up-to-date
+* If you are going to be submitting a pull request, please submit your pull request to the **main** branch
 * See about [forking](https://help.github.com/articles/fork-a-repo/) and [pull requests](https://help.github.com/articles/using-pull-requests/)
 
 = Test Matrix =
@@ -69,7 +107,7 @@ For operation compatibility between PHP version and WordPress version, see below
 1. Download and unzip files. Or install Webby Performance plugin using the WordPress plugin installer. In that case, skip 2.
 2. Upload "webby-performance" to the "/wp-content/plugins/" directory.
 3. Activate the plugin through the 'Plugins' menu in WordPress.
-4. Adds widgets to a widget area and configure settings through the 'Widgets' menu in WordPress.
+4. Access Customizer Panel `Performance Settings (Webby Performance)`.
 5. Have fun!
 
 == Changelog ==

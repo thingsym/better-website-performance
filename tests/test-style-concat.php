@@ -19,6 +19,13 @@ class Test_Style_Concat extends WP_UnitTestCase {
 		delete_option( $this->style_concat->options_name );
 		remove_filter( 'webby_performance/concat_style/get_option', array( $this, '_filter_option' ) );
 		remove_filter( 'webby_performance/concat_style/get_options', array( $this, '_filter_options' ) );
+
+		global $current_screen;
+		$current_screen = null;
+
+		global $wp_actions;
+		$wp_actions[ 'login_head' ] = null;
+
 	}
 
 	/**
@@ -164,6 +171,53 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
+	function concat_style_tag_admin() {
+		set_current_screen( 'dashboard' );
+
+		$tag = "<link rel='stylesheet' id='test-css' href='https://example.org/wp-includes/css/test.css' media='all' />";
+
+		$options = array(
+			'loading' => 'inline',
+			'minify'  => false,
+			'exclude' => '',
+		);
+
+		update_option( $this->style_concat->options_name, $options );
+
+		$actual = $this->style_concat->concat_style_tag( $tag, 'test-css', './tests/test.css' );
+		$this->assertTrue( is_admin() );
+		$this->assertSame( "<link rel='stylesheet' id='test-css' href='https://example.org/wp-includes/css/test.css' media='all' />", $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Style_Concat
+	 */
+	function concat_style_tag_on_login_page() {
+		// $this->markTestIncomplete( 'This test has not been implemented yet.' );
+		global $wp_actions;
+		$wp_actions[ 'login_head' ] = 1;
+		// do_action( 'login_head' );
+
+		$tag = "<link rel='stylesheet' id='test-css' href='https://example.org/wp-includes/css/test.css' media='all' />";
+
+		$options = array(
+			'loading' => 'inline',
+			'minify'  => false,
+			'exclude' => '',
+		);
+
+		update_option( $this->style_concat->options_name, $options );
+
+		$actual = $this->style_concat->concat_style_tag( $tag, 'test-css', './tests/test.css' );
+		$this->assertSame( 1, did_action( 'login_head' ) );
+		$this->assertSame( "<link rel='stylesheet' id='test-css' href='https://example.org/wp-includes/css/test.css' media='all' />", $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Style_Concat
+	 */
 	function concat_style_tag_exclude() {
 		$tag = "<link rel='stylesheet' id='test-css' href='https://example.org/wp-includes/css/test.css' media='all' />";
 
@@ -301,6 +355,42 @@ body {
 body{font-size:100%;}
 </style>
 ", $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Style_Concat
+	 */
+	function print_concat_style_admin() {
+		set_current_screen( 'dashboard' );
+
+		$this->style_concat->concat_css = "body{font-size:100%;}";
+
+		ob_start();
+		$this->style_concat->print_concat_style();
+		$actual = ob_get_clean();
+
+		$this->assertTrue( is_admin() );
+		$this->assertEmpty( $actual );
+	}
+
+	/**
+	 * @test
+	 * @group Style_Concat
+	 */
+	function print_concat_style_on_login_page() {
+		global $wp_actions;
+		$wp_actions[ 'login_head' ] = 1;
+		// do_action( 'login_head' );
+
+		$this->style_concat->concat_css = "body{font-size:100%;}";
+
+		ob_start();
+		$this->style_concat->print_concat_style();
+		$actual = ob_get_clean();
+
+		$this->assertSame( 1, did_action( 'login_head' ) );
+		$this->assertEmpty( $actual );
 	}
 
 	/**

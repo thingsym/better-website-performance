@@ -157,7 +157,7 @@ class Concat {
 	}
 
 	public function concat_style_tag( $tag, $handle, $src ) {
-		if ( is_admin() ) {
+		if ( is_admin() || did_action( 'login_head' ) ) {
 			return $tag;
 		}
 
@@ -203,7 +203,7 @@ class Concat {
 	}
 
 	public function print_concat_style() {
-		if ( is_admin() ) {
+		if ( is_admin() || did_action( 'login_head' ) ) {
 			return;
 		}
 

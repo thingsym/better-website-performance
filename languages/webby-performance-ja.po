@@ -138,11 +138,11 @@ msgstr "デフォルト: 外部CSSファイルを読み込み"
 
 #: inc/style/class-concat.php:287
 msgid "Inline each stylesheet"
-msgstr "各スタイルシートを埋め込み"
+msgstr "各スタイルシートをインライン埋め込み"
 
 #: inc/style/class-concat.php:288
 msgid "Inline concated Stylesheets"
-msgstr "結合したスタイルシートを埋め込み"
+msgstr "結合したスタイルシートをインライン埋め込み"
 
 #: inc/style/class-concat.php:306
 msgid "Enable minify"

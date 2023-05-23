@@ -196,7 +196,8 @@ class Test_Wp_Head extends WP_UnitTestCase {
 		$this->assertSame( 2, has_filter( 'wp_head', 'feed_links' ) );
 		$this->assertSame( 3, has_filter( 'wp_head', 'feed_links_extra' ) );
 		$this->assertSame( 10, has_filter( 'wp_head', 'rsd_link' ) );
-		$this->assertSame( 10, has_filter( 'wp_head', 'wlwmanifest_link' ) );
+		// wlwmanifest_link will be removed in version 6.3
+		// $this->assertSame( 10, has_filter( 'wp_head', 'wlwmanifest_link' ) );
 		$this->assertSame( 10, has_filter( 'wp_head', 'wp_generator' ) );
 		$this->assertSame( 10, has_filter( 'wp_head', 'rel_canonical' ) );
 		$this->assertSame( 10, has_filter( 'wp_head', 'wp_shortlink_wp_head' ) );

@@ -103,6 +103,11 @@ For operation compatibility between PHP version and WordPress version, see below
 
 ## Changelog
 
+### [1.0.1] - 2023.05.31
+
+* imporve code with phpcs
+* change plugin name to Better Website Performance
+
 ### [1.0.0] - 2023.05.23
 
 * initial release

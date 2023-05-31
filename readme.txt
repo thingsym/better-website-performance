@@ -4,7 +4,7 @@ Contributors: thingsym
 Link: https://github.com/thingsym/better-website-performance
 Donate link: https://github.com/sponsors/thingsym
 Tags: performance
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Tested up to: 6.2.0
 Requires at least: 6.0
 Requires PHP: 7.4
@@ -111,6 +111,10 @@ For operation compatibility between PHP version and WordPress version, see below
 5. Have fun!
 
 == Changelog ==
+
+= 1.0.1 for review =
+* imporve code with phpcs
+* change plugin name to Better Website Performance
 
 = 1.0.0 =
 * Initial release

@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Better Website Performance 1.0.0\n"
+"Project-Id-Version: Better Website Performance 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/better-website-"
 "performance\n"
-"POT-Creation-Date: 2023-05-31T07:56:04+00:00\n"
+"POT-Creation-Date: 2023-05-31T08:54:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,8 +25,10 @@ msgid "https://github.com/thingsym/better-website-performance"
 msgstr "https://github.com/thingsym/better-website-performance"
 
 #. Description of the plugin
-msgid "Better Website Performance plugin adds advanced functionality."
-msgstr "Better Website Performance プラグインにより高度な機能が追加されます。"
+msgid ""
+"The Better Website Performance plugin adds advanced features to improve "
+"website performance."
+msgstr "Better Website Performance プラグインは、ウェブサイトのパフォーマンスが向上する高度な機能を追加します。"
 
 #. Author of the plugin
 msgid "thingsym"
@@ -60,19 +62,19 @@ msgstr "Image Srcset"
 msgid "Enable Image Srcset"
 msgstr "Image Srcset を有効化"
 
-#: inc/javascript/class-async.php:199
+#: inc/javascript/class-async.php:200
 msgid "JavaScript"
 msgstr "JavaScript"
 
-#: inc/javascript/class-async.php:218
+#: inc/javascript/class-async.php:219
 msgid "Async type"
 msgstr "非同期処理"
 
-#: inc/javascript/class-async.php:242 inc/style/class-concat.php:325
+#: inc/javascript/class-async.php:243 inc/style/class-concat.php:329
 msgid "Exclude"
 msgstr "除外"
 
-#: inc/javascript/class-async.php:245 inc/style/class-concat.php:328
+#: inc/javascript/class-async.php:246 inc/style/class-concat.php:332
 msgid "Enter handle names to exclude."
 msgstr "除外対象のハンドル名を入力"
 
@@ -92,59 +94,59 @@ msgstr "jQuery Migrate を有効化"
 msgid "Place jQuery in the footer"
 msgstr "フッターに jQuery を配置する"
 
-#: inc/preload/class-preload.php:190 inc/preload/class-preload.php:211
+#: inc/preload/class-preload.php:193 inc/preload/class-preload.php:214
 msgid "Preload"
 msgstr "Preload"
 
-#: inc/preload/class-preload.php:217
-#: inc/resource-hints/class-resource-hints.php:234
-#: inc/resource-hints/class-resource-hints.php:259
-#: inc/resource-hints/class-resource-hints.php:284
-#: inc/resource-hints/class-resource-hints.php:309
+#: inc/preload/class-preload.php:220
+#: inc/resource-hints/class-resource-hints.php:240
+#: inc/resource-hints/class-resource-hints.php:265
+#: inc/resource-hints/class-resource-hints.php:290
+#: inc/resource-hints/class-resource-hints.php:315
 msgid "See <a href=\"%1$s\" target=\"_blank\">Specification</a>."
 msgstr "<a href=\"%1$s\" target=\"_blank\">仕様書を参照</a>"
 
-#: inc/resource-hints/class-resource-hints.php:207
+#: inc/resource-hints/class-resource-hints.php:213
 msgid "Resource Hints"
 msgstr "Resource Hints"
 
-#: inc/resource-hints/class-resource-hints.php:228
+#: inc/resource-hints/class-resource-hints.php:234
 msgid "DNS-Prefetch"
 msgstr "DNS-Prefetch"
 
-#: inc/resource-hints/class-resource-hints.php:253
+#: inc/resource-hints/class-resource-hints.php:259
 msgid "Preconnect"
 msgstr "Preconnect"
 
-#: inc/resource-hints/class-resource-hints.php:278
+#: inc/resource-hints/class-resource-hints.php:284
 msgid "Prefetch"
 msgstr "Prefetch"
 
-#: inc/resource-hints/class-resource-hints.php:303
+#: inc/resource-hints/class-resource-hints.php:309
 msgid "Prerender"
 msgstr "Prerender"
 
-#: inc/style/class-concat.php:263
+#: inc/style/class-concat.php:267
 msgid "Style Sheet"
 msgstr "スタイルシート"
 
-#: inc/style/class-concat.php:282
+#: inc/style/class-concat.php:286
 msgid "Loading type"
 msgstr "読み込み方法"
 
-#: inc/style/class-concat.php:286
+#: inc/style/class-concat.php:290
 msgid "Default: Load external css file"
 msgstr "デフォルト: 外部CSSファイルを読み込み"
 
-#: inc/style/class-concat.php:287
+#: inc/style/class-concat.php:291
 msgid "Inline each stylesheet"
 msgstr "各スタイルシートをインライン埋め込み"
 
-#: inc/style/class-concat.php:288
+#: inc/style/class-concat.php:292
 msgid "Inline concated Stylesheets"
 msgstr "結合したスタイルシートをインライン埋め込み"
 
-#: inc/style/class-concat.php:306
+#: inc/style/class-concat.php:310
 msgid "Enable minify"
 msgstr "スタイルシートを圧縮・軽量化 (minify)"
 

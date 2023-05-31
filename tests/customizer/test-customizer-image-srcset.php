@@ -9,7 +9,7 @@ class Test_Customizer_Image_Srcset extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->image_srcset = new \Webby_Performance\Image_Srcset\Image_Srcset();
+		$this->image_srcset = new \Better_Website_Performance\Image_Srcset\Image_Srcset();
 
 		require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 
@@ -40,10 +40,10 @@ class Test_Customizer_Image_Srcset extends WP_UnitTestCase {
 	 * @group Image_Srcset
 	 */
 	public function section() {
-		$section = $this->wp_customize->get_section( 'webby_performance_image_srcset' );
-		$this->assertSame( 'webby_performance_image_srcset', $section->id );
+		$section = $this->wp_customize->get_section( 'better_website_performance_image_srcset' );
+		$this->assertSame( 'better_website_performance_image_srcset', $section->id );
 		$this->assertSame( 160, $section->priority );
-		$this->assertSame( 'webby_performance_settings', $section->panel );
+		$this->assertSame( 'better_website_performance_settings', $section->panel );
 		$this->assertSame( 'edit_theme_options', $section->capability );
 		$this->assertSame( 'Image Srcset', $section->title );
 	}
@@ -53,8 +53,8 @@ class Test_Customizer_Image_Srcset extends WP_UnitTestCase {
 	 * @group Image_Srcset
 	 */
 	public function setting_and_control() {
-		$setting = $this->wp_customize->get_setting( 'webby_performance_image_srcset_options[image_srcset]' );
-		$this->assertSame( 'webby_performance_image_srcset_options[image_srcset]', $setting->id );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_image_srcset_options[image_srcset]' );
+		$this->assertSame( 'better_website_performance_image_srcset_options[image_srcset]', $setting->id );
 		$this->assertSame( 'option', $setting->type );
 		$this->assertSame( 'manage_options', $setting->capability );
 		$this->assertTrue( $setting->default );
@@ -63,8 +63,8 @@ class Test_Customizer_Image_Srcset extends WP_UnitTestCase {
 
 		$this->assertTrue( $setting->value() );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_image_srcset_options[image_srcset]' );
-		$this->assertSame( 'webby_performance_image_srcset', $control->section );
+		$control = $this->wp_customize->get_control( 'better_website_performance_image_srcset_options[image_srcset]' );
+		$this->assertSame( 'better_website_performance_image_srcset', $control->section );
 		$this->assertSame( 'checkbox', $control->type );
 	}
 
@@ -73,16 +73,16 @@ class Test_Customizer_Image_Srcset extends WP_UnitTestCase {
 	 * @group Image_Srcset
 	 */
 	public function save_case_normal() {
-		$this->wp_customize->set_post_value( 'webby_performance_image_srcset_options[image_srcset]', true );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_image_srcset_options[image_srcset]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_image_srcset_options[image_srcset]', true );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_image_srcset_options[image_srcset]' );
 		$setting->save();
 		$this->assertTrue( $setting->value() );
 
 		$option = $this->image_srcset->get_options( 'image_srcset' );
 		$this->assertTrue( $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_image_srcset_options[image_srcset]', false );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_image_srcset_options[image_srcset]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_image_srcset_options[image_srcset]', false );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_image_srcset_options[image_srcset]' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 
@@ -95,8 +95,8 @@ class Test_Customizer_Image_Srcset extends WP_UnitTestCase {
 	 * @group Image_Srcset
 	 */
 	public function save_case_sanitize_callback() {
-		$this->wp_customize->set_post_value( 'webby_performance_image_srcset_options[image_srcset]', 'aaa' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_image_srcset_options[image_srcset]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_image_srcset_options[image_srcset]', 'aaa' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_image_srcset_options[image_srcset]' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 

@@ -9,7 +9,7 @@ class Test_Customizer_Preload extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->preload = new \Webby_Performance\Preload\Preload();
+		$this->preload = new \Better_Website_Performance\Preload\Preload();
 
 		require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 
@@ -40,10 +40,10 @@ class Test_Customizer_Preload extends WP_UnitTestCase {
 	 * @group Preload
 	 */
 	public function section() {
-		$section = $this->wp_customize->get_section( 'webby_performance_preload' );
-		$this->assertSame( 'webby_performance_preload', $section->id );
+		$section = $this->wp_customize->get_section( 'better_website_performance_preload' );
+		$this->assertSame( 'better_website_performance_preload', $section->id );
 		$this->assertSame( 180, $section->priority );
-		$this->assertSame( 'webby_performance_settings', $section->panel );
+		$this->assertSame( 'better_website_performance_settings', $section->panel );
 		$this->assertSame( 'edit_theme_options', $section->capability );
 		$this->assertSame( 'Preload', $section->title );
 	}
@@ -53,8 +53,8 @@ class Test_Customizer_Preload extends WP_UnitTestCase {
 	 * @group Preload
 	 */
 	public function setting_and_control() {
-		$setting = $this->wp_customize->get_setting( 'webby_performance_preload_options[preload]' );
-		$this->assertSame( 'webby_performance_preload_options[preload]', $setting->id );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_preload_options[preload]' );
+		$this->assertSame( 'better_website_performance_preload_options[preload]', $setting->id );
 		$this->assertSame( 'option', $setting->type );
 		$this->assertSame( 'manage_options', $setting->capability );
 		$this->assertEmpty( $setting->default );
@@ -63,8 +63,8 @@ class Test_Customizer_Preload extends WP_UnitTestCase {
 
 		$this->assertEmpty( $setting->value() );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_preload_options[preload]' );
-		$this->assertSame( 'webby_performance_preload', $control->section );
+		$control = $this->wp_customize->get_control( 'better_website_performance_preload_options[preload]' );
+		$this->assertSame( 'better_website_performance_preload', $control->section );
 		$this->assertSame( 'textarea', $control->type );
 	}
 
@@ -89,8 +89,8 @@ class Test_Customizer_Preload extends WP_UnitTestCase {
 	 * @dataProvider preloadValuesProvider
 	 */
 	public function save_case_normal( $value ) {
-		$this->wp_customize->set_post_value( 'webby_performance_preload_options[preload]', $value );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_preload_options[preload]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_preload_options[preload]', $value );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_preload_options[preload]' );
 		$setting->save();
 		$this->assertSame( $setting->value(), $value );
 

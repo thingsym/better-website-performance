@@ -2,11 +2,11 @@
 /**
  * Concat Style control
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\Style;
+namespace Better_Website_Performance\Style;
 
 /**
  * class JavaScript
@@ -21,7 +21,7 @@ class Concat {
 	 *
 	 * @var string $section_id
 	 */
-	public $section_id = 'webby_performance_concat_style';
+	public $section_id = 'better_website_performance_concat_style';
 
 	/**
 	 * Public variable.
@@ -39,7 +39,7 @@ class Concat {
 	 *
 	 * @var string $options_name
 	 */
-	public $options_name = 'webby_performance_concat_style_options';
+	public $options_name = 'better_website_performance_concat_style_options';
 
 	/**
 	 * Public variable.
@@ -135,7 +135,7 @@ class Concat {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/concat_style/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/concat_style/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -149,7 +149,7 @@ class Concat {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/concat_style/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/concat_style/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;
@@ -191,12 +191,12 @@ class Concat {
 
 		if ( $loading === 'inline' ) {
 			$edited_tag = sprintf(
-				"<style id='webby-performance-%s-inline-css'>\n%s\n</style>\n",
+				"<style id='better-website-performance-%s-inline-css'>\n%s\n</style>\n",
 				$handle,
 				$output
 			);
 
-			return apply_filters( 'webby_performance/concat_style/edited_tag', $edited_tag, $tag, $handle, $src );
+			return apply_filters( 'better_website_performance/concat_style/edited_tag', $edited_tag, $tag, $handle, $src );
 		}
 
 		return $tag;
@@ -208,7 +208,7 @@ class Concat {
 		}
 
 ?>
-<style id='webby-performance-concat-styles'>
+<style id='better-website-performance-concat-styles'>
 <?php
 // Note that esc_html() cannot be used because `div &gt; span` is not interpreted properly.
 echo strip_tags( $this->concat_css );
@@ -239,7 +239,7 @@ echo strip_tags( $this->concat_css );
 	public function setup_exclude_style() {
 		$option = $this->get_options( 'exclude' );
 		$handles = preg_split( '/\R/', $option, -1, PREG_SPLIT_NO_EMPTY );
-		$this->exclude_handles = apply_filters( 'webby_performance/concat_style/setup_exclude', $handles );
+		$this->exclude_handles = apply_filters( 'better_website_performance/concat_style/setup_exclude', $handles );
 	}
 
 	/**
@@ -260,9 +260,9 @@ echo strip_tags( $this->concat_css );
 		$wp_customize->add_section(
 			$this->section_id,
 			[
-				'title'    => __( 'Style Sheet', 'webby-performance' ),
+				'title'    => __( 'Style Sheet', 'better-website-performance' ),
 				'priority' => $this->section_priority,
-				'panel'    => 'webby_performance_settings',
+				'panel'    => 'better_website_performance_settings',
 			]
 		);
 
@@ -272,20 +272,20 @@ echo strip_tags( $this->concat_css );
 				'default'           => $default_options['loading'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_radio' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_radio' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[loading]',
 			[
-				'label'   => __( 'Loading type', 'webby-performance' ),
+				'label'   => __( 'Loading type', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'radio',
 				'choices' => [
-					'default'	=> __( 'Default: Load external css file', 'webby-performance' ),
-					'inline'  => __( 'Inline each stylesheet', 'webby-performance' ),
-					'concat'  => __( 'Inline concated Stylesheets', 'webby-performance' ),
+					'default'	=> __( 'Default: Load external css file', 'better-website-performance' ),
+					'inline'  => __( 'Inline each stylesheet', 'better-website-performance' ),
+					'concat'  => __( 'Inline concated Stylesheets', 'better-website-performance' ),
 				],
 			]
 		);
@@ -296,14 +296,14 @@ echo strip_tags( $this->concat_css );
 				'default'           => $default_options['minify'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[minify]',
 			[
-				'label'   => __( 'Enable minify', 'webby-performance' ),
+				'label'   => __( 'Enable minify', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -322,10 +322,10 @@ echo strip_tags( $this->concat_css );
 		$wp_customize->add_control(
 			$this->options_name . '[exclude]',
 			[
-				'label'       => __( 'Exclude', 'webby-performance' ),
+				'label'       => __( 'Exclude', 'better-website-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
-				'description' => __( 'Enter handle names to exclude.', 'webby-performance' ),
+				'description' => __( 'Enter handle names to exclude.', 'better-website-performance' ),
 			]
 		);
 

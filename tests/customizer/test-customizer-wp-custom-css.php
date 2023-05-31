@@ -9,7 +9,7 @@ class Test_Customizer_Wp_Custom_Css extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->wp_custom_css = new \Webby_Performance\Wp_Custom_Css\Wp_Custom_Css();
+		$this->wp_custom_css = new \Better_Website_Performance\Wp_Custom_Css\Wp_Custom_Css();
 
 		require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 
@@ -50,8 +50,8 @@ class Test_Customizer_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @group Wp_Custom_Css
 	 */
 	public function setting_and_control() {
-		$setting = $this->wp_customize->get_setting( 'webby_performance_wp_custom_css_options[footer]' );
-		$this->assertSame( 'webby_performance_wp_custom_css_options[footer]', $setting->id );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_wp_custom_css_options[footer]' );
+		$this->assertSame( 'better_website_performance_wp_custom_css_options[footer]', $setting->id );
 		$this->assertSame( 'option', $setting->type );
 		$this->assertSame( 'manage_options', $setting->capability );
 		$this->assertFalse( $setting->default );
@@ -60,7 +60,7 @@ class Test_Customizer_Wp_Custom_Css extends WP_UnitTestCase {
 
 		$this->assertFalse( $setting->value() );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_wp_custom_css_options[footer]' );
+		$control = $this->wp_customize->get_control( 'better_website_performance_wp_custom_css_options[footer]' );
 		$this->assertSame( 'custom_css', $control->section );
 		$this->assertSame( 'checkbox', $control->type );
 	}
@@ -70,16 +70,16 @@ class Test_Customizer_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @group Wp_Custom_Css
 	 */
 	public function save_case_normal() {
-		$this->wp_customize->set_post_value( 'webby_performance_wp_custom_css_options[footer]', true );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_wp_custom_css_options[footer]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_wp_custom_css_options[footer]', true );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_wp_custom_css_options[footer]' );
 		$setting->save();
 		$this->assertTrue( $setting->value() );
 
 		$option = $this->wp_custom_css->get_options( 'footer' );
 		$this->assertTrue( $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_wp_custom_css_options[footer]', false );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_wp_custom_css_options[footer]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_wp_custom_css_options[footer]', false );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_wp_custom_css_options[footer]' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 
@@ -92,8 +92,8 @@ class Test_Customizer_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @group Wp_Custom_Css
 	 */
 	public function save_case_sanitize_callback() {
-		$this->wp_customize->set_post_value( 'webby_performance_wp_custom_css_options[footer]', 'aaa' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_wp_custom_css_options[footer]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_wp_custom_css_options[footer]', 'aaa' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_wp_custom_css_options[footer]' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 

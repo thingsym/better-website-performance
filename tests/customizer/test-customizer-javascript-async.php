@@ -9,7 +9,7 @@ class Test_Customizer_Javascript_Async extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->javascript_async = new \Webby_Performance\JavaScript\Async();
+		$this->javascript_async = new \Better_Website_Performance\JavaScript\Async();
 
 		require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 
@@ -40,10 +40,10 @@ class Test_Customizer_Javascript_Async extends WP_UnitTestCase {
 	 * @group Javascript_Async
 	 */
 	public function section() {
-		$section = $this->wp_customize->get_section( 'webby_performance_async_javascript' );
-		$this->assertSame( 'webby_performance_async_javascript', $section->id );
+		$section = $this->wp_customize->get_section( 'better_website_performance_async_javascript' );
+		$this->assertSame( 'better_website_performance_async_javascript', $section->id );
 		$this->assertSame( 160, $section->priority );
-		$this->assertSame( 'webby_performance_settings', $section->panel );
+		$this->assertSame( 'better_website_performance_settings', $section->panel );
 		$this->assertSame( 'edit_theme_options', $section->capability );
 		$this->assertSame( 'JavaScript', $section->title );
 	}
@@ -53,8 +53,8 @@ class Test_Customizer_Javascript_Async extends WP_UnitTestCase {
 	 * @group Javascript_Async
 	 */
 	public function setting_and_control() {
-		$setting = $this->wp_customize->get_setting( 'webby_performance_async_javascript_options[async]' );
-		$this->assertSame( 'webby_performance_async_javascript_options[async]', $setting->id );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_async_javascript_options[async]' );
+		$this->assertSame( 'better_website_performance_async_javascript_options[async]', $setting->id );
 		$this->assertSame( 'option', $setting->type );
 		$this->assertSame( 'manage_options', $setting->capability );
 		$this->assertEmpty( $setting->default );
@@ -63,12 +63,12 @@ class Test_Customizer_Javascript_Async extends WP_UnitTestCase {
 
 		$this->assertEmpty( $setting->value() );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_async_javascript_options[async]' );
-		$this->assertSame( 'webby_performance_async_javascript', $control->section );
+		$control = $this->wp_customize->get_control( 'better_website_performance_async_javascript_options[async]' );
+		$this->assertSame( 'better_website_performance_async_javascript', $control->section );
 		$this->assertSame( 'radio', $control->type );
 
-		$setting = $this->wp_customize->get_setting( 'webby_performance_async_javascript_options[exclude]' );
-		$this->assertSame( 'webby_performance_async_javascript_options[exclude]', $setting->id );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_async_javascript_options[exclude]' );
+		$this->assertSame( 'better_website_performance_async_javascript_options[exclude]', $setting->id );
 		$this->assertSame( 'option', $setting->type );
 		$this->assertSame( 'manage_options', $setting->capability );
 		$this->assertEmpty( $setting->default );
@@ -77,8 +77,8 @@ class Test_Customizer_Javascript_Async extends WP_UnitTestCase {
 
 		$this->assertEmpty( $setting->value() );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_async_javascript_options[exclude]' );
-		$this->assertSame( 'webby_performance_async_javascript', $control->section );
+		$control = $this->wp_customize->get_control( 'better_website_performance_async_javascript_options[exclude]' );
+		$this->assertSame( 'better_website_performance_async_javascript', $control->section );
 		$this->assertSame( 'textarea', $control->type );
 	}
 
@@ -87,16 +87,16 @@ class Test_Customizer_Javascript_Async extends WP_UnitTestCase {
 	 * @group Javascript_Async
 	 */
 	public function save_case_normal() {
-		$this->wp_customize->set_post_value( 'webby_performance_async_javascript_options[async]', '' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_async_javascript_options[async]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_async_javascript_options[async]', '' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_async_javascript_options[async]' );
 		$setting->save();
 		$this->assertEmpty( $setting->value() );
 
 		$option = $this->javascript_async->get_options( 'async' );
 		$this->assertEmpty( $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_async_javascript_options[async]', 'async' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_async_javascript_options[async]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_async_javascript_options[async]', 'async' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_async_javascript_options[async]' );
 		$setting->save();
 		$this->assertSame( 'async', $setting->value() );
 
@@ -121,8 +121,8 @@ test3-js'
 	 * @dataProvider excludeValuesProvider
 	 */
 	public function save_case_exclude( $value ) {
-		$this->wp_customize->set_post_value( 'webby_performance_async_javascript_options[exclude]', $value );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_async_javascript_options[exclude]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_async_javascript_options[exclude]', $value );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_async_javascript_options[exclude]' );
 		$setting->save();
 		$this->assertSame( $setting->value(), $value );
 
@@ -135,8 +135,8 @@ test3-js'
 	 * @group Javascript_Async
 	 */
 	public function save_case_sanitize_callback() {
-		$this->wp_customize->set_post_value( 'webby_performance_async_javascript_options[async]', 'aaa' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_async_javascript_options[async]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_async_javascript_options[async]', 'aaa' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_async_javascript_options[async]' );
 		$setting->save();
 		$this->assertEmpty( $setting->value() );
 

@@ -2,7 +2,7 @@
 /**
  * Class Test_Emoji
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,13 +12,13 @@ class Test_Emoji extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->emoji = new \Webby_Performance\Emoji\Emoji();
+		$this->emoji = new \Better_Website_Performance\Emoji\Emoji();
 	}
 
 	public function tearDown(): void {
 		delete_option( $this->emoji->options_name );
-		remove_filter( 'webby_performance/emoji/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/emoji/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/emoji/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/emoji/get_options', array( $this, '_filter_options' ) );
 		parent::tearDown();
 	}
 
@@ -27,9 +27,9 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @group Emoji
 	 */
 	function public_variable() {
-		$this->assertSame( 'webby_performance_emoji', $this->emoji->section_id );
+		$this->assertSame( 'better_website_performance_emoji', $this->emoji->section_id );
 		$this->assertSame( 160, $this->emoji->section_priority );
-		$this->assertSame( 'webby_performance_emoji_options', $this->emoji->options_name );
+		$this->assertSame( 'better_website_performance_emoji_options', $this->emoji->options_name );
 		$this->assertSame( 'option', $this->emoji->type );
 		$this->assertSame( 'manage_options', $this->emoji->capability );
 
@@ -98,7 +98,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @group Emoji
 	 */
 	public function get_options_case_filters() {
-		add_filter( 'webby_performance/emoji/get_options', array( $this, '_filter_options' ), 10 );
+		add_filter( 'better_website_performance/emoji/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->emoji->get_options();
 		$this->assertFalse( $actual['emoji'] );
@@ -109,7 +109,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @group Emoji
 	 */
 	public function get_option_case_filters() {
-		add_filter( 'webby_performance/emoji/get_option', array( $this, '_filter_option' ), 10, 2 );
+		add_filter( 'better_website_performance/emoji/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->emoji->get_options( 'emoji' );
 		$this->assertFalse( $actual );

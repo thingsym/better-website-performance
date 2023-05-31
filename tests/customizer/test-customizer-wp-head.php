@@ -9,7 +9,7 @@ class Test_Customizer_Wp_Head extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->wp_head = new \Webby_Performance\Wp_Head\Wp_Head();
+		$this->wp_head = new \Better_Website_Performance\Wp_Head\Wp_Head();
 
 		require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 
@@ -40,10 +40,10 @@ class Test_Customizer_Wp_Head extends WP_UnitTestCase {
 	 * @group Wp_Head
 	 */
 	public function section() {
-		$section = $this->wp_customize->get_section( 'webby_performance_wp_head' );
-		$this->assertSame( 'webby_performance_wp_head', $section->id );
+		$section = $this->wp_customize->get_section( 'better_website_performance_wp_head' );
+		$this->assertSame( 'better_website_performance_wp_head', $section->id );
 		$this->assertSame( 160, $section->priority );
-		$this->assertSame( 'webby_performance_settings', $section->panel );
+		$this->assertSame( 'better_website_performance_settings', $section->panel );
 		$this->assertSame( 'edit_theme_options', $section->capability );
 		$this->assertSame( 'HTML Head', $section->title );
 	}
@@ -68,8 +68,8 @@ class Test_Customizer_Wp_Head extends WP_UnitTestCase {
 	 * @dataProvider optionsProvider
 	 */
 	public function setting_and_control( $option_name ) {
-		$setting = $this->wp_customize->get_setting( 'webby_performance_wp_head_options[' . $option_name . ']' );
-		$this->assertSame( 'webby_performance_wp_head_options[' . $option_name . ']', $setting->id, $option_name );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_wp_head_options[' . $option_name . ']' );
+		$this->assertSame( 'better_website_performance_wp_head_options[' . $option_name . ']', $setting->id, $option_name );
 		$this->assertSame( 'option', $setting->type, $option_name );
 		$this->assertSame( 'manage_options', $setting->capability, $option_name );
 		$this->assertTrue( $setting->default, $option_name );
@@ -78,8 +78,8 @@ class Test_Customizer_Wp_Head extends WP_UnitTestCase {
 
 		$this->assertTrue( $setting->value(), $option_name );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_wp_head_options[' . $option_name . ']', $option_name );
-		$this->assertSame( 'webby_performance_wp_head', $control->section, $option_name );
+		$control = $this->wp_customize->get_control( 'better_website_performance_wp_head_options[' . $option_name . ']', $option_name );
+		$this->assertSame( 'better_website_performance_wp_head', $control->section, $option_name );
 		$this->assertSame( 'checkbox', $control->type, $option_name );
 	}
 
@@ -89,16 +89,16 @@ class Test_Customizer_Wp_Head extends WP_UnitTestCase {
 	 * @dataProvider optionsProvider
 	 */
 	public function save_case_normal( $option_name ) {
-		$this->wp_customize->set_post_value( 'webby_performance_wp_head_options[' . $option_name . ']', true );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_wp_head_options[' . $option_name . ']' );
+		$this->wp_customize->set_post_value( 'better_website_performance_wp_head_options[' . $option_name . ']', true );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_wp_head_options[' . $option_name . ']' );
 		$setting->save();
 		$this->assertTrue( $setting->value() );
 
 		$option = $this->wp_head->get_options( $option_name );
 		$this->assertTrue( $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_wp_head_options[' . $option_name . ']', false );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_wp_head_options[' . $option_name . ']' );
+		$this->wp_customize->set_post_value( 'better_website_performance_wp_head_options[' . $option_name . ']', false );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_wp_head_options[' . $option_name . ']' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 	}
@@ -109,8 +109,8 @@ class Test_Customizer_Wp_Head extends WP_UnitTestCase {
 	 * @dataProvider optionsProvider
 	 */
 	public function save_case_sanitize_callback( $option_name ) {
-		$this->wp_customize->set_post_value( 'webby_performance_wp_head_options[' . $option_name . ']', 'aaa' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_wp_head_options[' . $option_name . ']' );
+		$this->wp_customize->set_post_value( 'better_website_performance_wp_head_options[' . $option_name . ']', 'aaa' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_wp_head_options[' . $option_name . ']' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 

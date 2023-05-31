@@ -1,24 +1,24 @@
 <?php
 /**
- * Class Test_Webby_Performance_Basic
+ * Class Test_Better_Website_Performance_Basic
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
  * Basic test case.
  */
-class Test_Webby_Performance_Basic extends WP_UnitTestCase {
+class Test_Better_Website_Performance_Basic extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->webby_performance = new \Webby_Performance\Webby_Performance();
+		$this->better_website_performance = new \Better_Website_Performance\Better_Website_Performance();
 	}
 
 	public function tearDown(): void {
 		remove_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ] );
 		remove_filter( 'locale', [ $this, '_change_locale' ] );
-		unload_textdomain( 'webby-performance' );
+		unload_textdomain( 'better-website-performance' );
 		parent::tearDown();
 	}
 
@@ -27,8 +27,8 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 	 * @group basic
 	 */
 	function public_variable() {
-		$this->assertIsArray( $this->webby_performance->plugin_data );
-		$this->assertEmpty( $this->webby_performance->plugin_data );
+		$this->assertIsArray( $this->better_website_performance->plugin_data );
+		$this->assertEmpty( $this->better_website_performance->plugin_data );
 	}
 
 	/**
@@ -36,8 +36,8 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 	 * @group basic
 	 */
 	function basic() {
-		$this->assertMatchesRegularExpression( '#/webby-performance/webby-performance.php$#', WEBBY_PERFORMANCE );
-		$this->assertTrue( class_exists( '\Webby_Performance\Webby_Performance' ) );
+		$this->assertMatchesRegularExpression( '#/better-website-performance/better-website-performance.php$#', BETTER_WEBSITE_PERFORMANCE );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Better_Website_Performance' ) );
 	}
 
 	/**
@@ -45,10 +45,10 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 	 * @group basic
 	 */
 	function constructor() {
-		$this->assertSame( 10, has_filter( 'plugins_loaded', [ $this->webby_performance, 'load_plugin_data' ] ) );
+		$this->assertSame( 10, has_filter( 'plugins_loaded', [ $this->better_website_performance, 'load_plugin_data' ] ) );
 
-		$this->assertSame( 10, has_action( 'plugins_loaded', [ $this->webby_performance, 'init' ] ) );
-		$this->assertSame( 10, has_action( 'plugins_loaded', [ $this->webby_performance, 'load_class_functions' ] ) );
+		$this->assertSame( 10, has_action( 'plugins_loaded', [ $this->better_website_performance, 'init' ] ) );
+		$this->assertSame( 10, has_action( 'plugins_loaded', [ $this->better_website_performance, 'load_class_functions' ] ) );
 	}
 
 	/**
@@ -56,10 +56,10 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 	 * @group basic
 	 */
 	function init() {
-		$this->webby_performance->init();
+		$this->better_website_performance->init();
 
-		$this->assertSame( 10, has_action( 'init', [ $this->webby_performance, 'load_textdomain' ] ) );
-		$this->assertSame( 10, has_filter( 'plugin_row_meta', [ $this->webby_performance, 'plugin_metadata_links' ] ) );
+		$this->assertSame( 10, has_action( 'init', [ $this->better_website_performance, 'load_textdomain' ] ) );
+		$this->assertSame( 10, has_filter( 'plugin_row_meta', [ $this->better_website_performance, 'plugin_metadata_links' ] ) );
 	}
 
 	/**
@@ -67,7 +67,7 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 	 * @group basic
 	 */
 	public function load_textdomain() {
-		$loaded = $this->webby_performance->load_textdomain();
+		$loaded = $this->better_website_performance->load_textdomain();
 		$this->assertFalse( $loaded );
 	}
 
@@ -79,7 +79,7 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 		add_filter( 'locale', [ $this, '_change_locale' ] );
 		add_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ], 10, 2 );
 
-		$loaded = $this->webby_performance->load_textdomain();
+		$loaded = $this->better_website_performance->load_textdomain();
 		$this->assertTrue( $loaded );
 	}
 
@@ -91,9 +91,9 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 	}
 
 	function _change_textdomain_mofile( $mofile, $domain ) {
-		if ( $domain === 'webby-performance' ) {
+		if ( $domain === 'better-website-performance' ) {
 			$locale = determine_locale();
-			$mofile = plugin_dir_path( WEBBY_PERFORMANCE ) . 'languages/webby-performance-' . $locale . '.mo';
+			$mofile = plugin_dir_path( BETTER_WEBSITE_PERFORMANCE ) . 'languages/better-website-performance-' . $locale . '.mo';
 
 			$this->assertSame( $locale, get_locale() );
 			$this->assertFileExists( $mofile );
@@ -107,19 +107,19 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 	 * @group basic
 	 */
 	public function load_class_functions() {
-		$this->webby_performance->load_class_functions();
+		$this->better_website_performance->load_class_functions();
 
-		$this->assertTrue( class_exists( '\Webby_Performance\Customizer\Panel' ) );
-		$this->assertTrue( class_exists( '\Webby_Performance\Customizer\Sanitize' ) );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Customizer\Panel' ) );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Customizer\Sanitize' ) );
 
-		$this->assertTrue( class_exists( '\Webby_Performance\Wp_Custom_Css\Wp_Custom_Css' ) );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Wp_Custom_Css\Wp_Custom_Css' ) );
 
-		$this->assertTrue( class_exists( '\Webby_Performance\Wp_Head\Wp_Head' ) );
-		$this->assertTrue( class_exists( '\Webby_Performance\Resource_Hints\Resource_Hints' ) );
-		$this->assertTrue( class_exists( '\Webby_Performance\Preload\Preload' ) );
-		$this->assertTrue( class_exists( '\Webby_Performance\Emoji\Emoji' ) );
-		$this->assertTrue( class_exists( '\Webby_Performance\Image_Srcset\Image_Srcset' ) );
-		$this->assertTrue( class_exists( '\Webby_Performance\Jquery\Jquery' ) );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Wp_Head\Wp_Head' ) );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Resource_Hints\Resource_Hints' ) );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Preload\Preload' ) );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Emoji\Emoji' ) );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Image_Srcset\Image_Srcset' ) );
+		$this->assertTrue( class_exists( '\Better_Website_Performance\Jquery\Jquery' ) );
 
 	}
 
@@ -128,7 +128,7 @@ class Test_Webby_Performance_Basic extends WP_UnitTestCase {
 	 * @group basic
 	 */
 	public function plugin_metadata_links() {
-		$links = $this->webby_performance->plugin_metadata_links( [], plugin_basename( WEBBY_PERFORMANCE ) );
+		$links = $this->better_website_performance->plugin_metadata_links( [], plugin_basename( BETTER_WEBSITE_PERFORMANCE ) );
 		$this->assertContains( '<a href="https://github.com/sponsors/thingsym">Become a sponsor</a>', $links );
 	}
 

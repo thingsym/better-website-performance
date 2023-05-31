@@ -1,7 +1,7 @@
-=== Webby Performance ===
+=== Better Website Performance ===
 
 Contributors: thingsym
-Link: https://github.com/thingsym/webby-performance
+Link: https://github.com/thingsym/better-website-performance
 Donate link: https://github.com/sponsors/thingsym
 Tags: performance
 Stable tag: 1.0.0
@@ -11,11 +11,11 @@ Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The Webby Performance plugin adds advanced features to improve website performance.
+The Better Website Performance plugin adds advanced features to improve website performance.
 
 == Description ==
 
-The Webby Performance plugin adds advanced features to improve website performance.
+The Better Website Performance plugin adds advanced features to improve website performance.
 Main features include HTML Head optimization, javascript async, CSS concat and inline, resource hints, etc.
 
 = Descriptions of features =
@@ -60,8 +60,8 @@ Manage resource prefetching
 
 If you have any trouble, you can use the forums or report bugs.
 
-* Forum: [https://wordpress.org/support/plugin/webby-performance/](https://wordpress.org/support/plugin/webby-performance/)
-* Issues: [https://github.com/thingsym/webby-performance/issues](https://github.com/thingsym/webby-performance/issues)
+* Forum: [https://wordpress.org/support/plugin/better-website-performance/](https://wordpress.org/support/plugin/better-website-performance/)
+* Issues: [https://github.com/thingsym/better-website-performance/issues](https://github.com/thingsym/better-website-performance/issues)
 
 = Contribution =
 
@@ -71,20 +71,20 @@ Translating a plugin takes a lot of time, effort, and patience. I really appreci
 
 If you have created or updated your own language pack, you can send gettext PO and MO files to author. I can bundle it into plugin.
 
-* [VCS - GitHub](https://github.com/thingsym/webby-performance)
-* [Homepage - WordPress Plugin](https://wordpress.org/plugins/webby-performance/)
-* [Translate Webby Performance into your language.](https://translate.wordpress.org/projects/wp-plugins/webby-performance)
+* [VCS - GitHub](https://github.com/thingsym/better-website-performance)
+* [Homepage - WordPress Plugin](https://wordpress.org/plugins/better-website-performance/)
+* [Translate Better Website Performance into your language.](https://translate.wordpress.org/projects/wp-plugins/better-website-performance)
 
 You can also contribute by answering issues on the forums.
 
-* Forum: [https://wordpress.org/support/plugin/webby-performance/](https://wordpress.org/support/plugin/webby-performance/)
-* Issues: [https://github.com/thingsym/webby-performance/issues](https://github.com/thingsym/webby-performance/issues)
+* Forum: [https://wordpress.org/support/plugin/better-website-performance/](https://wordpress.org/support/plugin/better-website-performance/)
+* Issues: [https://github.com/thingsym/better-website-performance/issues](https://github.com/thingsym/better-website-performance/issues)
 
 = Patches and Bug Fixes =
 
 Forking on Github is another good way. You can send a pull request.
 
-1. Fork [Webby Performance](https://github.com/thingsym/webby-performance) from GitHub repository
+1. Fork [Better Website Performance](https://github.com/thingsym/better-website-performance) from GitHub repository
 2. Create a feature branch: git checkout -b my-new-feature
 3. Commit your changes: git commit -am 'Add some feature'
 4. Push to the branch: git push origin my-new-feature
@@ -100,14 +100,14 @@ If you would like to contribute, here are some notes and guidlines.
 
 = Test Matrix =
 
-For operation compatibility between PHP version and WordPress version, see below [Github Actions](https://github.com/thingsym/webby-performance/actions).
+For operation compatibility between PHP version and WordPress version, see below [Github Actions](https://github.com/thingsym/better-website-performance/actions).
 
 == Installation ==
 
-1. Download and unzip files. Or install Webby Performance plugin using the WordPress plugin installer. In that case, skip 2.
-2. Upload "webby-performance" to the "/wp-content/plugins/" directory.
+1. Download and unzip files. Or install Better Website Performance plugin using the WordPress plugin installer. In that case, skip 2.
+2. Upload "better-website-performance" to the "/wp-content/plugins/" directory.
 3. Activate the plugin through the 'Plugins' menu in WordPress.
-4. Access Customizer Panel `Performance Settings (Webby Performance)`.
+4. Access Customizer Panel `Performance Settings (Better Website Performance)`.
 5. Have fun!
 
 == Changelog ==

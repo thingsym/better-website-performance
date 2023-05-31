@@ -9,7 +9,7 @@ class Test_Customizer_Style_Concat extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->concat_style = new \Webby_Performance\Style\Concat();
+		$this->concat_style = new \Better_Website_Performance\Style\Concat();
 
 		require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 
@@ -40,10 +40,10 @@ class Test_Customizer_Style_Concat extends WP_UnitTestCase {
 	 * @group Style_Concat
 	 */
 	public function section() {
-		$section = $this->wp_customize->get_section( 'webby_performance_concat_style' );
-		$this->assertSame( 'webby_performance_concat_style', $section->id );
+		$section = $this->wp_customize->get_section( 'better_website_performance_concat_style' );
+		$this->assertSame( 'better_website_performance_concat_style', $section->id );
 		$this->assertSame( 160, $section->priority );
-		$this->assertSame( 'webby_performance_settings', $section->panel );
+		$this->assertSame( 'better_website_performance_settings', $section->panel );
 		$this->assertSame( 'edit_theme_options', $section->capability );
 		$this->assertSame( 'Style Sheet', $section->title );
 	}
@@ -53,8 +53,8 @@ class Test_Customizer_Style_Concat extends WP_UnitTestCase {
 	 * @group Style_Concat
 	 */
 	public function setting_and_control() {
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[loading]' );
-		$this->assertSame( 'webby_performance_concat_style_options[loading]', $setting->id );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[loading]' );
+		$this->assertSame( 'better_website_performance_concat_style_options[loading]', $setting->id );
 		$this->assertSame( 'option', $setting->type );
 		$this->assertSame( 'manage_options', $setting->capability );
 		$this->assertSame( 'default', $setting->default );
@@ -63,12 +63,12 @@ class Test_Customizer_Style_Concat extends WP_UnitTestCase {
 
 		$this->assertSame( 'default', $setting->value() );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_concat_style_options[loading]' );
-		$this->assertSame( 'webby_performance_concat_style', $control->section );
+		$control = $this->wp_customize->get_control( 'better_website_performance_concat_style_options[loading]' );
+		$this->assertSame( 'better_website_performance_concat_style', $control->section );
 		$this->assertSame( 'radio', $control->type );
 
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[minify]' );
-		$this->assertSame( 'webby_performance_concat_style_options[minify]', $setting->id );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[minify]' );
+		$this->assertSame( 'better_website_performance_concat_style_options[minify]', $setting->id );
 		$this->assertSame( 'option', $setting->type );
 		$this->assertSame( 'manage_options', $setting->capability );
 		$this->assertFalse( $setting->default );
@@ -77,12 +77,12 @@ class Test_Customizer_Style_Concat extends WP_UnitTestCase {
 
 		$this->assertFalse( $setting->value() );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_concat_style_options[minify]' );
-		$this->assertSame( 'webby_performance_concat_style', $control->section );
+		$control = $this->wp_customize->get_control( 'better_website_performance_concat_style_options[minify]' );
+		$this->assertSame( 'better_website_performance_concat_style', $control->section );
 		$this->assertSame( 'checkbox', $control->type );
 
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[exclude]' );
-		$this->assertSame( 'webby_performance_concat_style_options[exclude]', $setting->id );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[exclude]' );
+		$this->assertSame( 'better_website_performance_concat_style_options[exclude]', $setting->id );
 		$this->assertSame( 'option', $setting->type );
 		$this->assertSame( 'manage_options', $setting->capability );
 		$this->assertEmpty( $setting->default );
@@ -91,8 +91,8 @@ class Test_Customizer_Style_Concat extends WP_UnitTestCase {
 
 		$this->assertEmpty( $setting->value() );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_concat_style_options[exclude]' );
-		$this->assertSame( 'webby_performance_concat_style', $control->section );
+		$control = $this->wp_customize->get_control( 'better_website_performance_concat_style_options[exclude]' );
+		$this->assertSame( 'better_website_performance_concat_style', $control->section );
 		$this->assertSame( 'textarea', $control->type );
 	}
 
@@ -101,40 +101,40 @@ class Test_Customizer_Style_Concat extends WP_UnitTestCase {
 	 * @group Style_Concat
 	 */
 	public function save_case_normal() {
-		$this->wp_customize->set_post_value( 'webby_performance_concat_style_options[loading]', 'default' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[loading]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_concat_style_options[loading]', 'default' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[loading]' );
 		$setting->save();
 		$this->assertSame( 'default', $setting->value() );
 
 		$option = $this->concat_style->get_options( 'loading' );
 		$this->assertSame( 'default', $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_concat_style_options[loading]', 'inline' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[loading]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_concat_style_options[loading]', 'inline' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[loading]' );
 		$setting->save();
 		$this->assertSame( 'inline', $setting->value() );
 
 		$option = $this->concat_style->get_options( 'loading' );
 		$this->assertSame( 'inline', $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_concat_style_options[loading]', 'concat' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[loading]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_concat_style_options[loading]', 'concat' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[loading]' );
 		$setting->save();
 		$this->assertSame( 'concat', $setting->value() );
 
 		$option = $this->concat_style->get_options( 'loading' );
 		$this->assertSame( 'concat', $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_concat_style_options[minify]', true );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[minify]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_concat_style_options[minify]', true );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[minify]' );
 		$setting->save();
 		$this->assertTrue( $setting->value() );
 
 		$option = $this->concat_style->get_options( 'minify' );
 		$this->assertTrue( $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_concat_style_options[minify]', false );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[minify]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_concat_style_options[minify]', false );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[minify]' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 
@@ -159,8 +159,8 @@ test3-style'
 	 * @dataProvider excludeValuesProvider
 	 */
 	public function save_case_exclude( $value ) {
-		$this->wp_customize->set_post_value( 'webby_performance_concat_style_options[exclude]', $value );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[exclude]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_concat_style_options[exclude]', $value );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[exclude]' );
 		$setting->save();
 		$this->assertSame( $setting->value(), $value );
 
@@ -173,16 +173,16 @@ test3-style'
 	 * @group Style_Concat
 	 */
 	public function save_case_sanitize_callback() {
-		$this->wp_customize->set_post_value( 'webby_performance_concat_style_options[loading]', 'aaa' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[loading]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_concat_style_options[loading]', 'aaa' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[loading]' );
 		$setting->save();
 		$this->assertSame( 'default', $setting->value() );
 
 		$option = $this->concat_style->get_options( 'loading' );
 		$this->assertSame( 'default', $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_concat_style_options[minify]', 'aaa' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_concat_style_options[minify]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_concat_style_options[minify]', 'aaa' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_concat_style_options[minify]' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 

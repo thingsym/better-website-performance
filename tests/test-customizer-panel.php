@@ -2,14 +2,14 @@
 /**
  * Class Test_Customizer_Panel
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 class Test_Customizer_Panel extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->panel = new \Webby_Performance\Customizer\Panel();
+		$this->panel = new \Better_Website_Performance\Customizer\Panel();
 
 		require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 
@@ -51,11 +51,11 @@ class Test_Customizer_Panel extends WP_UnitTestCase {
 	 * @group Customizer_Panel
 	 */
 	public function register_panel() {
-		$panel = $this->wp_customize->get_panel( 'webby_performance_settings' );
-		$this->assertSame( 'webby_performance_settings', $panel->id );
+		$panel = $this->wp_customize->get_panel( 'better_website_performance_settings' );
+		$this->assertSame( 'better_website_performance_settings', $panel->id );
 		$this->assertSame( 300, $panel->priority );
 		$this->assertSame( 'edit_theme_options', $panel->capability );
-		$this->assertSame( 'Performance Settings (Webby Performance)', $panel->title );
+		$this->assertSame( 'Performance Settings (Better Website Performance)', $panel->title );
 	}
 
 }

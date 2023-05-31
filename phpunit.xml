@@ -15,7 +15,7 @@
   </testsuites>
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
-      <file>./webby-performance.php</file>
+      <file>./better-website-performance.php</file>
       <directory suffix=".php">./inc</directory>
     </whitelist>
   </filter>

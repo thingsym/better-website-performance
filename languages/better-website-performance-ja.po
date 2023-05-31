@@ -2,100 +2,99 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Webby Performance 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/webby-performance\n"
+"Project-Id-Version: Better Website Performance 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/better-website-"
+"performance\n"
+"POT-Creation-Date: 2023-05-31T07:56:04+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-05-12T07:14:58+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
-"X-Domain: webby-performance\n"
+"X-Domain: better-website-performance\n"
 
 #. Plugin Name of the plugin
-msgid "Webby Performance"
-msgstr ""
+msgid "Better Website Performance"
+msgstr "Better Website Performance"
 
 #. Plugin URI of the plugin
-msgid "https://github.com/thingsym/webby-performance"
-msgstr ""
+msgid "https://github.com/thingsym/better-website-performance"
+msgstr "https://github.com/thingsym/better-website-performance"
 
 #. Description of the plugin
-msgid "Webby Performance plugin adds advanced functionality."
-msgstr ""
+msgid "Better Website Performance plugin adds advanced functionality."
+msgstr "Better Website Performance プラグインにより高度な機能が追加されます。"
 
 #. Author of the plugin
 msgid "thingsym"
-msgstr ""
+msgstr "thingsym"
 
 #. Author URI of the plugin
 msgid "https://www.thingslabo.com/"
-msgstr ""
+msgstr "https://www.thingslabo.com/"
 
-#: inc/class-webby-performance.php:107
+#: inc/class-better-website-performance.php:107
 msgid "Become a sponsor"
-msgstr ""
+msgstr "スポンサーになる"
 
 #: inc/customizer/class-panel.php:39
-msgid "Performance Settings (Webby Performance)"
-msgstr ""
+msgid "Performance Settings (Better Website Performance)"
+msgstr "パフォーマンス設定 (Better Website Performance)"
 
 #: inc/emoji/class-emoji.php:169
 msgid "Emoji resource"
-msgstr ""
+msgstr "絵文字"
 
 #: inc/emoji/class-emoji.php:188
 msgid "Enable Emoji resource"
-msgstr ""
+msgstr "絵文字を有効化"
 
 #: inc/image-srcset/class-image-srcset.php:162
 msgid "Image Srcset"
-msgstr ""
+msgstr "Image Srcset"
 
 #: inc/image-srcset/class-image-srcset.php:181
 msgid "Enable Image Srcset"
-msgstr ""
+msgstr "Image Srcset を有効化"
 
 #: inc/javascript/class-async.php:199
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 #: inc/javascript/class-async.php:218
 msgid "Async type"
-msgstr ""
+msgstr "非同期処理"
 
-#: inc/javascript/class-async.php:242
-#: inc/style/class-concat.php:325
+#: inc/javascript/class-async.php:242 inc/style/class-concat.php:325
 msgid "Exclude"
-msgstr ""
+msgstr "除外"
 
-#: inc/javascript/class-async.php:245
-#: inc/style/class-concat.php:328
+#: inc/javascript/class-async.php:245 inc/style/class-concat.php:328
 msgid "Enter handle names to exclude."
-msgstr ""
+msgstr "除外対象のハンドル名を入力"
 
 #: inc/jquery/class-jquery.php:228
 msgid "jQuery"
-msgstr ""
+msgstr "jQuery"
 
 #: inc/jquery/class-jquery.php:247
 msgid "Enable jQuery"
-msgstr ""
+msgstr "jQuery を有効化"
 
 #: inc/jquery/class-jquery.php:266
 msgid "Enable jQuery Migrate"
-msgstr ""
+msgstr "jQuery Migrate を有効化"
 
 #: inc/jquery/class-jquery.php:285
 msgid "Place jQuery in the footer"
-msgstr ""
+msgstr "フッターに jQuery を配置する"
 
-#: inc/preload/class-preload.php:190
-#: inc/preload/class-preload.php:211
+#: inc/preload/class-preload.php:190 inc/preload/class-preload.php:211
 msgid "Preload"
-msgstr ""
+msgstr "Preload"
 
 #: inc/preload/class-preload.php:217
 #: inc/resource-hints/class-resource-hints.php:234
@@ -103,92 +102,92 @@ msgstr ""
 #: inc/resource-hints/class-resource-hints.php:284
 #: inc/resource-hints/class-resource-hints.php:309
 msgid "See <a href=\"%1$s\" target=\"_blank\">Specification</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\" target=\"_blank\">仕様書を参照</a>"
 
 #: inc/resource-hints/class-resource-hints.php:207
 msgid "Resource Hints"
-msgstr ""
+msgstr "Resource Hints"
 
 #: inc/resource-hints/class-resource-hints.php:228
 msgid "DNS-Prefetch"
-msgstr ""
+msgstr "DNS-Prefetch"
 
 #: inc/resource-hints/class-resource-hints.php:253
 msgid "Preconnect"
-msgstr ""
+msgstr "Preconnect"
 
 #: inc/resource-hints/class-resource-hints.php:278
 msgid "Prefetch"
-msgstr ""
+msgstr "Prefetch"
 
 #: inc/resource-hints/class-resource-hints.php:303
 msgid "Prerender"
-msgstr ""
+msgstr "Prerender"
 
 #: inc/style/class-concat.php:263
 msgid "Style Sheet"
-msgstr ""
+msgstr "スタイルシート"
 
 #: inc/style/class-concat.php:282
 msgid "Loading type"
-msgstr ""
+msgstr "読み込み方法"
 
 #: inc/style/class-concat.php:286
 msgid "Default: Load external css file"
-msgstr ""
+msgstr "デフォルト: 外部CSSファイルを読み込み"
 
 #: inc/style/class-concat.php:287
 msgid "Inline each stylesheet"
-msgstr ""
+msgstr "各スタイルシートをインライン埋め込み"
 
 #: inc/style/class-concat.php:288
 msgid "Inline concated Stylesheets"
-msgstr ""
+msgstr "結合したスタイルシートをインライン埋め込み"
 
 #: inc/style/class-concat.php:306
 msgid "Enable minify"
-msgstr ""
+msgstr "スタイルシートを圧縮・軽量化 (minify)"
 
 #: inc/wp-custom-css/class-wp-custom-css.php:180
 msgid "Place custom CSS in the footer"
-msgstr ""
+msgstr "フッターに追加 CSS を配置する"
 
 #: inc/wp-head/class-wp-head.php:195
 msgid "HTML Head"
-msgstr ""
+msgstr "HTML Head メタデータ"
 
 #: inc/wp-head/class-wp-head.php:214
 msgid "Display the links to the general feeds"
-msgstr ""
+msgstr "RSS へのリンクを表示"
 
 #: inc/wp-head/class-wp-head.php:233
 msgid "Display the links to the extra feeds (such as category feeds)"
-msgstr ""
+msgstr "extra RSS へのリンクを表示 (カテゴリーフィードなど)"
 
 #: inc/wp-head/class-wp-head.php:252
 msgid "Display Really Simple Discovery (EditURI)"
-msgstr ""
+msgstr "Really Simple Discovery を表示 (EditURI)"
 
 #: inc/wp-head/class-wp-head.php:271
 msgid "Display Windows Live Writer (wlwmanifest)"
-msgstr ""
+msgstr "Windows Live Writer を表示 (wlwmanifest)"
 
 #: inc/wp-head/class-wp-head.php:290
 msgid "Display WordPress generator"
-msgstr ""
+msgstr "WordPress バージョン情報を表示"
 
 #: inc/wp-head/class-wp-head.php:309
 msgid "Display canonical"
-msgstr ""
+msgstr "正規URL (canonical) を表示"
 
 #: inc/wp-head/class-wp-head.php:328
 msgid "Display shortlink"
-msgstr ""
+msgstr "shortlink を表示"
 
 #: inc/wp-head/class-wp-head.php:347
 msgid "Display the REST API link"
-msgstr ""
+msgstr "REST API link を表示"
 
 #: inc/wp-head/class-wp-head.php:366
 msgid "Display oEmbed discovery links"
-msgstr ""
+msgstr "oEmbed discovery links を表示"

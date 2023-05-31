@@ -28,10 +28,10 @@
       "@phpmd",
       "@phpstan"
     ],
-    "makepot:wpcli": "wp i18n make-pot ./ ./languages/webby-performance.pot --exclude=dist,bin,tests,node_modules,vendor",
-    "msgmerge:ja": "msgmerge --update --backup off ./languages/webby-performance-ja.po ./languages/webby-performance.pot",
-    "makemo:ja": "wp i18n make-mo languages/webby-performance-ja.po languages/",
-    "msgfmt:ja": "msgfmt languages/webby-performance-ja.po -o languages/webby-performance-ja.mo",
-    "archive": "git archive HEAD --output=webby-performance.zip"
+    "makepot:wpcli": "wp i18n make-pot ./ ./languages/better-website-performance.pot --exclude=dist,bin,tests,node_modules,vendor",
+    "msgmerge:ja": "msgmerge --update --backup off ./languages/better-website-performance-ja.po ./languages/better-website-performance.pot",
+    "makemo:ja": "wp i18n make-mo languages/better-website-performance-ja.po languages/",
+    "msgfmt:ja": "msgfmt languages/better-website-performance-ja.po -o languages/better-website-performance-ja.mo",
+    "archive": "git archive HEAD --output=better-website-performance.zip"
   }
 }

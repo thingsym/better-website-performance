@@ -2,11 +2,11 @@
 /**
  * Resource Hints
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\Resource_Hints;
+namespace Better_Website_Performance\Resource_Hints;
 
 /**
  * class Resource_Hints
@@ -21,7 +21,7 @@ class Resource_Hints {
 	 *
 	 * @var string $section_id
 	 */
-	public $section_id = 'webby_performance_resource_hints';
+	public $section_id = 'better_website_performance_resource_hints';
 
 	/**
 	 * Public variable.
@@ -39,7 +39,7 @@ class Resource_Hints {
 	 *
 	 * @var string $options_name
 	 */
-	public $options_name = 'webby_performance_resource_hints_options';
+	public $options_name = 'better_website_performance_resource_hints_options';
 
 	/**
 	 * Public variable.
@@ -117,7 +117,7 @@ class Resource_Hints {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/resource_hints/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/resource_hints/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -131,7 +131,7 @@ class Resource_Hints {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/resource_hints/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/resource_hints/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;
@@ -185,7 +185,7 @@ class Resource_Hints {
 
 	public function print_tag() {
 		$meta = '<meta http-equiv="x-dns-prefetch-control" content="on">' . "\n";
-		echo apply_filters( 'webby_performance/seo/resource_hints/print_tag', $meta );
+		echo apply_filters( 'better_website_performance/seo/resource_hints/print_tag', $meta );
 	}
 
 	/**
@@ -204,9 +204,9 @@ class Resource_Hints {
 		$wp_customize->add_section(
 			$this->section_id,
 			[
-				'title'    => __( 'Resource Hints', 'webby-performance' ),
+				'title'    => __( 'Resource Hints', 'better-website-performance' ),
 				'priority' => $this->section_priority,
-				'panel'    => 'webby_performance_settings',
+				'panel'    => 'better_website_performance_settings',
 			]
 		);
 
@@ -225,13 +225,13 @@ class Resource_Hints {
 		$wp_customize->add_control(
 			$this->options_name . '[dns_prefetch]',
 			[
-				'label'       => __( 'DNS-Prefetch', 'webby-performance' ),
+				'label'       => __( 'DNS-Prefetch', 'better-website-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
 				'description' =>
 					'CSV Format: href (host Only, excluding protocol)<br>' .
 					sprintf(
-						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'better-website-performance' ),
 						'https://html.spec.whatwg.org/multipage/links.html#link-type-dns-prefetch'
 					),
 			]
@@ -250,13 +250,13 @@ class Resource_Hints {
 		$wp_customize->add_control(
 			$this->options_name . '[preconnect]',
 			[
-				'label'       => __( 'Preconnect', 'webby-performance' ),
+				'label'       => __( 'Preconnect', 'better-website-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
 				'description' =>
 					'CSV Format: href<br>' .
 					sprintf(
-						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'better-website-performance' ),
 						'https://html.spec.whatwg.org/multipage/links.html#link-type-preconnect'
 					),
 			]
@@ -275,13 +275,13 @@ class Resource_Hints {
 		$wp_customize->add_control(
 			$this->options_name . '[prefetch]',
 			[
-				'label'       => __( 'Prefetch', 'webby-performance' ),
+				'label'       => __( 'Prefetch', 'better-website-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
 				'description' =>
 					'CSV Format: href, as, destination (Optional except URL)<br>' .
 					sprintf(
-						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'better-website-performance' ),
 						'https://html.spec.whatwg.org/multipage/links.html#link-type-prefetch'
 					),
 			]
@@ -300,13 +300,13 @@ class Resource_Hints {
 		$wp_customize->add_control(
 			$this->options_name . '[prerender]',
 			[
-				'label'       => __( 'Prerender', 'webby-performance' ),
+				'label'       => __( 'Prerender', 'better-website-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
 				'description' =>
 					'CSV Format: href<br>' .
 					sprintf(
-						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'better-website-performance' ),
 						'https://html.spec.whatwg.org/multipage/links.html#link-type-prerender'
 					),
 			]

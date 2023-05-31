@@ -2,7 +2,7 @@
 /**
  * Class Test_Wp_Custom_Css
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,13 +12,13 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->wp_custom_css = new \Webby_Performance\Wp_Custom_Css\Wp_Custom_Css();
+		$this->wp_custom_css = new \Better_Website_Performance\Wp_Custom_Css\Wp_Custom_Css();
 	}
 
 	public function tearDown(): void {
 		delete_option( $this->wp_custom_css->options_name );
-		remove_filter( 'webby_performance/wp_custom_css/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/wp_custom_css/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/wp_custom_css/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/wp_custom_css/get_options', array( $this, '_filter_options' ) );
 		parent::tearDown();
 	}
 
@@ -28,7 +28,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 */
 	function public_variable() {
 		$this->assertSame( 'custom_css', $this->wp_custom_css->section_id );
-		$this->assertSame( 'webby_performance_wp_custom_css_options', $this->wp_custom_css->options_name );
+		$this->assertSame( 'better_website_performance_wp_custom_css_options', $this->wp_custom_css->options_name );
 		$this->assertSame( 'option', $this->wp_custom_css->type );
 		$this->assertSame( 'manage_options', $this->wp_custom_css->capability );
 
@@ -98,7 +98,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @group Wp_Custom_Css
 	 */
 	public function get_options_case_filters() {
-		add_filter( 'webby_performance/wp_custom_css/get_options', array( $this, '_filter_options' ), 10 );
+		add_filter( 'better_website_performance/wp_custom_css/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->wp_custom_css->get_options();
 		$this->assertTrue( $actual['footer'] );
@@ -109,7 +109,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @group Wp_Custom_Css
 	 */
 	public function get_option_case_filters() {
-		add_filter( 'webby_performance/wp_custom_css/get_option', array( $this, '_filter_option' ), 10, 2 );
+		add_filter( 'better_website_performance/wp_custom_css/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->wp_custom_css->get_options( 'footer' );
 		$this->assertTrue( $actual );

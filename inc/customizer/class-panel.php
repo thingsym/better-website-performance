@@ -2,11 +2,11 @@
 /**
  * Panel for Customizer
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\Customizer;
+namespace Better_Website_Performance\Customizer;
 
 /**
  * Class Panel
@@ -34,9 +34,9 @@ class Panel {
 		}
 
 		$wp_customize->add_panel(
-			'webby_performance_settings',
+			'better_website_performance_settings',
 			[
-				'title'    => __( 'Performance Settings (Webby Performance)', 'webby-performance' ),
+				'title'    => __( 'Performance Settings (Better Website Performance)', 'better-website-performance' ),
 				'priority' => 300,
 			]
 		);

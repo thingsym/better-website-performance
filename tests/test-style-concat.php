@@ -2,7 +2,7 @@
 /**
  * Class Test_Style_Concat
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,13 +12,13 @@ class Test_Style_Concat extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->style_concat = new \Webby_Performance\Style\Concat();
+		$this->style_concat = new \Better_Website_Performance\Style\Concat();
 	}
 
 	public function tearDown(): void {
 		delete_option( $this->style_concat->options_name );
-		remove_filter( 'webby_performance/concat_style/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/concat_style/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/concat_style/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/concat_style/get_options', array( $this, '_filter_options' ) );
 
 		global $current_screen;
 		$current_screen = null;
@@ -33,9 +33,9 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @group Style_Concat
 	 */
 	function public_variable() {
-		$this->assertSame( 'webby_performance_concat_style', $this->style_concat->section_id );
+		$this->assertSame( 'better_website_performance_concat_style', $this->style_concat->section_id );
 		$this->assertSame( 160, $this->style_concat->section_priority );
-		$this->assertSame( 'webby_performance_concat_style_options', $this->style_concat->options_name );
+		$this->assertSame( 'better_website_performance_concat_style_options', $this->style_concat->options_name );
 		$this->assertSame( 'option', $this->style_concat->type );
 		$this->assertSame( 'manage_options', $this->style_concat->capability );
 
@@ -113,7 +113,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 			'exclude' => '',
 		);
 
-		add_filter( 'webby_performance/concat_style/get_options', array( $this, '_filter_options' ), 10 );
+		add_filter( 'better_website_performance/concat_style/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->style_concat->get_options();
 		$this->assertSame( $expected, $actual );
@@ -124,7 +124,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @group Style_Concat
 	 */
 	public function get_option_case_filters() {
-		add_filter( 'webby_performance/concat_style/get_option', array( $this, '_filter_option' ), 10, 2 );
+		add_filter( 'better_website_performance/concat_style/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->style_concat->get_options( 'loading' );
 		$this->assertSame( 'inline', $actual );
@@ -263,7 +263,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 
 		$actual = $this->style_concat->concat_style_tag( $tag, 'test-css', './tests/test.css' );
 
-		$this->assertSame( "<style id='webby-performance-test-css-inline-css'>
+		$this->assertSame( "<style id='better-website-performance-test-css-inline-css'>
 body {
 	font-size: 100%;
 }
@@ -280,7 +280,7 @@ body {
 
 		$actual = $this->style_concat->concat_style_tag( $tag, 'test-css', './tests/test.css' );
 
-		$this->assertSame( "<style id='webby-performance-test-css-inline-css'>
+		$this->assertSame( "<style id='better-website-performance-test-css-inline-css'>
 body{font-size:100%;}
 </style>
 ", $actual );
@@ -351,7 +351,7 @@ body {
 		$this->style_concat->print_concat_style();
 		$actual = ob_get_clean();
 
-		$this->assertSame( "<style id='webby-performance-concat-styles'>
+		$this->assertSame( "<style id='better-website-performance-concat-styles'>
 body{font-size:100%;}
 </style>
 ", $actual );

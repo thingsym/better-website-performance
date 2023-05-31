@@ -2,7 +2,7 @@
 /**
  * Class Test_Jquery
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,13 +12,13 @@ class Test_Jquery extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->jquery = new \Webby_Performance\Jquery\Jquery();
+		$this->jquery = new \Better_Website_Performance\Jquery\Jquery();
 	}
 
 	public function tearDown(): void {
 		delete_option( $this->jquery->options_name );
-		remove_filter( 'webby_performance/jquery/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/jquery/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/jquery/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/jquery/get_options', array( $this, '_filter_options' ) );
 		parent::tearDown();
 	}
 
@@ -27,9 +27,9 @@ class Test_Jquery extends WP_UnitTestCase {
 	 * @group Jquery
 	 */
 	function public_variable() {
-		$this->assertSame( 'webby_performance_jquery', $this->jquery->section_id );
+		$this->assertSame( 'better_website_performance_jquery', $this->jquery->section_id );
 		$this->assertSame( 160, $this->jquery->section_priority );
-		$this->assertSame( 'webby_performance_jquery_options', $this->jquery->options_name );
+		$this->assertSame( 'better_website_performance_jquery_options', $this->jquery->options_name );
 		$this->assertSame( 'option', $this->jquery->type );
 		$this->assertSame( 'manage_options', $this->jquery->capability );
 
@@ -101,7 +101,7 @@ class Test_Jquery extends WP_UnitTestCase {
 			'in_footer'      => true,
 		);
 
-		add_filter( 'webby_performance/jquery/get_options', array( $this, '_filter_options' ), 10 );
+		add_filter( 'better_website_performance/jquery/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->jquery->get_options();
 		$this->assertSame( $expected, $actual );
@@ -112,7 +112,7 @@ class Test_Jquery extends WP_UnitTestCase {
 	 * @group Jquery
 	 */
 	public function get_option_case_filters() {
-		add_filter( 'webby_performance/jquery/get_option', array( $this, '_filter_option' ), 10, 2 );
+		add_filter( 'better_website_performance/jquery/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->jquery->get_options( 'jquery' );
 		$this->assertFalse( $actual );

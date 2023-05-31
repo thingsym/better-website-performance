@@ -2,11 +2,11 @@
 /**
  * Emoji resource control
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\Emoji;
+namespace Better_Website_Performance\Emoji;
 
 /**
  * class Emoji
@@ -21,7 +21,7 @@ class Emoji {
 	 *
 	 * @var string $section_id
 	 */
-	public $section_id = 'webby_performance_emoji';
+	public $section_id = 'better_website_performance_emoji';
 
 	/**
 	 * Public variable.
@@ -39,7 +39,7 @@ class Emoji {
 	 *
 	 * @var string $options_name
 	 */
-	public $options_name = 'webby_performance_emoji_options';
+	public $options_name = 'better_website_performance_emoji_options';
 
 	/**
 	 * Public variable.
@@ -113,7 +113,7 @@ class Emoji {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/emoji/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/emoji/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -127,7 +127,7 @@ class Emoji {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/emoji/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/emoji/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;
@@ -166,9 +166,9 @@ class Emoji {
 		$wp_customize->add_section(
 			$this->section_id,
 			[
-				'title'    => __( 'Emoji resource', 'webby-performance' ),
+				'title'    => __( 'Emoji resource', 'better-website-performance' ),
 				'priority' => $this->section_priority,
-				'panel'    => 'webby_performance_settings',
+				'panel'    => 'better_website_performance_settings',
 			]
 		);
 
@@ -178,14 +178,14 @@ class Emoji {
 				'default'           => $default_options['emoji'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[emoji]',
 			[
-				'label'   => __( 'Enable Emoji resource', 'webby-performance' ),
+				'label'   => __( 'Enable Emoji resource', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]

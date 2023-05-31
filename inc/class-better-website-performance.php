@@ -1,20 +1,20 @@
 <?php
 /**
- * Webby_Performance class
+ * Better_Website_Performance class
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  *
  * @since 1.0.0
  */
 
-namespace Webby_Performance;
+namespace Better_Website_Performance;
 
 /**
- * Core class Webby_Performance
+ * Core class Better_Website_Performance
  *
  * @since 1.0.0
  */
-class Webby_Performance {
+class Better_Website_Performance {
 	/**
 	 * Public value.
 	 *
@@ -50,7 +50,7 @@ class Webby_Performance {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
-		$this->plugin_data = get_plugin_data( WEBBY_PERFORMANCE );
+		$this->plugin_data = get_plugin_data( BETTER_WEBSITE_PERFORMANCE );
 	}
 
 	/**
@@ -64,26 +64,26 @@ class Webby_Performance {
 	 */
 	public function load_textdomain() {
 		return load_plugin_textdomain(
-			'webby-performance',
+			'better-website-performance',
 			false,
-			plugin_dir_path( WEBBY_PERFORMANCE ) . 'languages'
+			plugin_dir_path( BETTER_WEBSITE_PERFORMANCE ) . 'languages'
 		);
 	}
 
 	public function load_class_functions() {
-		new \Webby_Performance\Customizer\Panel();
-		new \Webby_Performance\Customizer\Sanitize();
+		new \Better_Website_Performance\Customizer\Panel();
+		new \Better_Website_Performance\Customizer\Sanitize();
 
-		new \Webby_Performance\Wp_Custom_Css\Wp_Custom_Css();
+		new \Better_Website_Performance\Wp_Custom_Css\Wp_Custom_Css();
 
-		new \Webby_Performance\Wp_Head\Wp_Head();
-		new \Webby_Performance\Resource_Hints\Resource_Hints();
-		new \Webby_Performance\Preload\Preload();
-		new \Webby_Performance\Emoji\Emoji();
-		new \Webby_Performance\Image_Srcset\Image_Srcset();
-		new \Webby_Performance\Jquery\Jquery();
-		new \Webby_Performance\JavaScript\Async();
-		new \Webby_Performance\Style\Concat();
+		new \Better_Website_Performance\Wp_Head\Wp_Head();
+		new \Better_Website_Performance\Resource_Hints\Resource_Hints();
+		new \Better_Website_Performance\Preload\Preload();
+		new \Better_Website_Performance\Emoji\Emoji();
+		new \Better_Website_Performance\Image_Srcset\Image_Srcset();
+		new \Better_Website_Performance\Jquery\Jquery();
+		new \Better_Website_Performance\JavaScript\Async();
+		new \Better_Website_Performance\Style\Concat();
 	}
 
 	/**
@@ -103,8 +103,8 @@ class Webby_Performance {
 	 * @since 1.0.0
 	 */
 	public function plugin_metadata_links( $links, $file ) {
-		if ( $file === plugin_basename( WEBBY_PERFORMANCE ) ) {
-			$links[] = '<a href="https://github.com/sponsors/thingsym">' . __( 'Become a sponsor', 'webby-performance' ) . '</a>';
+		if ( $file === plugin_basename( BETTER_WEBSITE_PERFORMANCE ) ) {
+			$links[] = '<a href="https://github.com/sponsors/thingsym">' . __( 'Become a sponsor', 'better-website-performance' ) . '</a>';
 		}
 
 		return $links;

@@ -2,11 +2,11 @@
 /**
  * WP Custom css
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\Wp_Custom_Css;
+namespace Better_Website_Performance\Wp_Custom_Css;
 
 /**
  * class Wp_Custom_Css
@@ -31,7 +31,7 @@ class Wp_Custom_Css {
 	 *
 	 * @var string $options_name
 	 */
-	public $options_name = 'webby_performance_wp_custom_css_options';
+	public $options_name = 'better_website_performance_wp_custom_css_options';
 
 	/**
 	 * Public variable.
@@ -106,7 +106,7 @@ class Wp_Custom_Css {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/wp_custom_css/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/wp_custom_css/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -120,7 +120,7 @@ class Wp_Custom_Css {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/wp_custom_css/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/wp_custom_css/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;
@@ -170,14 +170,14 @@ class Wp_Custom_Css {
 				'default'           => $default_options['footer'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[footer]',
 			[
-				'label'    => __( 'Place custom CSS in the footer', 'webby-performance' ),
+				'label'    => __( 'Place custom CSS in the footer', 'better-website-performance' ),
 				'section'  => $this->section_id,
 				'type'     => 'checkbox',
 			]

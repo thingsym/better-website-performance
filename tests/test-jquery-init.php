@@ -2,7 +2,7 @@
 /**
  * Class Test_Jquery_Init
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,13 +12,13 @@ class Test_Jquery_Init extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->jquery = new \Webby_Performance\Jquery\Jquery();
+		$this->jquery = new \Better_Website_Performance\Jquery\Jquery();
 	}
 
 	public function tearDown(): void {
 		delete_option( $this->jquery->options_name );
-		remove_filter( 'webby_performance/jquery/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/jquery/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/jquery/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/jquery/get_options', array( $this, '_filter_options' ) );
 
 		global $wp_scripts;
 		wp_default_scripts( $wp_scripts );

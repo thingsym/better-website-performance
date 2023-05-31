@@ -2,10 +2,10 @@
 /**
  * Class Test_Customizer_Sanitize
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
-use \Webby_Performance\Customizer\Sanitize;
+use \Better_Website_Performance\Customizer\Sanitize;
 
 class Test_Customizer_Sanitize extends WP_UnitTestCase {
 

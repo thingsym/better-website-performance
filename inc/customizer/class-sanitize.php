@@ -2,12 +2,12 @@
 /**
  * Customizer Sanitize
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  * @see https://codex.wordpress.org/Function_Reference/sanitize_key
  */
 
-namespace Webby_Performance\Customizer;
+namespace Better_Website_Performance\Customizer;
 
 /**
  * Class Sanitize

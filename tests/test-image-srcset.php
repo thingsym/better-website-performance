@@ -2,7 +2,7 @@
 /**
  * Class Test_Image_Srcset
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,13 +12,13 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->image_srcset = new \Webby_Performance\Image_Srcset\Image_Srcset();
+		$this->image_srcset = new \Better_Website_Performance\Image_Srcset\Image_Srcset();
 	}
 
 	public function tearDown(): void {
 		delete_option( $this->image_srcset->options_name );
-		remove_filter( 'webby_performance/image_srcset/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/image_srcset/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/image_srcset/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/image_srcset/get_options', array( $this, '_filter_options' ) );
 		parent::tearDown();
 	}
 
@@ -27,7 +27,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @group Image_Srcset
 	 */
 	function public_variable() {
-		$this->assertSame( 'webby_performance_image_srcset', $this->image_srcset->section_id );
+		$this->assertSame( 'better_website_performance_image_srcset', $this->image_srcset->section_id );
 		$this->assertSame( 160, $this->image_srcset->section_priority );
 		$this->assertSame( $this->image_srcset->options_name, $this->image_srcset->options_name );
 		$this->assertSame( 'option', $this->image_srcset->type );
@@ -99,7 +99,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @group Image_Srcset
 	 */
 	public function get_options_case_filters() {
-		add_filter( 'webby_performance/image_srcset/get_options', array( $this, '_filter_options' ), 10 );
+		add_filter( 'better_website_performance/image_srcset/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->image_srcset->get_options();
 		$this->assertFalse( $actual['image_srcset'] );
@@ -111,12 +111,12 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @group Image_Srcset
 	 */
 	public function get_option_case_filters() {
-		add_filter( 'webby_performance/image_srcset/get_options', array( $this, '_filter_options' ), 10 );
+		add_filter( 'better_website_performance/image_srcset/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->image_srcset->get_options();
 		$this->assertFalse( $actual['image_srcset'] );
 
-		add_filter( 'webby_performance/image_srcset/get_option', array( $this, '_filter_option' ), 10, 2 );
+		add_filter( 'better_website_performance/image_srcset/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->image_srcset->get_options( 'image_srcset' );
 		$this->assertFalse( $actual );

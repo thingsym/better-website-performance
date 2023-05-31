@@ -2,11 +2,11 @@
 /**
  * Preload
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\Preload;
+namespace Better_Website_Performance\Preload;
 
 /**
  * class Preload
@@ -21,7 +21,7 @@ class Preload {
 	 *
 	 * @var string $section_id
 	 */
-	public $section_id = 'webby_performance_preload';
+	public $section_id = 'better_website_performance_preload';
 
 	/**
 	 * Public variable.
@@ -39,7 +39,7 @@ class Preload {
 	 *
 	 * @var string $options_name
 	 */
-	public $options_name = 'webby_performance_preload_options';
+	public $options_name = 'better_website_performance_preload_options';
 
 	/**
 	 * Public variable.
@@ -113,7 +113,7 @@ class Preload {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/preload/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/preload/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -127,7 +127,7 @@ class Preload {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/preload/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/preload/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;
@@ -187,9 +187,9 @@ class Preload {
 		$wp_customize->add_section(
 			$this->section_id,
 			[
-				'title'    => __( 'Preload', 'webby-performance' ),
+				'title'    => __( 'Preload', 'better-website-performance' ),
 				'priority' => $this->section_priority,
-				'panel'    => 'webby_performance_settings',
+				'panel'    => 'better_website_performance_settings',
 			]
 		);
 
@@ -208,13 +208,13 @@ class Preload {
 		$wp_customize->add_control(
 			$this->options_name . '[preload]',
 			[
-				'label'       => __( 'Preload', 'webby-performance' ),
+				'label'       => __( 'Preload', 'better-website-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
 				'description' =>
 					'CSV Format: href, as, destination, MIME type (Optional except href)<br>' .
 					sprintf(
-						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'webby-performance' ),
+						__( 'See <a href="%1$s" target="_blank">Specification</a>.', 'better-website-performance' ),
 						'https://html.spec.whatwg.org/multipage/links.html#link-type-preload'
 					),
 			]

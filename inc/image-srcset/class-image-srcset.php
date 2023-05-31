@@ -2,11 +2,11 @@
 /**
  * Image srcset
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\Image_Srcset;
+namespace Better_Website_Performance\Image_Srcset;
 
 /**
  * class Image_Srcset
@@ -21,7 +21,7 @@ class Image_Srcset {
 	 *
 	 * @var string $section_id
 	 */
-	public $section_id = 'webby_performance_image_srcset';
+	public $section_id = 'better_website_performance_image_srcset';
 
 	/**
 	 * Public variable.
@@ -39,7 +39,7 @@ class Image_Srcset {
 	 *
 	 * @var string $options_name
 	 */
-	public $options_name = 'webby_performance_image_srcset_options';
+	public $options_name = 'better_website_performance_image_srcset_options';
 
 	/**
 	 * Public variable.
@@ -113,7 +113,7 @@ class Image_Srcset {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/image_srcset/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/image_srcset/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -127,7 +127,7 @@ class Image_Srcset {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/image_srcset/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/image_srcset/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;
@@ -159,9 +159,9 @@ class Image_Srcset {
 		$wp_customize->add_section(
 			$this->section_id,
 			[
-				'title'    => __( 'Image Srcset', 'webby-performance' ),
+				'title'    => __( 'Image Srcset', 'better-website-performance' ),
 				'priority' => $this->section_priority,
-				'panel'    => 'webby_performance_settings',
+				'panel'    => 'better_website_performance_settings',
 			]
 		);
 
@@ -171,14 +171,14 @@ class Image_Srcset {
 				'default'           => $default_options['image_srcset'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[image_srcset]',
 			[
-				'label'   => __( 'Enable Image Srcset', 'webby-performance' ),
+				'label'   => __( 'Enable Image Srcset', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]

@@ -9,7 +9,7 @@ class Test_Customizer_Emoji extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->emoji = new \Webby_Performance\Emoji\Emoji();
+		$this->emoji = new \Better_Website_Performance\Emoji\Emoji();
 
 		require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 
@@ -40,10 +40,10 @@ class Test_Customizer_Emoji extends WP_UnitTestCase {
 	 * @group Emoji
 	 */
 	public function section() {
-		$section = $this->wp_customize->get_section( 'webby_performance_emoji' );
-		$this->assertSame( 'webby_performance_emoji', $section->id );
+		$section = $this->wp_customize->get_section( 'better_website_performance_emoji' );
+		$this->assertSame( 'better_website_performance_emoji', $section->id );
 		$this->assertSame( 160, $section->priority );
-		$this->assertSame( 'webby_performance_settings', $section->panel );
+		$this->assertSame( 'better_website_performance_settings', $section->panel );
 		$this->assertSame( 'edit_theme_options', $section->capability );
 		$this->assertSame( 'Emoji resource', $section->title );
 	}
@@ -53,8 +53,8 @@ class Test_Customizer_Emoji extends WP_UnitTestCase {
 	 * @group Emoji
 	 */
 	public function setting_and_control() {
-		$setting = $this->wp_customize->get_setting( 'webby_performance_emoji_options[emoji]' );
-		$this->assertSame( 'webby_performance_emoji_options[emoji]', $setting->id );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_emoji_options[emoji]' );
+		$this->assertSame( 'better_website_performance_emoji_options[emoji]', $setting->id );
 		$this->assertSame( 'option', $setting->type );
 		$this->assertSame( 'manage_options', $setting->capability );
 		$this->assertTrue( $setting->default );
@@ -63,8 +63,8 @@ class Test_Customizer_Emoji extends WP_UnitTestCase {
 
 		$this->assertTrue( $setting->value() );
 
-		$control = $this->wp_customize->get_control( 'webby_performance_emoji_options[emoji]' );
-		$this->assertSame( 'webby_performance_emoji', $control->section );
+		$control = $this->wp_customize->get_control( 'better_website_performance_emoji_options[emoji]' );
+		$this->assertSame( 'better_website_performance_emoji', $control->section );
 		$this->assertSame( 'checkbox', $control->type );
 	}
 
@@ -73,16 +73,16 @@ class Test_Customizer_Emoji extends WP_UnitTestCase {
 	 * @group Emoji
 	 */
 	public function save_case_normal() {
-		$this->wp_customize->set_post_value( 'webby_performance_emoji_options[emoji]', true );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_emoji_options[emoji]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_emoji_options[emoji]', true );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_emoji_options[emoji]' );
 		$setting->save();
 		$this->assertTrue( $setting->value() );
 
 		$option = $this->emoji->get_options( 'emoji' );
 		$this->assertTrue( $option );
 
-		$this->wp_customize->set_post_value( 'webby_performance_emoji_options[emoji]', false );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_emoji_options[emoji]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_emoji_options[emoji]', false );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_emoji_options[emoji]' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 
@@ -96,8 +96,8 @@ class Test_Customizer_Emoji extends WP_UnitTestCase {
 	 * @group Emoji
 	 */
 	public function save_case_sanitize_callback() {
-		$this->wp_customize->set_post_value( 'webby_performance_emoji_options[emoji]', 'aaa' );
-		$setting = $this->wp_customize->get_setting( 'webby_performance_emoji_options[emoji]' );
+		$this->wp_customize->set_post_value( 'better_website_performance_emoji_options[emoji]', 'aaa' );
+		$setting = $this->wp_customize->get_setting( 'better_website_performance_emoji_options[emoji]' );
 		$setting->save();
 		$this->assertFalse( $setting->value() );
 

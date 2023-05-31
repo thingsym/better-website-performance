@@ -2,11 +2,11 @@
 /**
  * HTML Head
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\Wp_Head;
+namespace Better_Website_Performance\Wp_Head;
 
 /**
  * class Wp_Head
@@ -21,7 +21,7 @@ class Wp_Head {
 	 *
 	 * @var string $section_id
 	 */
-	public $section_id = 'webby_performance_wp_head';
+	public $section_id = 'better_website_performance_wp_head';
 
 	/**
 	 * Public variable.
@@ -39,7 +39,7 @@ class Wp_Head {
 	 *
 	 * @var string $options_name
 	 */
-	public $options_name = 'webby_performance_wp_head_options';
+	public $options_name = 'better_website_performance_wp_head_options';
 
 	/**
 	 * Public variable.
@@ -121,7 +121,7 @@ class Wp_Head {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/wp_head/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/wp_head/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -135,7 +135,7 @@ class Wp_Head {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/wp_head/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/wp_head/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;
@@ -192,9 +192,9 @@ class Wp_Head {
 		$wp_customize->add_section(
 			$this->section_id,
 			[
-				'title'    => __( 'HTML Head', 'webby-performance' ),
+				'title'    => __( 'HTML Head', 'better-website-performance' ),
 				'priority' => $this->section_priority,
-				'panel'    => 'webby_performance_settings',
+				'panel'    => 'better_website_performance_settings',
 			]
 		);
 
@@ -204,14 +204,14 @@ class Wp_Head {
 				'default'           => $default_options['feed_links'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[feed_links]',
 			[
-				'label'   => __( 'Display the links to the general feeds', 'webby-performance' ),
+				'label'   => __( 'Display the links to the general feeds', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -223,14 +223,14 @@ class Wp_Head {
 				'default'           => $default_options['feed_links_extra'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[feed_links_extra]',
 			[
-				'label'   => __( 'Display the links to the extra feeds (such as category feeds)', 'webby-performance' ),
+				'label'   => __( 'Display the links to the extra feeds (such as category feeds)', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -242,14 +242,14 @@ class Wp_Head {
 				'default'           => $default_options['rsd_link'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[rsd_link]',
 			[
-				'label'   => __( 'Display Really Simple Discovery (EditURI)', 'webby-performance' ),
+				'label'   => __( 'Display Really Simple Discovery (EditURI)', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -261,14 +261,14 @@ class Wp_Head {
 				'default'           => $default_options['wlwmanifest_link'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[wlwmanifest_link]',
 			[
-				'label'   => __( 'Display Windows Live Writer (wlwmanifest)', 'webby-performance' ),
+				'label'   => __( 'Display Windows Live Writer (wlwmanifest)', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -280,14 +280,14 @@ class Wp_Head {
 				'default'           => $default_options['wp_generator'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[wp_generator]',
 			[
-				'label'   => __( 'Display WordPress generator', 'webby-performance' ),
+				'label'   => __( 'Display WordPress generator', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -299,14 +299,14 @@ class Wp_Head {
 				'default'           => $default_options['rel_canonical'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[rel_canonical]',
 			[
-				'label'   => __( 'Display canonical', 'webby-performance' ),
+				'label'   => __( 'Display canonical', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -318,14 +318,14 @@ class Wp_Head {
 				'default'           => $default_options['wp_shortlink_wp_head'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[wp_shortlink_wp_head]',
 			[
-				'label'   => __( 'Display shortlink', 'webby-performance' ),
+				'label'   => __( 'Display shortlink', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -337,14 +337,14 @@ class Wp_Head {
 				'default'           => $default_options['rest_output_link_wp_head'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[rest_output_link_wp_head]',
 			[
-				'label'   => __( 'Display the REST API link', 'webby-performance' ),
+				'label'   => __( 'Display the REST API link', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -356,14 +356,14 @@ class Wp_Head {
 				'default'           => $default_options['wp_oembed_add_discovery_links'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[wp_oembed_add_discovery_links]',
 			[
-				'label'   => __( 'Display oEmbed discovery links', 'webby-performance' ),
+				'label'   => __( 'Display oEmbed discovery links', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]

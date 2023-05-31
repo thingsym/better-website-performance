@@ -2,11 +2,11 @@
 /**
  * jQuery control
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\Jquery;
+namespace Better_Website_Performance\Jquery;
 
 /**
  * class Emoji
@@ -21,7 +21,7 @@ class Jquery {
 	 *
 	 * @var string $section_id
 	 */
-	public $section_id = 'webby_performance_jquery';
+	public $section_id = 'better_website_performance_jquery';
 
 	/**
 	 * Public variable.
@@ -39,7 +39,7 @@ class Jquery {
 	 *
 	 * @var string $options_name
 	 */
-	public $options_name = 'webby_performance_jquery_options';
+	public $options_name = 'better_website_performance_jquery_options';
 
 	/**
 	 * Public variable.
@@ -115,7 +115,7 @@ class Jquery {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/jquery/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/jquery/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -129,7 +129,7 @@ class Jquery {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/jquery/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/jquery/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;
@@ -225,9 +225,9 @@ class Jquery {
 		$wp_customize->add_section(
 			$this->section_id,
 			[
-				'title'    => __( 'jQuery', 'webby-performance' ),
+				'title'    => __( 'jQuery', 'better-website-performance' ),
 				'priority' => $this->section_priority,
-				'panel'    => 'webby_performance_settings',
+				'panel'    => 'better_website_performance_settings',
 			]
 		);
 
@@ -237,14 +237,14 @@ class Jquery {
 				'default'           => $default_options['jquery'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[jquery]',
 			[
-				'label'   => __( 'Enable jQuery', 'webby-performance' ),
+				'label'   => __( 'Enable jQuery', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -256,14 +256,14 @@ class Jquery {
 				'default'           => $default_options['jquery_migrate'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[jquery_migrate]',
 			[
-				'label'   => __( 'Enable jQuery Migrate', 'webby-performance' ),
+				'label'   => __( 'Enable jQuery Migrate', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]
@@ -275,14 +275,14 @@ class Jquery {
 				'default'           => $default_options['in_footer'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_checkbox_boolean' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[in_footer]',
 			[
-				'label'   => __( 'Place jQuery in the footer', 'webby-performance' ),
+				'label'   => __( 'Place jQuery in the footer', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'checkbox',
 			]

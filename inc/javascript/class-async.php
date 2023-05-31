@@ -2,11 +2,11 @@
 /**
  * Async JavaScript control
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
-namespace Webby_Performance\JavaScript;
+namespace Better_Website_Performance\JavaScript;
 
 /**
  * class JavaScript
@@ -21,7 +21,7 @@ class Async {
 	 *
 	 * @var string $section_id
 	 */
-	public $section_id = 'webby_performance_async_javascript';
+	public $section_id = 'better_website_performance_async_javascript';
 
 	/**
 	 * Public variable.
@@ -39,7 +39,7 @@ class Async {
 	 *
 	 * @var string $options_name
 	 */
-	public $options_name = 'webby_performance_async_javascript_options';
+	public $options_name = 'better_website_performance_async_javascript_options';
 
 	/**
 	 * Public variable.
@@ -124,7 +124,7 @@ class Async {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/async_javascript/get_options', $options, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/async_javascript/get_options', $options, $this->type, $default_options );
 		}
 
 		if ( array_key_exists( $option_name, $options ) ) {
@@ -138,7 +138,7 @@ class Async {
 			 *
 			 * @since 1.0.0
 			 */
-			return apply_filters( 'webby_performance/async_javascript/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
+			return apply_filters( 'better_website_performance/async_javascript/get_option', $options[ $option_name ], $option_name, $this->type, $default_options );
 		}
 		else {
 			return null;
@@ -158,11 +158,11 @@ class Async {
 
 		if ( $async === 'async' ) {
 			$edited_tag = str_replace( 'src=', "async='async' src=", $tag );
-			return apply_filters( 'webby_performance/async_javascript/edited_tag', $edited_tag, $tag, $handle, $src );
+			return apply_filters( 'better_website_performance/async_javascript/edited_tag', $edited_tag, $tag, $handle, $src );
 		}
 		else if ( $async === 'defer' ) {
 			$edited_tag = str_replace( 'src=', "defer='defer' src=", $tag );
-			return apply_filters( 'webby_performance/async_javascript/edited_tag', $edited_tag, $tag, $handle, $src );
+			return apply_filters( 'better_website_performance/async_javascript/edited_tag', $edited_tag, $tag, $handle, $src );
 		}
 
 		return $tag;
@@ -175,7 +175,7 @@ class Async {
 	public function setup_exclude_script() {
 		$option = $this->get_options( 'exclude' );
 		$handles = preg_split( '/\R/', $option, -1, PREG_SPLIT_NO_EMPTY );
-		$this->exclude_handles = apply_filters( 'webby_performance/async_javascript/setup_exclude', $handles );
+		$this->exclude_handles = apply_filters( 'better_website_performance/async_javascript/setup_exclude', $handles );
 	}
 
 	/**
@@ -196,9 +196,9 @@ class Async {
 		$wp_customize->add_section(
 			$this->section_id,
 			[
-				'title'    => __( 'JavaScript', 'webby-performance' ),
+				'title'    => __( 'JavaScript', 'better-website-performance' ),
 				'priority' => $this->section_priority,
-				'panel'    => 'webby_performance_settings',
+				'panel'    => 'better_website_performance_settings',
 			]
 		);
 
@@ -208,14 +208,14 @@ class Async {
 				'default'           => $default_options['async'],
 				'type'              => $this->type,
 				'capability'        => $this->capability,
-				'sanitize_callback' => [ 'Webby_Performance\Customizer\Sanitize', 'sanitize_radio' ],
+				'sanitize_callback' => [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_radio' ],
 			]
 		);
 
 		$wp_customize->add_control(
 			$this->options_name . '[async]',
 			[
-				'label'   => __( 'Async type', 'webby-performance' ),
+				'label'   => __( 'Async type', 'better-website-performance' ),
 				'section' => $this->section_id,
 				'type'    => 'radio',
 				'choices' => [
@@ -239,10 +239,10 @@ class Async {
 		$wp_customize->add_control(
 			$this->options_name . '[exclude]',
 			[
-				'label'       => __( 'Exclude', 'webby-performance' ),
+				'label'       => __( 'Exclude', 'better-website-performance' ),
 				'section'     => $this->section_id,
 				'type'        => 'textarea',
-				'description' => __( 'Enter handle names to exclude.', 'webby-performance' ),
+				'description' => __( 'Enter handle names to exclude.', 'better-website-performance' ),
 			]
 		);
 

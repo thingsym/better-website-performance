@@ -2,7 +2,7 @@
 /**
  * Class Test_Wp_Head
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,13 +12,13 @@ class Test_Wp_Head extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->wp_head = new \Webby_Performance\Wp_Head\Wp_Head();
+		$this->wp_head = new \Better_Website_Performance\Wp_Head\Wp_Head();
 	}
 
 	public function tearDown(): void {
 		delete_option( $this->wp_head->options_name );
-		remove_filter( 'webby_performance/wp_head/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/wp_head/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/wp_head/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/wp_head/get_options', array( $this, '_filter_options' ) );
 		parent::tearDown();
 	}
 
@@ -27,9 +27,9 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @group Wp_Head
 	 */
 	function public_variable() {
-		$this->assertSame( 'webby_performance_wp_head', $this->wp_head->section_id );
+		$this->assertSame( 'better_website_performance_wp_head', $this->wp_head->section_id );
 		$this->assertSame( 160, $this->wp_head->section_priority );
-		$this->assertSame( 'webby_performance_wp_head_options', $this->wp_head->options_name );
+		$this->assertSame( 'better_website_performance_wp_head_options', $this->wp_head->options_name );
 		$this->assertSame( 'option', $this->wp_head->type );
 		$this->assertSame( 'manage_options', $this->wp_head->capability );
 
@@ -131,7 +131,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 			'wp_oembed_add_discovery_links'   => false,
 		);
 
-		add_filter( 'webby_performance/wp_head/get_options', array( $this, '_filter_options' ), 10 );
+		add_filter( 'better_website_performance/wp_head/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->wp_head->get_options();
 		$this->assertSame( $expected, $actual );
@@ -142,7 +142,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @group Wp_Head
 	 */
 	public function get_option_case_filters() {
-		add_filter( 'webby_performance/wp_head/get_option', array( $this, '_filter_option' ), 10, 2 );
+		add_filter( 'better_website_performance/wp_head/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->wp_head->get_options( 'feed_links' );
 		$this->assertFalse( $actual );

@@ -2,7 +2,7 @@
 /**
  * Class Test_Javascript_Async
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,13 +12,13 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->javascript_async = new \Webby_Performance\JavaScript\Async();
+		$this->javascript_async = new \Better_Website_Performance\JavaScript\Async();
 	}
 
 	public function tearDown(): void {
 		delete_option( $this->javascript_async->options_name );
-		remove_filter( 'webby_performance/async_javascript/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/async_javascript/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/async_javascript/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/async_javascript/get_options', array( $this, '_filter_options' ) );
 	}
 
 	/**
@@ -26,9 +26,9 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @group Javascript_Async
 	 */
 	function public_variable() {
-		$this->assertSame( 'webby_performance_async_javascript', $this->javascript_async->section_id );
+		$this->assertSame( 'better_website_performance_async_javascript', $this->javascript_async->section_id );
 		$this->assertSame( 160, $this->javascript_async->section_priority );
-		$this->assertSame( 'webby_performance_async_javascript_options', $this->javascript_async->options_name );
+		$this->assertSame( 'better_website_performance_async_javascript_options', $this->javascript_async->options_name );
 		$this->assertSame( 'option', $this->javascript_async->type );
 		$this->assertSame( 'manage_options', $this->javascript_async->capability );
 
@@ -97,7 +97,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 			'exclude' => '',
 		);
 
-		add_filter( 'webby_performance/async_javascript/get_options', array( $this, '_filter_options' ), 10 );
+		add_filter( 'better_website_performance/async_javascript/get_options', array( $this, '_filter_options' ), 10 );
 
 		$actual = $this->javascript_async->get_options();
 		$this->assertSame( $expected, $actual );
@@ -108,7 +108,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @group Javascript_Async
 	 */
 	public function get_option_case_filters() {
-		add_filter( 'webby_performance/async_javascript/get_option', array( $this, '_filter_option' ), 10, 2 );
+		add_filter( 'better_website_performance/async_javascript/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$actual = $this->javascript_async->get_options( 'async' );
 		$this->assertSame( 'async', $actual );

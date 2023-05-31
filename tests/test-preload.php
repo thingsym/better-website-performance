@@ -2,7 +2,7 @@
 /**
  * Class Test_Preload
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,7 +12,7 @@ class Test_Preload extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->preload = new \Webby_Performance\Preload\Preload();
+		$this->preload = new \Better_Website_Performance\Preload\Preload();
 
 		$this->preload_existed = [
 			[
@@ -25,8 +25,8 @@ class Test_Preload extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		delete_option( $this->preload->options_name );
-		remove_filter( 'webby_performance/preload/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/preload/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/preload/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/preload/get_options', array( $this, '_filter_options' ) );
 		parent::tearDown();
 	}
 
@@ -35,9 +35,9 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @group Preload
 	 */
 	function public_variable() {
-		$this->assertSame( 'webby_performance_preload', $this->preload->section_id );
+		$this->assertSame( 'better_website_performance_preload', $this->preload->section_id );
 		$this->assertSame( 180, $this->preload->section_priority );
-		$this->assertSame( 'webby_performance_preload_options', $this->preload->options_name );
+		$this->assertSame( 'better_website_performance_preload_options', $this->preload->options_name );
 		$this->assertSame( 'option', $this->preload->type );
 		$this->assertSame( 'manage_options', $this->preload->capability );
 
@@ -100,7 +100,7 @@ class Test_Preload extends WP_UnitTestCase {
 
 		update_option( $this->preload->options_name, $options );
 
-		add_filter( 'webby_performance/preload/get_options', [ $this, '_filter_options' ], 10 );
+		add_filter( 'better_website_performance/preload/get_options', [ $this, '_filter_options' ], 10 );
 
 		$expected = [
 			'preload' => 'abc',
@@ -121,7 +121,7 @@ class Test_Preload extends WP_UnitTestCase {
 
 		update_option( $this->preload->options_name, $options );
 
-		add_filter( 'webby_performance/preload/get_option', [ $this, '_filter_option' ], 10, 2 );
+		add_filter( 'better_website_performance/preload/get_option', [ $this, '_filter_option' ], 10, 2 );
 
 		$actual = $this->preload->get_options( 'preload' );
 		$this->assertSame( 'xyz', $actual );

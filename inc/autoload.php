@@ -2,16 +2,16 @@
 /**
  * Autoloader
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  * @since 1.0.0
  */
 
 /**
  * After registering this autoload function with SPL, the following line
  * would cause the function to attempt
- * to load the \Webby_Performance\Foo\Bar class
+ * to load the \Better_Website_Performance\Foo\Bar class
  * from /inc/foo/class-bar.php:
- *     new \Webby_Performance\Foo\Bar;
+ *     new \Better_Website_Performance\Foo\Bar;
  *
  * @param string|mixed
  * @return void
@@ -25,7 +25,7 @@ spl_autoload_register( // @phpstan-ignore-line
 	 */
 	function( $class ) {
 		/* plugin-specific namespace prefix */
-		$prefix = 'Webby_Performance\\';
+		$prefix = 'Better_Website_Performance\\';
 		$len    = strlen( $prefix );
 
 		if ( 0 !== strncmp( $prefix, $class, $len ) ) {
@@ -42,7 +42,7 @@ spl_autoload_register( // @phpstan-ignore-line
 		$relative_class = strtolower( $relative_class );
 		$relative_class = str_replace( '_', '-', $relative_class );
 
-		if ( preg_match( '/^webby-performance$/', $relative_class ) ) {
+		if ( preg_match( '/^better-website-performance$/', $relative_class ) ) {
 			// load main class from /inc.
 			$relative_class = preg_replace( '/^(.*)$/', 'inc/class-$1', $relative_class );
 		}
@@ -51,7 +51,7 @@ spl_autoload_register( // @phpstan-ignore-line
 			$relative_class = preg_replace( '/(.*\/)(.*?)$/', 'inc//$1class-$2', $relative_class );
 		}
 
-		$path = plugin_dir_path( WEBBY_PERFORMANCE ) . $relative_class . '.php';
+		$path = plugin_dir_path( BETTER_WEBSITE_PERFORMANCE ) . $relative_class . '.php';
 
 		if ( file_exists( $path ) ) {
 			require_once $path;

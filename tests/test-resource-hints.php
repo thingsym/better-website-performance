@@ -2,7 +2,7 @@
 /**
  * Class Test_Resource_Hints
  *
- * @package Webby_Performance
+ * @package Better_Website_Performance
  */
 
 /**
@@ -12,7 +12,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->resource_hints = new \Webby_Performance\Resource_Hints\Resource_Hints();
+		$this->resource_hints = new \Better_Website_Performance\Resource_Hints\Resource_Hints();
 
 		$this->resource_hints_existed = [
 			[
@@ -24,8 +24,8 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		delete_option( $this->resource_hints->options_name );
-		remove_filter( 'webby_performance/resource_hints/get_option', array( $this, '_filter_option' ) );
-		remove_filter( 'webby_performance/resource_hints/get_options', array( $this, '_filter_options' ) );
+		remove_filter( 'better_website_performance/resource_hints/get_option', array( $this, '_filter_option' ) );
+		remove_filter( 'better_website_performance/resource_hints/get_options', array( $this, '_filter_options' ) );
 		parent::tearDown();
 	}
 
@@ -34,9 +34,9 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @group Resource_Hints
 	 */
 	function public_variable() {
-		$this->assertSame( 'webby_performance_resource_hints', $this->resource_hints->section_id );
+		$this->assertSame( 'better_website_performance_resource_hints', $this->resource_hints->section_id );
 		$this->assertSame( 180, $this->resource_hints->section_priority );
-		$this->assertSame( 'webby_performance_resource_hints_options', $this->resource_hints->options_name );
+		$this->assertSame( 'better_website_performance_resource_hints_options', $this->resource_hints->options_name );
 		$this->assertSame( 'option', $this->resource_hints->type );
 		$this->assertSame( 'manage_options', $this->resource_hints->capability );
 
@@ -123,7 +123,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 
 		update_option( $this->resource_hints->options_name, $options );
 
-		add_filter( 'webby_performance/resource_hints/get_options', [ $this, '_filter_options' ], 10 );
+		add_filter( 'better_website_performance/resource_hints/get_options', [ $this, '_filter_options' ], 10 );
 
 		$actual = $this->resource_hints->get_options();
 		$this->assertSame( $expected, $actual );
@@ -143,7 +143,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 
 		update_option( $this->resource_hints->options_name, $options );
 
-		add_filter( 'webby_performance/resource_hints/get_option', [ $this, '_filter_option' ], 10, 2 );
+		add_filter( 'better_website_performance/resource_hints/get_option', [ $this, '_filter_option' ], 10, 2 );
 
 		$actual = $this->resource_hints->get_options( 'dns_prefetch' );
 		$this->assertSame( 'xyz', $actual );

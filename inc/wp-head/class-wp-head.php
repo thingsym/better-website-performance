@@ -67,15 +67,15 @@ class Wp_Head {
 	 * @var array $default_options
 	 */
 	public $default_options = [
-		'feed_links'                      => true,
-		'feed_links_extra'                => true,
-		'rsd_link'                        => true,
-		'wlwmanifest_link'                => true,
-		'wp_generator'                    => true,
-		'rel_canonical'                   => true,
-		'wp_shortlink_wp_head'            => true,
-		'rest_output_link_wp_head'        => true,
-		'wp_oembed_add_discovery_links'   => true,
+		'feed_links'                    => true,
+		'feed_links_extra'              => true,
+		'rsd_link'                      => true,
+		'wlwmanifest_link'              => true,
+		'wp_generator'                  => true,
+		'rel_canonical'                 => true,
+		'wp_shortlink_wp_head'          => true,
+		'rest_output_link_wp_head'      => true,
+		'wp_oembed_add_discovery_links' => true,
 	];
 
 	public function __construct() {

@@ -57,7 +57,7 @@ class Resource_Hints {
 	 *
 	 * @var string $capability
 	 */
-	public $capability   = 'manage_options';
+	public $capability = 'manage_options';
 
 	/**
 	 * Public variable.
@@ -139,6 +139,8 @@ class Resource_Hints {
 	}
 
 	public function add_resource_hints( $hints, $relation_type ) {
+		$option = '';
+
 		if ( 'dns-prefetch' === $relation_type ) {
 			$option = $this->get_options( 'dns_prefetch' );
 		}
@@ -161,9 +163,12 @@ class Resource_Hints {
 		foreach ( $urls as $line ) {
 			$param = explode( ',', $line );
 
-			$mapped_param = array_map( function( $el ) {
-				return trim( $el );
-			}, $param );
+			$mapped_param = array_map(
+				function( $el ) {
+					return trim( $el );
+				},
+				$param
+			);
 
 			$resources = [];
 
@@ -185,6 +190,7 @@ class Resource_Hints {
 
 	public function print_tag() {
 		$meta = '<meta http-equiv="x-dns-prefetch-control" content="on">' . "\n";
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo apply_filters( 'better_website_performance/seo/resource_hints/print_tag', $meta );
 	}
 

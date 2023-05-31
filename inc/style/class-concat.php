@@ -172,8 +172,10 @@ class Concat {
 		}
 
 		$minify = $this->get_options( 'minify' );
+		$output = '';
 
 		if ( $loading === 'inline' || $loading === 'concat' ) {
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 			$output = file_get_contents( $src );
 			if ( ! $output ) {
 				return $tag;
@@ -211,6 +213,7 @@ class Concat {
 <style id='better-website-performance-concat-styles'>
 <?php
 // Note that esc_html() cannot be used because `div &gt; span` is not interpreted properly.
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.WP.AlternativeFunctions.strip_tags_strip_tags
 echo strip_tags( $this->concat_css );
 ?>
 
@@ -233,12 +236,13 @@ echo strip_tags( $this->concat_css );
 	}
 
 	public function validate_exclude_style( $handle ) {
-		return in_array( $handle, $this->exclude_handles, false );
+		return in_array( $handle, $this->exclude_handles, true );
 	}
 
 	public function setup_exclude_style() {
-		$option = $this->get_options( 'exclude' );
+		$option  = $this->get_options( 'exclude' );
 		$handles = preg_split( '/\R/', $option, -1, PREG_SPLIT_NO_EMPTY );
+
 		$this->exclude_handles = apply_filters( 'better_website_performance/concat_style/setup_exclude', $handles );
 	}
 
@@ -283,7 +287,7 @@ echo strip_tags( $this->concat_css );
 				'section' => $this->section_id,
 				'type'    => 'radio',
 				'choices' => [
-					'default'	=> __( 'Default: Load external css file', 'better-website-performance' ),
+					'default' => __( 'Default: Load external css file', 'better-website-performance' ),
 					'inline'  => __( 'Inline each stylesheet', 'better-website-performance' ),
 					'concat'  => __( 'Inline concated Stylesheets', 'better-website-performance' ),
 				],

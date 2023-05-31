@@ -177,9 +177,9 @@ class Wp_Custom_Css {
 		$wp_customize->add_control(
 			$this->options_name . '[footer]',
 			[
-				'label'    => __( 'Place custom CSS in the footer', 'better-website-performance' ),
-				'section'  => $this->section_id,
-				'type'     => 'checkbox',
+				'label'   => __( 'Place custom CSS in the footer', 'better-website-performance' ),
+				'section' => $this->section_id,
+				'type'    => 'checkbox',
 			]
 		);
 	}

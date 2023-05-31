@@ -57,7 +57,7 @@ class Preload {
 	 *
 	 * @var string $capability
 	 */
-	public $capability   = 'manage_options';
+	public $capability = 'manage_options';
 
 	/**
 	 * Public variable.
@@ -146,9 +146,12 @@ class Preload {
 		foreach ( $urls as $line ) {
 			$param = explode( ',', $line );
 
-			$mapped_param = array_map( function( $el ) {
-				return trim( $el );
-			}, $param );
+			$mapped_param = array_map(
+				function( $el ) {
+					return trim( $el );
+				},
+				$param
+			);
 
 			$resources = [];
 

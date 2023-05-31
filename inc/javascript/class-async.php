@@ -160,7 +160,7 @@ class Async {
 			$edited_tag = str_replace( 'src=', "async='async' src=", $tag );
 			return apply_filters( 'better_website_performance/async_javascript/edited_tag', $edited_tag, $tag, $handle, $src );
 		}
-		else if ( $async === 'defer' ) {
+		elseif ( $async === 'defer' ) {
 			$edited_tag = str_replace( 'src=', "defer='defer' src=", $tag );
 			return apply_filters( 'better_website_performance/async_javascript/edited_tag', $edited_tag, $tag, $handle, $src );
 		}
@@ -169,12 +169,13 @@ class Async {
 	}
 
 	public function validate_exclude_script( $handle ) {
-		return in_array( $handle, $this->exclude_handles, false );
+		return in_array( $handle, $this->exclude_handles, true );
 	}
 
 	public function setup_exclude_script() {
-		$option = $this->get_options( 'exclude' );
+		$option  = $this->get_options( 'exclude' );
 		$handles = preg_split( '/\R/', $option, -1, PREG_SPLIT_NO_EMPTY );
+
 		$this->exclude_handles = apply_filters( 'better_website_performance/async_javascript/setup_exclude', $handles );
 	}
 
@@ -219,9 +220,9 @@ class Async {
 				'section' => $this->section_id,
 				'type'    => 'radio',
 				'choices' => [
-					''       => 'None',
-					'async'  => 'Async',
-					'defer'  => 'Defer',
+					''      => 'None',
+					'async' => 'Async',
+					'defer' => 'Defer',
 				],
 			]
 		);

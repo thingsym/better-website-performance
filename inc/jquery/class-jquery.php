@@ -149,7 +149,7 @@ class Jquery {
 					global $wp_scripts;
 
 					if ( isset( $wp_scripts->registered['jquery'] ) ) {
-						$jquery = $wp_scripts->registered['jquery'];
+						$jquery     = $wp_scripts->registered['jquery'];
 						$jquery_src = $jquery->src;
 						$jquery_ver = $jquery->ver;
 
@@ -158,7 +158,7 @@ class Jquery {
 					}
 
 					if ( isset( $wp_scripts->registered['jquery-core'] ) ) {
-						$jquery_core = $wp_scripts->registered['jquery-core'];
+						$jquery_core     = $wp_scripts->registered['jquery-core'];
 						$jquery_core_src = $jquery_core->src;
 						$jquery_core_ver = $jquery_core->ver;
 
@@ -167,7 +167,7 @@ class Jquery {
 					}
 
 					if ( isset( $wp_scripts->registered['jquery-migrate'] ) ) {
-						$jquery_migrate = $wp_scripts->registered['jquery-migrate'];
+						$jquery_migrate     = $wp_scripts->registered['jquery-migrate'];
 						$jquery_migrate_src = $jquery_migrate->src;
 						$jquery_migrate_ver = $jquery_migrate->ver;
 
@@ -180,7 +180,7 @@ class Jquery {
 				global $wp_scripts;
 
 				if ( isset( $wp_scripts->registered['jquery'] ) ) {
-					$jquery = $wp_scripts->registered['jquery'];
+					$jquery     = $wp_scripts->registered['jquery'];
 					$jquery_src = $jquery->src;
 					$jquery_ver = $jquery->ver;
 
@@ -189,7 +189,7 @@ class Jquery {
 				}
 
 				if ( isset( $wp_scripts->registered['jquery-core'] ) ) {
-					$jquery_core = $wp_scripts->registered['jquery-core'];
+					$jquery_core     = $wp_scripts->registered['jquery-core'];
 					$jquery_core_src = $jquery_core->src;
 					$jquery_core_ver = $jquery_core->ver;
 

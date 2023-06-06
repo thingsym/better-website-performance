@@ -6,6 +6,8 @@
  */
 
 class Test_Customizer_Emoji extends WP_UnitTestCase {
+	public $emoji;
+	public $wp_customize;
 
 	public function setUp(): void {
 		parent::setUp();

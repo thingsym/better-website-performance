@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Resource_Hints extends WP_UnitTestCase {
+	public $resource_hints;
 
 	public function setUp(): void {
 		parent::setUp();

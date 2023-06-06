@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Emoji extends WP_UnitTestCase {
+	public $emoji;
 
 	public function setUp(): void {
 		parent::setUp();

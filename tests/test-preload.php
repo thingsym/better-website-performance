@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Preload extends WP_UnitTestCase {
+	public $preload;
 
 	public function setUp(): void {
 		parent::setUp();

@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Better_Website_Performance_Basic extends WP_UnitTestCase {
+	public $better_website_performance;
 
 	public function setUp(): void {
 		parent::setUp();

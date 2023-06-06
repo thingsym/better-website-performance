@@ -6,6 +6,8 @@
  */
 
 class Test_Customizer_Wp_Custom_Css extends WP_UnitTestCase {
+	public $wp_custom_css;
+	public $wp_customize;
 
 	public function setUp(): void {
 		parent::setUp();

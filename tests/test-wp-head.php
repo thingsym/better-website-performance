@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Wp_Head extends WP_UnitTestCase {
+	public $wp_head;
 
 	public function setUp(): void {
 		parent::setUp();

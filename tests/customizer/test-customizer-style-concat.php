@@ -6,6 +6,8 @@
  */
 
 class Test_Customizer_Style_Concat extends WP_UnitTestCase {
+	public $concat_style;
+	public $wp_customize;
 
 	public function setUp(): void {
 		parent::setUp();

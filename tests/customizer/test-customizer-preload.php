@@ -6,6 +6,8 @@
  */
 
 class Test_Customizer_Preload extends WP_UnitTestCase {
+	public $preload;
+	public $wp_customize;
 
 	public function setUp(): void {
 		parent::setUp();

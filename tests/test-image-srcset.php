@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Image_Srcset extends WP_UnitTestCase {
+	public $image_srcset;
 
 	public function setUp(): void {
 		parent::setUp();

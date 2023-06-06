@@ -10,6 +10,7 @@
  */
 class Test_Preload extends WP_UnitTestCase {
 	public $preload;
+	public $preload_existed;
 
 	public function setUp(): void {
 		parent::setUp();

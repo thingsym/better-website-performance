@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Better Website Performance 1.0.1\n"
+"Project-Id-Version: Better Website Performance 1.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/better-website-"
 "performance\n"
 "POT-Creation-Date: 2023-05-31T08:54:57+00:00\n"

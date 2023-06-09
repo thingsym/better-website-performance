@@ -103,6 +103,15 @@ For operation compatibility between PHP version and WordPress version, see below
 
 ## Changelog
 
+### [1.1.0] - 2023.06.09
+
+* add test case
+* add uninstall process
+* add public class property
+* fix test case
+* ci support php version 8.0 later
+* add github actions for deploy to wordpress.org
+
 ### [1.0.1] - 2023.05.31
 
 * imporve code with phpcs

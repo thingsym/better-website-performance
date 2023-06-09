@@ -370,4 +370,18 @@ class Wp_Head {
 		);
 
 	}
+
+	/**
+	 * Uninstall callback for static class method \Better_Website_Performance\Better_Website_Performance::uninstall()
+	 *
+	 * @access static
+	 *
+	 * @return void
+	 *
+	 * @since 1.1.0
+	 */
+	public static function uninstall() {
+		delete_option( 'better_website_performance_wp_head_options' );
+	}
+
 }

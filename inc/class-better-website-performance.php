@@ -28,6 +28,8 @@ class Better_Website_Performance {
 		add_action( 'plugins_loaded', [ $this, 'load_plugin_data' ] );
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
 		add_action( 'plugins_loaded', [ $this, 'load_class_functions' ] );
+
+		register_uninstall_hook( BETTER_WEBSITE_PERFORMANCE, array( __CLASS__, 'uninstall' ) );
 	}
 
 	public function init() {
@@ -84,6 +86,27 @@ class Better_Website_Performance {
 		new \Better_Website_Performance\Jquery\Jquery();
 		new \Better_Website_Performance\JavaScript\Async();
 		new \Better_Website_Performance\Style\Concat();
+	}
+
+	/**
+	 * Uninstall callback static class method for register_uninstall_hook
+	 *
+	 * @access static
+	 *
+	 * @return void
+	 *
+	 * @since 1.1.0
+	 */
+	public static function uninstall() {
+		\Better_Website_Performance\Emoji\Emoji::uninstall();
+		\Better_Website_Performance\Image_Srcset\Image_Srcset::uninstall();
+		\Better_Website_Performance\JavaScript\Async::uninstall();
+		\Better_Website_Performance\Jquery\Jquery::uninstall();
+		\Better_Website_Performance\Preload\Preload::uninstall();
+		\Better_Website_Performance\Resource_Hints\Resource_Hints::uninstall();
+		\Better_Website_Performance\Style\Concat::uninstall();
+		\Better_Website_Performance\Wp_Custom_Css\Wp_Custom_Css::uninstall();
+		\Better_Website_Performance\Wp_Head\Wp_Head::uninstall();
 	}
 
 	/**

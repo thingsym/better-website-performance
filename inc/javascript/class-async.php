@@ -246,6 +246,19 @@ class Async {
 				'description' => __( 'Enter handle names to exclude.', 'better-website-performance' ),
 			]
 		);
-
 	}
+
+	/**
+	 * Uninstall callback for static class method \Better_Website_Performance\Better_Website_Performance::uninstall()
+	 *
+	 * @access static
+	 *
+	 * @return void
+	 *
+	 * @since 1.1.0
+	 */
+	public static function uninstall() {
+		delete_option( 'better_website_performance_async_javascript_options' );
+	}
+
 }

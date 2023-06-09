@@ -198,4 +198,19 @@ class Test_Emoji extends WP_UnitTestCase {
 		$this->assertFalse( has_filter( 'wp_mail', 'wp_staticize_emoji_for_email' ) );
 	}
 
+	/**
+	 * @test
+	 * @group Emoji
+	 */
+	public function uninstall() {
+		update_option( $this->emoji->options_name, 'uninstall' );
+
+		\Better_Website_Performance\Emoji\Emoji::uninstall();
+
+		global $wpdb;
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $this->emoji->options_name ) );
+
+		$this->assertNull( $row );
+	}
+
 }

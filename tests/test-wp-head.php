@@ -248,4 +248,19 @@ class Test_Wp_Head extends WP_UnitTestCase {
 		$this->assertFalse( has_filter( 'wp_head', 'adjacent_posts_rel_link_wp_head' ) );
 	}
 
+	/**
+	 * @test
+	 * @group Wp_Head
+	 */
+	public function uninstall() {
+		update_option( $this->wp_head->options_name, 'uninstall' );
+
+		\Better_Website_Performance\Wp_Head\Wp_Head::uninstall();
+
+		global $wpdb;
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $this->wp_head->options_name ) );
+
+		$this->assertNull( $row );
+	}
+
 }

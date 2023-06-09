@@ -187,4 +187,19 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 		$this->assertSame( 10, has_filter( 'wp_calculate_image_srcset_meta', '__return_null' ) );
 	}
 
+	/**
+	 * @test
+	 * @group Image_Srcset
+	 */
+	public function uninstall() {
+		update_option( $this->image_srcset->options_name, 'uninstall' );
+
+		\Better_Website_Performance\Image_Srcset\Image_Srcset::uninstall();
+
+		global $wpdb;
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $this->image_srcset->options_name ) );
+
+		$this->assertNull( $row );
+	}
+
 }

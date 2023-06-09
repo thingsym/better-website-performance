@@ -438,4 +438,19 @@ test3-style',
 		$this->assertTrue( in_array( 'test3-style', $this->style_concat->exclude_handles ) );
 	}
 
+	/**
+	 * @test
+	 * @group Style_Concat
+	 */
+	public function uninstall() {
+		update_option( $this->style_concat->options_name, 'uninstall' );
+
+		\Better_Website_Performance\Style\Concat::uninstall();
+
+		global $wpdb;
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $this->style_concat->options_name ) );
+
+		$this->assertNull( $row );
+	}
+
 }

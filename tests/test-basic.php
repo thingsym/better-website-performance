@@ -121,7 +121,6 @@ class Test_Better_Website_Performance_Basic extends WP_UnitTestCase {
 		$this->assertTrue( class_exists( '\Better_Website_Performance\Emoji\Emoji' ) );
 		$this->assertTrue( class_exists( '\Better_Website_Performance\Image_Srcset\Image_Srcset' ) );
 		$this->assertTrue( class_exists( '\Better_Website_Performance\Jquery\Jquery' ) );
-
 	}
 
 	/**
@@ -131,14 +130,6 @@ class Test_Better_Website_Performance_Basic extends WP_UnitTestCase {
 	public function plugin_metadata_links() {
 		$links = $this->better_website_performance->plugin_metadata_links( [], plugin_basename( BETTER_WEBSITE_PERFORMANCE ) );
 		$this->assertContains( '<a href="https://github.com/sponsors/thingsym">Become a sponsor</a>', $links );
-	}
-
-	/**
-	 * @test
-	 * @group basic
-	 */
-	function uninstall() {
-		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
 }

@@ -145,4 +145,19 @@ class Test_Jquery extends WP_UnitTestCase {
 		return $option;
 	}
 
+	/**
+	 * @test
+	 * @group Jquery
+	 */
+	public function uninstall() {
+		update_option( $this->jquery->options_name, 'uninstall' );
+
+		\Better_Website_Performance\Jquery\Jquery::uninstall();
+
+		global $wpdb;
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $this->jquery->options_name ) );
+
+		$this->assertNull( $row );
+	}
+
 }

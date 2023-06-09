@@ -225,4 +225,19 @@ test3-js',
 		$this->assertTrue( in_array( 'test3-js', $this->javascript_async->exclude_handles ) );
 	}
 
+	/**
+	 * @test
+	 * @group Javascript_Async
+	 */
+	public function uninstall() {
+		update_option( $this->javascript_async->options_name, 'uninstall' );
+
+		\Better_Website_Performance\Javascript\Async::uninstall();
+
+		global $wpdb;
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $this->javascript_async->options_name ) );
+
+		$this->assertNull( $row );
+	}
+
 }

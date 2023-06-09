@@ -383,4 +383,19 @@ class Test_Preload extends WP_UnitTestCase {
 
 	}
 
+	/**
+	 * @test
+	 * @group Preload
+	 */
+	public function uninstall() {
+		update_option( $this->preload->options_name, 'uninstall' );
+
+		\Better_Website_Performance\Preload\Preload::uninstall();
+
+		global $wpdb;
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $this->preload->options_name ) );
+
+		$this->assertNull( $row );
+	}
+
 }

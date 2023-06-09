@@ -543,4 +543,19 @@ ggggg',
 		$this->assertMatchesRegularExpression( '#<meta http-equiv="x-dns-prefetch-control" content="on">#', $actual );
 	}
 
+	/**
+	 * @test
+	 * @group Resource_Hints
+	 */
+	public function uninstall() {
+		update_option( $this->resource_hints->options_name, 'uninstall' );
+
+		\Better_Website_Performance\Resource_Hints\Resource_Hints::uninstall();
+
+		global $wpdb;
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $this->resource_hints->options_name ) );
+
+		$this->assertNull( $row );
+	}
+
 }

@@ -178,4 +178,19 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 		$this->assertMatchesRegularExpression( '#<style>#', $actual );
 	}
 
+	/**
+	 * @test
+	 * @group Wp_Custom_Css
+	 */
+	public function uninstall() {
+		update_option( $this->wp_custom_css->options_name, 'uninstall' );
+
+		\Better_Website_Performance\Wp_Custom_Css\Wp_Custom_Css::uninstall();
+
+		global $wpdb;
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $this->wp_custom_css->options_name ) );
+
+		$this->assertNull( $row );
+	}
+
 }

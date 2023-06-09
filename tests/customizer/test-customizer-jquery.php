@@ -6,6 +6,8 @@
  */
 
 class Test_Customizer_Jquery extends WP_UnitTestCase {
+	public $jquery;
+	public $wp_customize;
 
 	public function setUp(): void {
 		parent::setUp();

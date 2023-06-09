@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Javascript_Async extends WP_UnitTestCase {
+	public $javascript_async;
 
 	public function setUp(): void {
 		parent::setUp();

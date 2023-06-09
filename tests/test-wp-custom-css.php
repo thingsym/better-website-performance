@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Wp_Custom_Css extends WP_UnitTestCase {
+	public $wp_custom_css;
 
 	public function setUp(): void {
 		parent::setUp();

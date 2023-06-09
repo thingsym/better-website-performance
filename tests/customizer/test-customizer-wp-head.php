@@ -6,6 +6,8 @@
  */
 
 class Test_Customizer_Wp_Head extends WP_UnitTestCase {
+	public $wp_head;
+	public $wp_customize;
 
 	public function setUp(): void {
 		parent::setUp();

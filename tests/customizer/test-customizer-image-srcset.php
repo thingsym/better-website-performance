@@ -6,6 +6,8 @@
  */
 
 class Test_Customizer_Image_Srcset extends WP_UnitTestCase {
+	public $image_srcset;
+	public $wp_customize;
 
 	public function setUp(): void {
 		parent::setUp();

@@ -6,6 +6,8 @@
  */
 
 class Test_Customizer_Javascript_Async extends WP_UnitTestCase {
+	public $javascript_async;
+	public $wp_customize;
 
 	public function setUp(): void {
 		parent::setUp();

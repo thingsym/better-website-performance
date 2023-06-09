@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Jquery_Init extends WP_UnitTestCase {
+	public $jquery;
 
 	public function setUp(): void {
 		parent::setUp();

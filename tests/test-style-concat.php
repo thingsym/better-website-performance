@@ -9,6 +9,7 @@
  * Basic test case.
  */
 class Test_Style_Concat extends WP_UnitTestCase {
+	public $style_concat;
 
 	public function setUp(): void {
 		parent::setUp();

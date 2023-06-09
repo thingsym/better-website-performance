@@ -33,7 +33,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertSame( 'better_website_performance_concat_style', $this->style_concat->section_id );
 		$this->assertSame( 160, $this->style_concat->section_priority );
 		$this->assertSame( 'better_website_performance_concat_style_options', $this->style_concat->options_name );
@@ -56,7 +56,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_action( 'init', [ $this->style_concat, 'setup_exclude_style' ] ) );
 		$this->assertSame( 10, has_filter( 'customize_register', [ $this->style_concat, 'customizer' ] ) );
 		$this->assertSame( 10, has_action( 'style_loader_tag', [ $this->style_concat, 'concat_style_tag' ] ) );
@@ -67,7 +67,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function get_options_default() {
+	public function get_options_default() {
 		$expected = [
 			'loading' => 'default',
 			'minify'  => false,
@@ -83,7 +83,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function get_options_case_1() {
+	public function get_options_case_1() {
 		$expected = [
 			'loading' => 'inline',
 			'minify'  => true,
@@ -161,7 +161,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function concat_style_tag() {
+	public function concat_style_tag() {
 		$tag = "<link rel='stylesheet' id='test-css' href='https://example.org/wp-includes/css/test.css' media='all' />";
 
 		$actual = $this->style_concat->concat_style_tag( $tag, 'test-css', './tests/test.css' );
@@ -172,7 +172,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function concat_style_tag_admin() {
+	public function concat_style_tag_admin() {
 		set_current_screen( 'dashboard' );
 
 		$tag = "<link rel='stylesheet' id='test-css' href='https://example.org/wp-includes/css/test.css' media='all' />";
@@ -194,7 +194,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function concat_style_tag_on_login_page() {
+	public function concat_style_tag_on_login_page() {
 		// $this->markTestIncomplete( 'This test has not been implemented yet.' );
 		global $wp_actions;
 		$wp_actions[ 'login_head' ] = 1;
@@ -219,7 +219,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function concat_style_tag_exclude() {
+	public function concat_style_tag_exclude() {
 		$tag = "<link rel='stylesheet' id='test-css' href='https://example.org/wp-includes/css/test.css' media='all' />";
 
 		$options = array(
@@ -251,7 +251,7 @@ class Test_Style_Concat extends WP_UnitTestCase {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function concat_style_tag_inline_plus_minify() {
+	public function concat_style_tag_inline_plus_minify() {
 		$tag = "<link rel='stylesheet' id='test-css' href='https://example.org/wp-includes/css/test.css' media='all' />";
 
 		$options = array(
@@ -291,7 +291,7 @@ body{font-size:100%;}
 	 * @test
 	 * @group Style_Concat
 	 */
-	function concat_style_tag_concat() {
+	public function concat_style_tag_concat() {
 		$this->style_concat->concat_css = 'span {
 	font-size: 80%;
 }
@@ -323,7 +323,7 @@ body {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function concat_style_tag_concat_and_minify() {
+	public function concat_style_tag_concat_and_minify() {
 		$this->style_concat->concat_css = 'span{font-size:80%;}';
 
 		$options = array(
@@ -345,7 +345,7 @@ body {
 	 * @test
 	 * @group Style_Concat
 	 */
-	function print_concat_style() {
+	public function print_concat_style() {
 		$this->style_concat->concat_css = "body{font-size:100%;}";
 
 		ob_start();
@@ -362,7 +362,7 @@ body{font-size:100%;}
 	 * @test
 	 * @group Style_Concat
 	 */
-	function print_concat_style_admin() {
+	public function print_concat_style_admin() {
 		set_current_screen( 'dashboard' );
 
 		$this->style_concat->concat_css = "body{font-size:100%;}";
@@ -379,7 +379,7 @@ body{font-size:100%;}
 	 * @test
 	 * @group Style_Concat
 	 */
-	function print_concat_style_on_login_page() {
+	public function print_concat_style_on_login_page() {
 		global $wp_actions;
 		$wp_actions[ 'login_head' ] = 1;
 		// do_action( 'login_head' );
@@ -398,7 +398,7 @@ body{font-size:100%;}
 	 * @test
 	 * @group Style_Concat
 	 */
-	function minify() {
+	public function minify() {
 		$css = "		body { font-size: 100% ;  background : #ccccccc;
 	margin: 10px;
 }";
@@ -412,7 +412,7 @@ body{font-size:100%;}
 	 * @test
 	 * @group Style_Concat
 	 */
-	function validate_exclude_style() {
+	public function validate_exclude_style() {
 		$this->style_concat->exclude_handles[] = 'test-style';
 		$this->assertTrue( $this->style_concat->validate_exclude_style( 'test-style' ) );
 	}
@@ -421,7 +421,7 @@ body{font-size:100%;}
 	 * @test
 	 * @group Style_Concat
 	 */
-	function setup_exclude_style() {
+	public function setup_exclude_style() {
 		$options = array(
 			'loading' => 'default',
 			'minify'  => false,

@@ -27,7 +27,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Custom_Css
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertSame( 'custom_css', $this->wp_custom_css->section_id );
 		$this->assertSame( 'better_website_performance_wp_custom_css_options', $this->wp_custom_css->options_name );
 		$this->assertSame( 'option', $this->wp_custom_css->type );
@@ -43,7 +43,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Custom_Css
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_filter( 'customize_register', [ $this->wp_custom_css, 'customizer' ] ) );
 		$this->assertSame( 10, has_action( 'init', [ $this->wp_custom_css, 'init' ] ) );
 		$this->assertSame( 10, has_action( 'customize_controls_print_styles', [ $this->wp_custom_css, 'customize_control_enqueue_styles' ] ) );
@@ -53,7 +53,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Custom_Css
 	 */
-	function get_options_default() {
+	public function get_options_default() {
 		$actual = $this->wp_custom_css->get_options();
 		$expected = [
 			'footer' => false,
@@ -66,7 +66,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Custom_Css
 	 */
-	function get_options_case_1() {
+	public function get_options_case_1() {
 		$options = array(
 			'footer' => false,
 		);
@@ -82,7 +82,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Custom_Css
 	 */
-	function get_options_case_2() {
+	public function get_options_case_2() {
 		$options = array(
 			'footer' => true,
 		);
@@ -142,7 +142,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Custom_Css
 	 */
-	function init_default() {
+	public function init_default() {
 		$this->wp_custom_css->init();
 
 		$this->assertFalse( has_filter( 'wp_footer', 'wp_custom_css_cb' ) );
@@ -153,7 +153,7 @@ class Test_Wp_Custom_Css extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Custom_Css
 	 */
-	function init_case_1() {
+	public function init_case_1() {
 		$options = array(
 			'footer' => true,
 		);

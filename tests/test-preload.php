@@ -36,7 +36,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertSame( 'better_website_performance_preload', $this->preload->section_id );
 		$this->assertSame( 180, $this->preload->section_priority );
 		$this->assertSame( 'better_website_performance_preload_options', $this->preload->options_name );
@@ -53,7 +53,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_filter( 'customize_register', [ $this->preload, 'customizer' ] ) );
 		$this->assertSame( 10, has_action( 'wp_preload_resources', [ $this->preload, 'add_preload' ] ) );
 	}
@@ -62,7 +62,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function get_options_default() {
+	public function get_options_default() {
 		$actual = $this->preload->get_options();
 		$expected = [
 			'preload' => '',
@@ -75,7 +75,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function get_options_case_1() {
+	public function get_options_case_1() {
 		$expected = [
 			'preload' => '//fonts.googleapis.com/css?family=Montserrat, font, , text/html',
 		];
@@ -158,7 +158,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload_default() {
+	public function add_preload_default() {
 		$actual = $this->preload->add_preload( [] );
 
 		$this->assertIsArray( $actual );
@@ -169,7 +169,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload_case_1() {
+	public function add_preload_case_1() {
 		$expected = [
 			[
 				'href' => '//fonts.googleapis.com/css?family=Montserrat',
@@ -194,7 +194,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload_case_2() {
+	public function add_preload_case_2() {
 
 		$expected = [
 			[
@@ -221,7 +221,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload_case_3() {
+	public function add_preload_case_3() {
 
 		$expected = [
 			[
@@ -246,7 +246,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload_case_4() {
+	public function add_preload_case_4() {
 
 		$expected = [
 			[
@@ -270,7 +270,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload_multiline() {
+	public function add_preload_multiline() {
 		$expected = [
 			[
 				'href' => '//fonts.googleapis.com/css?family=Montserrat',
@@ -312,7 +312,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload_existed_default() {
+	public function add_preload_existed_default() {
 		$this->preload_existed = [
 			[
 				'href' => '//example.com/',
@@ -340,7 +340,7 @@ class Test_Preload extends WP_UnitTestCase {
 	 * @test
 	 * @group Preload
 	 */
-	function add_preload_existed_case_1() {
+	public function add_preload_existed_case_1() {
 		$expected = [
 			[
 				'href' => '//example.com/',

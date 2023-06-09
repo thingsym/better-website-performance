@@ -27,7 +27,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Head
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertSame( 'better_website_performance_wp_head', $this->wp_head->section_id );
 		$this->assertSame( 160, $this->wp_head->section_priority );
 		$this->assertSame( 'better_website_performance_wp_head_options', $this->wp_head->options_name );
@@ -52,7 +52,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Head
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_filter( 'customize_register', [ $this->wp_head, 'customizer' ] ) );
 		$this->assertSame( 10, has_action( 'init', [ $this->wp_head, 'init' ] ) );
 	}
@@ -61,7 +61,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Head
 	 */
-	function get_options_default() {
+	public function get_options_default() {
 		$expected = array(
 			'feed_links'                      => true,
 			'feed_links_extra'                => true,
@@ -83,7 +83,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Head
 	 */
-	function get_options_case_1() {
+	public function get_options_case_1() {
 		$expected = array(
 			'feed_links'                      => false,
 			'feed_links_extra'                => false,
@@ -191,7 +191,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Head
 	 */
-	function init_default() {
+	public function init_default() {
 		$this->wp_head->init();
 
 		$this->assertSame( 2, has_filter( 'wp_head', 'feed_links' ) );
@@ -210,7 +210,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Head
 	 */
-	function init_disabled() {
+	public function init_disabled() {
 		$options = array(
 			'feed_links'                      => false,
 			'feed_links_extra'                => false,
@@ -242,7 +242,7 @@ class Test_Wp_Head extends WP_UnitTestCase {
 	 * @test
 	 * @group Wp_Head
 	 */
-	function adjacent_posts_rel_link_wp_head() {
+	public function adjacent_posts_rel_link_wp_head() {
 		$this->wp_head->init();
 
 		$this->assertFalse( has_filter( 'wp_head', 'adjacent_posts_rel_link_wp_head' ) );

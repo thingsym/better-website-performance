@@ -27,7 +27,7 @@ class Test_Jquery extends WP_UnitTestCase {
 	 * @test
 	 * @group Jquery
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertSame( 'better_website_performance_jquery', $this->jquery->section_id );
 		$this->assertSame( 160, $this->jquery->section_priority );
 		$this->assertSame( 'better_website_performance_jquery_options', $this->jquery->options_name );
@@ -46,7 +46,7 @@ class Test_Jquery extends WP_UnitTestCase {
 	 * @test
 	 * @group Jquery
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_filter( 'customize_register', [ $this->jquery, 'customizer' ] ) );
 		$this->assertSame( 10, has_action( 'init', [ $this->jquery, 'init' ] ) );
 	}
@@ -55,7 +55,7 @@ class Test_Jquery extends WP_UnitTestCase {
 	 * @test
 	 * @group Jquery
 	 */
-	function get_options_default() {
+	public function get_options_default() {
 		$expected = [
 			'jquery'         => true,
 			'jquery_migrate' => true,
@@ -71,7 +71,7 @@ class Test_Jquery extends WP_UnitTestCase {
 	 * @test
 	 * @group Jquery
 	 */
-	function get_options_case_1() {
+	public function get_options_case_1() {
 		$expected = [
 			'jquery'         => false,
 			'jquery_migrate' => false,

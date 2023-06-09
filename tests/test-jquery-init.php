@@ -30,7 +30,7 @@ class Test_Jquery_Init extends WP_UnitTestCase {
 	 * @test
 	 * @group Jquery
 	 */
-	function init_default() {
+	public function init_default() {
 		$this->jquery->init();
 
 		global $wp_scripts;
@@ -49,7 +49,7 @@ class Test_Jquery_Init extends WP_UnitTestCase {
 	 * @test
 	 * @group Jquery
 	 */
-	function init_disabled_jquery() {
+	public function init_disabled_jquery() {
 		$options = array(
 			'jquery'         => false,
 			'jquery_migrate' => true,
@@ -71,7 +71,7 @@ class Test_Jquery_Init extends WP_UnitTestCase {
 	 * @test
 	 * @group Jquery
 	 */
-	function init_disabled_migrate() {
+	public function init_disabled_migrate() {
 		$options = array(
 			'jquery'         => true,
 			'jquery_migrate' => false,
@@ -97,7 +97,7 @@ class Test_Jquery_Init extends WP_UnitTestCase {
 	 * @test
 	 * @group Jquery
 	 */
-	function init_in_footer() {
+	public function init_in_footer() {
 		$options = array(
 			'jquery'         => true,
 			'jquery_migrate' => true,
@@ -128,7 +128,7 @@ class Test_Jquery_Init extends WP_UnitTestCase {
 	 * @test
 	 * @group Jquery
 	 */
-	function init_disabled_migrate_in_footer() {
+	public function init_disabled_migrate_in_footer() {
 		$options = array(
 			'jquery'         => true,
 			'jquery_migrate' => false,

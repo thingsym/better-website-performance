@@ -27,7 +27,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @test
 	 * @group Image_Srcset
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertSame( 'better_website_performance_image_srcset', $this->image_srcset->section_id );
 		$this->assertSame( 160, $this->image_srcset->section_priority );
 		$this->assertSame( $this->image_srcset->options_name, $this->image_srcset->options_name );
@@ -44,7 +44,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @test
 	 * @group Image_Srcset
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_filter( 'customize_register', [ $this->image_srcset, 'customizer' ] ) );
 		$this->assertSame( 10, has_action( 'init', [ $this->image_srcset, 'init' ] ) );
 	}
@@ -53,7 +53,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @test
 	 * @group Image_Srcset
 	 */
-	function get_options_default() {
+	public function get_options_default() {
 		$actual = $this->image_srcset->get_options();
 		$expected = array(
 			'image_srcset' => true,
@@ -66,7 +66,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @test
 	 * @group Image_Srcset
 	 */
-	function get_options_case_1() {
+	public function get_options_case_1() {
 		$options = array(
 			'image_srcset' => false,
 		);
@@ -83,7 +83,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @test
 	 * @group Image_Srcset
 	 */
-	function get_options_case_2() {
+	public function get_options_case_2() {
 		$options = array(
 			'image_srcset' => true,
 		);
@@ -148,7 +148,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @test
 	 * @group Image_Srcset
 	 */
-	function init_dafault() {
+	public function init_dafault() {
 		$this->image_srcset->init();
 
 		$this->assertFalse( has_filter( 'wp_calculate_image_srcset_meta', '__return_null' ) );
@@ -158,7 +158,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @test
 	 * @group Image_Srcset
 	 */
-	function init_case_1() {
+	public function init_case_1() {
 
 		$options = array(
 			'image_srcset' => true,
@@ -175,7 +175,7 @@ class Test_Image_Srcset extends WP_UnitTestCase {
 	 * @test
 	 * @group Image_Srcset
 	 */
-	function init_case_2() {
+	public function init_case_2() {
 		$options = array(
 			'image_srcset' => false,
 		);

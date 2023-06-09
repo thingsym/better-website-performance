@@ -27,7 +27,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @test
 	 * @group Emoji
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertSame( 'better_website_performance_emoji', $this->emoji->section_id );
 		$this->assertSame( 160, $this->emoji->section_priority );
 		$this->assertSame( 'better_website_performance_emoji_options', $this->emoji->options_name );
@@ -44,7 +44,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @test
 	 * @group Emoji
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_filter( 'customize_register', [ $this->emoji, 'customizer' ] ) );
 		$this->assertSame( 10, has_action( 'init', [ $this->emoji, 'init' ] ) );
 	}
@@ -53,7 +53,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @test
 	 * @group Emoji
 	 */
-	function get_options_default() {
+	public function get_options_default() {
 		$actual = $this->emoji->get_options();
 		$expected = [
 			'emoji' => true,
@@ -66,7 +66,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @test
 	 * @group Emoji
 	 */
-	function get_options_case_1() {
+	public function get_options_case_1() {
 		$options = array(
 			'emoji' => false,
 		);
@@ -82,7 +82,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @test
 	 * @group Emoji
 	 */
-	function get_options_case_2() {
+	public function get_options_case_2() {
 		$options = array(
 			'emoji' => true,
 		);
@@ -142,7 +142,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @test
 	 * @group Emoji
 	 */
-	function init_default() {
+	public function init_default() {
 		$this->emoji->init();
 
 		$this->assertSame( 7, has_filter( 'wp_head', 'print_emoji_detection_script' ) );
@@ -158,7 +158,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @test
 	 * @group Emoji
 	 */
-	function init_case_1() {
+	public function init_case_1() {
 		$options = array(
 			'emoji' => true,
 		);
@@ -180,7 +180,7 @@ class Test_Emoji extends WP_UnitTestCase {
 	 * @test
 	 * @group Emoji
 	 */
-	function init_case_2() {
+	public function init_case_2() {
 		$options = array(
 			'emoji' => false,
 		);

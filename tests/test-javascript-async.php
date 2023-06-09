@@ -26,7 +26,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @test
 	 * @group Javascript_Async
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertSame( 'better_website_performance_async_javascript', $this->javascript_async->section_id );
 		$this->assertSame( 160, $this->javascript_async->section_priority );
 		$this->assertSame( 'better_website_performance_async_javascript_options', $this->javascript_async->options_name );
@@ -46,7 +46,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @test
 	 * @group Javascript_Async
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_filter( 'customize_register', [ $this->javascript_async, 'customizer' ] ) );
 		$this->assertSame( 10, has_action( 'script_loader_tag', [ $this->javascript_async, 'async_script_tag' ] ) );
 	}
@@ -55,7 +55,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @test
 	 * @group Javascript_Async
 	 */
-	function get_options_default() {
+	public function get_options_default() {
 		$expected = [
 			'async' => '',
 			'exclude' => '',
@@ -70,7 +70,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @test
 	 * @group Javascript_Async
 	 */
-	function get_options_case_1() {
+	public function get_options_case_1() {
 		$expected = [
 			'async' => 'async',
 			'exclude' => '',
@@ -143,7 +143,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @test
 	 * @group Javascript_Async
 	 */
-	function async_script_tag() {
+	public function async_script_tag() {
 		$tag = "<script src='test.min.js?ver=3.1.2' id='wp-test-js'>";
 		$src = "test.min.js?ver=3.1.2";
 
@@ -179,7 +179,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @test
 	 * @group Javascript_Async
 	 */
-	function async_script_tag_exclude() {
+	public function async_script_tag_exclude() {
 		$tag = "<script src='test.min.js?ver=3.1.2' id='wp-test-js'>";
 		$src = "test.min.js?ver=3.1.2";
 
@@ -200,7 +200,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @test
 	 * @group Javascript_Async
 	 */
-	function validate_exclude_script() {
+	public function validate_exclude_script() {
 		$this->javascript_async->exclude_handles[] = 'test-js';
 		$this->assertTrue( $this->javascript_async->validate_exclude_script( 'test-js' ) );
 	}
@@ -209,7 +209,7 @@ class Test_Javascript_Async extends WP_UnitTestCase {
 	 * @test
 	 * @group Javascript_Async
 	 */
-	function setup_exclude_script() {
+	public function setup_exclude_script() {
 		$options = array(
 			'async'   => 'defer',
 			'exclude' => 'test1-js

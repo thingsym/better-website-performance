@@ -27,7 +27,7 @@ class Test_Better_Website_Performance_Basic extends WP_UnitTestCase {
 	 * @test
 	 * @group basic
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertIsArray( $this->better_website_performance->plugin_data );
 		$this->assertEmpty( $this->better_website_performance->plugin_data );
 	}
@@ -36,7 +36,7 @@ class Test_Better_Website_Performance_Basic extends WP_UnitTestCase {
 	 * @test
 	 * @group basic
 	 */
-	function basic() {
+	public function basic() {
 		$this->assertMatchesRegularExpression( '#/better-website-performance/better-website-performance.php$#', BETTER_WEBSITE_PERFORMANCE );
 		$this->assertTrue( class_exists( '\Better_Website_Performance\Better_Website_Performance' ) );
 	}
@@ -45,7 +45,7 @@ class Test_Better_Website_Performance_Basic extends WP_UnitTestCase {
 	 * @test
 	 * @group basic
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_filter( 'plugins_loaded', [ $this->better_website_performance, 'load_plugin_data' ] ) );
 
 		$this->assertSame( 10, has_action( 'plugins_loaded', [ $this->better_website_performance, 'init' ] ) );
@@ -56,7 +56,7 @@ class Test_Better_Website_Performance_Basic extends WP_UnitTestCase {
 	 * @test
 	 * @group basic
 	 */
-	function init() {
+	public function init() {
 		$this->better_website_performance->init();
 
 		$this->assertSame( 10, has_action( 'init', [ $this->better_website_performance, 'load_textdomain' ] ) );
@@ -87,11 +87,11 @@ class Test_Better_Website_Performance_Basic extends WP_UnitTestCase {
 	/**
 	 * hook for load_textdomain
 	 */
-	function _change_locale( $locale ) {
+	public function _change_locale( $locale ) {
 		return 'ja';
 	}
 
-	function _change_textdomain_mofile( $mofile, $domain ) {
+	public function _change_textdomain_mofile( $mofile, $domain ) {
 		if ( $domain === 'better-website-performance' ) {
 			$locale = determine_locale();
 			$mofile = plugin_dir_path( BETTER_WEBSITE_PERFORMANCE ) . 'languages/better-website-performance-' . $locale . '.mo';

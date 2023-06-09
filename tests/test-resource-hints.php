@@ -35,7 +35,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function public_variable() {
+	public function public_variable() {
 		$this->assertSame( 'better_website_performance_resource_hints', $this->resource_hints->section_id );
 		$this->assertSame( 180, $this->resource_hints->section_priority );
 		$this->assertSame( 'better_website_performance_resource_hints_options', $this->resource_hints->options_name );
@@ -56,7 +56,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function constructor() {
+	public function constructor() {
 		$this->assertSame( 10, has_filter( 'customize_register', [ $this->resource_hints, 'customizer' ] ) );
 		$this->assertSame( 2, has_action( 'wp_head', [ $this->resource_hints, 'print_tag' ] ) );
 		$this->assertSame( 10, has_action( 'wp_resource_hints', [ $this->resource_hints, 'add_resource_hints' ] ) );
@@ -66,7 +66,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function get_options_default() {
+	public function get_options_default() {
 		$actual = $this->resource_hints->get_options();
 		$expected = [
 			'dns_prefetch' => '',
@@ -82,7 +82,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function get_options_case_1() {
+	public function get_options_case_1() {
 		$expected = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -186,7 +186,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_default() {
+	public function add_resource_hints_default() {
 		$actual = $this->resource_hints->add_resource_hints( [], 'dns-prefetch' );
 
 		$this->assertIsArray( $actual );
@@ -197,7 +197,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_case_1() {
+	public function add_resource_hints_case_1() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -258,7 +258,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_case_2() {
+	public function add_resource_hints_case_2() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -286,7 +286,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_case_3() {
+	public function add_resource_hints_case_3() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -312,7 +312,7 @@ class Test_Resource_Hints extends WP_UnitTestCase {
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_multiline() {
+	public function add_resource_hints_multiline() {
 		$options = [
 			'dns_prefetch' => 'www.google.com
 example.com',
@@ -384,7 +384,7 @@ ggggg',
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_existed_dafault() {
+	public function add_resource_hints_existed_dafault() {
 
 		$expected = [
 			[
@@ -402,7 +402,7 @@ ggggg',
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_existed_case_1() {
+	public function add_resource_hints_existed_case_1() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -475,7 +475,7 @@ ggggg',
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_existed_case_2() {
+	public function add_resource_hints_existed_case_2() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',
@@ -505,7 +505,7 @@ ggggg',
 	 * @test
 	 * @group Resource_Hints
 	 */
-	function add_resource_hints_existed_case_3() {
+	public function add_resource_hints_existed_case_3() {
 		$options = [
 			'dns_prefetch' => 'www.google.com',
 			'preconnect'   => 'bbbbbb',

@@ -181,6 +181,8 @@ class Concat {
 				return $tag;
 			}
 
+			$output = $this->trim_css( $output );
+
 			if ( $minify ) {
 				$output = $this->minify( $output );
 			}
@@ -219,6 +221,12 @@ echo strip_tags( $this->concat_css );
 
 </style>
 <?php
+	}
+
+	public function trim_css( $css ) {
+		$css = mb_ereg_replace( '@charset "utf\-8";', '', $css, 'i' );
+
+		return $css;
 	}
 
 	public function minify( $css ) {

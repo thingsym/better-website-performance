@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Better Website Performance 1.1.0\n"
+"Project-Id-Version: Better Website Performance 1.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/better-website-"
 "performance\n"
-"POT-Creation-Date: 2023-05-31T08:54:57+00:00\n"
+"POT-Creation-Date: 2023-11-16T07:57:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,9 @@ msgstr "https://github.com/thingsym/better-website-performance"
 msgid ""
 "The Better Website Performance plugin adds advanced features to improve "
 "website performance."
-msgstr "Better Website Performance プラグインは、ウェブサイトのパフォーマンスが向上する高度な機能を追加します。"
+msgstr ""
+"Better Website Performance プラグインは、ウェブサイトのパフォーマンスが向上す"
+"る高度な機能を追加します。"
 
 #. Author of the plugin
 msgid "thingsym"
@@ -38,7 +40,7 @@ msgstr "thingsym"
 msgid "https://www.thingslabo.com/"
 msgstr "https://www.thingslabo.com/"
 
-#: inc/class-better-website-performance.php:107
+#: inc/class-better-website-performance.php:130
 msgid "Become a sponsor"
 msgstr "スポンサーになる"
 
@@ -70,11 +72,11 @@ msgstr "JavaScript"
 msgid "Async type"
 msgstr "非同期処理"
 
-#: inc/javascript/class-async.php:243 inc/style/class-concat.php:329
+#: inc/javascript/class-async.php:243 inc/style/class-concat.php:337
 msgid "Exclude"
 msgstr "除外"
 
-#: inc/javascript/class-async.php:246 inc/style/class-concat.php:332
+#: inc/javascript/class-async.php:246 inc/style/class-concat.php:340
 msgid "Enter handle names to exclude."
 msgstr "除外対象のハンドル名を入力"
 
@@ -126,27 +128,27 @@ msgstr "Prefetch"
 msgid "Prerender"
 msgstr "Prerender"
 
-#: inc/style/class-concat.php:267
+#: inc/style/class-concat.php:275
 msgid "Style Sheet"
 msgstr "スタイルシート"
 
-#: inc/style/class-concat.php:286
+#: inc/style/class-concat.php:294
 msgid "Loading type"
 msgstr "読み込み方法"
 
-#: inc/style/class-concat.php:290
+#: inc/style/class-concat.php:298
 msgid "Default: Load external css file"
 msgstr "デフォルト: 外部CSSファイルを読み込み"
 
-#: inc/style/class-concat.php:291
+#: inc/style/class-concat.php:299
 msgid "Inline each stylesheet"
 msgstr "各スタイルシートをインライン埋め込み"
 
-#: inc/style/class-concat.php:292
+#: inc/style/class-concat.php:300
 msgid "Inline concated Stylesheets"
 msgstr "結合したスタイルシートをインライン埋め込み"
 
-#: inc/style/class-concat.php:310
+#: inc/style/class-concat.php:318
 msgid "Enable minify"
 msgstr "スタイルシートを圧縮・軽量化 (minify)"
 

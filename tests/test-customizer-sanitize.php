@@ -244,9 +244,9 @@ class Test_Customizer_Sanitize extends WP_UnitTestCase {
 			[
 				'type'    => 'select',
 				'choices' => [
-					'aaa'   => 'aaa',
-					'bbb'   => 'bbb',
-					'ccc'   => 'ccc',
+					'aaa'   => '123',
+					'bbb'   => '456',
+					'ccc'   => '789',
 				],
 			]
 		);
@@ -269,6 +269,48 @@ class Test_Customizer_Sanitize extends WP_UnitTestCase {
 	 * @test
 	 * @group Customizer_Sanitize
 	 */
+	public function sanitize_select_for_sanitize_key() {
+		$manager = New WP_Customize_Manager();
+
+		$manager->add_control(
+			'test',
+			[
+				'type'    => 'select',
+				'choices' => [
+					'0.1'   => '123',
+					'0.2'   => '456',
+					'0.3'   => '789',
+				],
+			]
+		);
+
+		$setting = New WP_Customize_Setting(
+			$manager,
+			'test',
+			[
+				'default' => '0.1',
+			]
+		);
+
+		$this->assertSame( '0.1', Sanitize::sanitize_select( '0.1', $setting ) );
+		$this->assertSame( '0.2', Sanitize::sanitize_select( '0.2', $setting ) );
+		$this->assertSame( '0.3', Sanitize::sanitize_select( '0.3', $setting ) );
+	}
+
+	/**
+	 * @test
+	 * @group Customizer_Sanitize
+	 */
+	public function sanitize_key() {
+		$this->assertSame( '0.1', Sanitize::sanitize_key( '01', '0.1' ) );
+		$this->assertSame( '0.2', Sanitize::sanitize_key( '02', '0.2' ) );
+		$this->assertSame( '0.3', Sanitize::sanitize_key( '03', '0.3' ) );
+	}
+
+	/**
+	 * @test
+	 * @group Customizer_Sanitize
+	 */
 	public function sanitize_radio() {
 		$manager = New WP_Customize_Manager();
 
@@ -277,9 +319,9 @@ class Test_Customizer_Sanitize extends WP_UnitTestCase {
 			[
 				'type'    => 'radio',
 				'choices' => [
-					'aaa'   => 'aaa',
-					'bbb'   => 'bbb',
-					'ccc'   => 'ccc',
+					'aaa'   => '123',
+					'bbb'   => '456',
+					'ccc'   => '789',
 				],
 			]
 		);

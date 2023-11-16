@@ -4,7 +4,6 @@
  *
  * @package Better_Website_Performance
  * @since 1.0.0
- * @see https://codex.wordpress.org/Function_Reference/sanitize_key
  */
 
 namespace Better_Website_Performance\Customizer;
@@ -113,9 +112,30 @@ class Sanitize {
 	 * @return string Sanitized slug if it is a valid choice; otherwise, the setting default.
 	 */
 	public static function sanitize_select( $input, $setting ) {
+		add_filter( 'sanitize_key', [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_key' ], 10, 2 );
 		$input   = sanitize_key( $input );
+		remove_filter( 'sanitize_key', [ 'Better_Website_Performance\Customizer\Sanitize', 'sanitize_key' ], 10, 2 );
+
 		$choices = $setting->manager->get_control( $setting->id )->choices;
 		return array_key_exists( $input, $choices ) ? $input : $setting->default;
+	}
+
+	/**
+	 * sanitized key string.
+	 *
+	 * @static
+	 * @param string $sanitized_key Sanitized key.
+	 * @param string $key           The key prior to sanitization.
+	 * @see https://developer.wordpress.org/reference/functions/sanitize_key/
+	 */
+	public static function sanitize_key( $sanitized_key, $key ) {
+		if ( is_scalar( $key ) ) {
+			$sanitized_key = strtolower( $key );
+			// In addition to what is stated, dot is allowed
+			$sanitized_key = preg_replace( '/[^a-z0-9_\-\.]/', '', $sanitized_key );
+		}
+
+		return $sanitized_key;
 	}
 
 	/**

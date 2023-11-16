@@ -3,7 +3,7 @@
  * Plugin Name: Better Website Performance
  * Plugin URI:  https://github.com/thingsym/better-website-performance
  * Description: The Better Website Performance plugin adds advanced features to improve website performance.
- * Version:     1.1.0
+ * Version:     1.1.1
  * Author:      thingsym
  * Author URI:  https://www.thingslabo.com/
  * License:     GPLv2 or later

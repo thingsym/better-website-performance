@@ -4,7 +4,7 @@ Contributors: thingsym
 Link: https://github.com/thingsym/better-website-performance
 Donate link: https://github.com/sponsors/thingsym
 Tags: performance
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 Tested up to: 6.4.1
 Requires at least: 6.0
 Requires PHP: 7.4
@@ -111,6 +111,15 @@ For operation compatibility between PHP version and WordPress version, see below
 5. Have fun!
 
 == Changelog ==
+
+= 1.1.1 =
+* update japanese translation
+* update pot
+* tested up to 6.4.1
+* fix workflows
+* phpunit-polyfills bump up
+* improve sanitize_key function for dot
+* remove @charset "UTF-8"; into css
 
 = 1.1.0 =
 * add test case

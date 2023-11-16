@@ -103,6 +103,16 @@ For operation compatibility between PHP version and WordPress version, see below
 
 ## Changelog
 
+### [1.1.1] - 2023.11.16
+
+* update japanese translation
+* update pot
+* tested up to 6.4.1
+* fix workflows
+* phpunit-polyfills bump up
+* improve sanitize_key function for dot
+* remove @charset "UTF-8"; into css
+
 ### [1.1.0] - 2023.06.09
 
 * add test case

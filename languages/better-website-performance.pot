@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Better Website Performance 1.1.0\n"
+"Project-Id-Version: Better Website Performance 1.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/better-website-performance\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-05-31T08:54:57+00:00\n"
+"POT-Creation-Date: 2023-11-16T07:57:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: better-website-performance\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "https://www.thingslabo.com/"
 msgstr ""
 
-#: inc/class-better-website-performance.php:107
+#: inc/class-better-website-performance.php:130
 msgid "Become a sponsor"
 msgstr ""
 
@@ -67,12 +67,12 @@ msgid "Async type"
 msgstr ""
 
 #: inc/javascript/class-async.php:243
-#: inc/style/class-concat.php:329
+#: inc/style/class-concat.php:337
 msgid "Exclude"
 msgstr ""
 
 #: inc/javascript/class-async.php:246
-#: inc/style/class-concat.php:332
+#: inc/style/class-concat.php:340
 msgid "Enter handle names to exclude."
 msgstr ""
 
@@ -125,27 +125,27 @@ msgstr ""
 msgid "Prerender"
 msgstr ""
 
-#: inc/style/class-concat.php:267
+#: inc/style/class-concat.php:275
 msgid "Style Sheet"
 msgstr ""
 
-#: inc/style/class-concat.php:286
+#: inc/style/class-concat.php:294
 msgid "Loading type"
 msgstr ""
 
-#: inc/style/class-concat.php:290
+#: inc/style/class-concat.php:298
 msgid "Default: Load external css file"
 msgstr ""
 
-#: inc/style/class-concat.php:291
+#: inc/style/class-concat.php:299
 msgid "Inline each stylesheet"
 msgstr ""
 
-#: inc/style/class-concat.php:292
+#: inc/style/class-concat.php:300
 msgid "Inline concated Stylesheets"
 msgstr ""
 
-#: inc/style/class-concat.php:310
+#: inc/style/class-concat.php:318
 msgid "Enable minify"
 msgstr ""
 
